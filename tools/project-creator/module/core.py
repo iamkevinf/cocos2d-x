@@ -164,6 +164,7 @@ class CocosProject:
         else:
             shutil.copytree(self.context["src_project_path"], self.context["dst_project_path"], True)
 
+        """ #ignore this block
         # check cocos engine exist
 
         if not os.path.exists(self.context["cocos_file_list"]):
@@ -202,6 +203,12 @@ class CocosProject:
             if self.callbackfun and self.step%int(self.totalStep/50) == 0:
                 self.callbackfun(self.step,self.totalStep,fileList[index])
         print("cocos2d\t\t: Done!")
+        """
+        
+        self.platforms_list = self.platforms.get(self.context["language"], [])
+        self.totalStep = len(self.platforms_list)
+        self.step = 0
+        
         # call process_proj from each platform's script folder
         for platform in self.platforms_list:
             self.__processPlatformProjects(platform)
