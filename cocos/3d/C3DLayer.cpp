@@ -8,7 +8,7 @@
 
 #include "C3DScene.h"
 
-#include "touch_dispatcher/CCTouch.h"
+#include "CCTouch.h"
 
 #include <map>
 
@@ -107,10 +107,11 @@ void C3DLayer::draw(void)
 
 long C3DLayer::getAbsoluteTime()
 {
-    struct cocos2d::cc_timeval now;
-    if (cocos2d::CCTime::gettimeofdayCocos2d(&now, NULL) != 0)
+    struct timeval now;
+    
+    if (gettimeofday(&now, nullptr) != 0)
     {
-        return 0 ;
+        return 0;
     }
 
     return now.tv_sec*1000;
@@ -118,10 +119,10 @@ long C3DLayer::getAbsoluteTime()
 
 long C3DLayer::getGameTime()
 {
-    struct cocos2d::cc_timeval now;
-    if (cocos2d::CCTime::gettimeofdayCocos2d(&now, NULL) != 0)
+    struct timeval now;
+    if (gettimeofday(&now, nullptr) != 0)
     {
-        return 0 ;
+        return 0;
     }
 
     return now.tv_sec*1000;
@@ -129,7 +130,7 @@ long C3DLayer::getGameTime()
 
 void C3DLayer::initialize()
 {   
-    _scene = cocos3d::C3DScene::createScene(this);
+    _scene = C3DScene::createScene(this);
         
     _initialized = true;    
 }
@@ -272,7 +273,7 @@ unsigned int C3DLayer::getHeight() const
 
 void C3DLayer::showBoundingBox(bool bShow)
 {
-    this->getScene()->showBoundingBox(bShow);
+    _scene->showBoundingBox(bShow);
 }
 
 C3DLayer* C3DLayer::getMainLayer()

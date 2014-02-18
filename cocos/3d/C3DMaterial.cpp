@@ -1,5 +1,5 @@
 #include "C3DMaterial.h"
-#include "C3DStream.h"
+#include "Stream.h"
 #include "C3DPass.h"
 #include "ElementNode.h"
 #include "C3DTexture.h"

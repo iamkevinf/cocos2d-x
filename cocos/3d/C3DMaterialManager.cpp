@@ -77,6 +77,7 @@ C3DResource* C3DMaterialManager::cloneResource(C3DResource* resource)
         this->setResourceState(newResource,C3DResource::State_Used);
         return newResource;        
     }
+    return nullptr;
 }
 
 NS_CC_END
