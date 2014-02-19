@@ -62,11 +62,11 @@ bool C3DLayer::init3D()
     initialize();   
         
     // Update the aspect ratio for our scene's camera to match the current device resolution 
-    cocos2d::CCSize size = cocos2d::CCDirector::sharedDirector()->getWinSize();//cocos2d::CCDirector::sharedDirector()->getWinSizeInPixels();
+    cocos2d::Size size = cocos2d::Director::getInstance()->getWinSize();//cocos2d::CCDirector::sharedDirector()->getWinSizeInPixels();
     setSize(size.width, size.height);
     setPosition(size.width / 2, size.height / 2);
     // set searching path
-    cocos2d::CCFileUtils::sharedFileUtils()->addSearchPath("res");  
+    cocos2d::CCFileUtils::getInstance()->addSearchPath("res");
     
     _2DState = C3DStateBlock::create();
     

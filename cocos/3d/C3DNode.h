@@ -32,7 +32,7 @@ class C3DOBB;
 /**
 * Defines a basic hierachial structure of transformation spaces.
 */
-class C3DNode : public Transform, public virtual cocos2d::CCObject
+class C3DNode : public Transform, public virtual cocos2d::Object
 {
     friend class C3DStaticObj;
     friend class C3DRenderNode;

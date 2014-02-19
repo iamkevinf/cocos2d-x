@@ -41,6 +41,7 @@ C3DEffect::~C3DEffect()
     }
 }
 
+//将包含的文件都展开，合并到out中。
 void replaceIncludes(const char* source, std::string& out)
 {
     // Replace the #include "xxxx.xxx" with the sourced file contents of "filepath/xxxx.xxx"
