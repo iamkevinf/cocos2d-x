@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5827A93118B5D92B00EE8324 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */; };
+		5827A93218B5D92B00EE8324 /* VertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5827A93018B5D92B00EE8324 /* VertexBuffer.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -136,6 +138,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBuffer.cpp; sourceTree = "<group>"; };
+		5827A93018B5D92B00EE8324 /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexBuffer.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -452,6 +456,8 @@
 				58CCD05C18ADFE8F00BCEB08 /* MeshPart.cpp */,
 				58CCD05D18ADFE8F00BCEB08 /* MeshPart.h */,
 				58CCD06218ADFE8F00BCEB08 /* Vertex.h */,
+				5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */,
+				5827A93018B5D92B00EE8324 /* VertexBuffer.h */,
 			);
 			name = render;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 				58CCD0C218ADFE8F00BCEB08 /* cocos3d.h in Headers */,
 				58CCD0C418ADFE8F00BCEB08 /* ElementNode.h in Headers */,
 				58CCD08918ADFE8F00BCEB08 /* C3DMeshSkin.h in Headers */,
+				5827A93218B5D92B00EE8324 /* VertexBuffer.h in Headers */,
 				58CCD08F18ADFE8F00BCEB08 /* C3DNode.h in Headers */,
 				58CCD09918ADFE8F00BCEB08 /* C3DRenderBlock.h in Headers */,
 				58CCD0C918ADFE8F00BCEB08 /* MeshPart.h in Headers */,
@@ -649,6 +656,7 @@
 				58CCD06C18ADFE8F00BCEB08 /* C3DAABB.cpp in Sources */,
 				58CCD0B018ADFE8F00BCEB08 /* C3DSkinModel.cpp in Sources */,
 				58CCD08418ADFE8F00BCEB08 /* C3DMaterialManager.cpp in Sources */,
+				5827A93118B5D92B00EE8324 /* VertexBuffer.cpp in Sources */,
 				583D7DF118B4728E00CFC1BD /* Vector4.cpp in Sources */,
 				58CCD0A018ADFE8F00BCEB08 /* C3DResource.cpp in Sources */,
 				583D7DEB18B4728E00CFC1BD /* Quaternion.cpp in Sources */,
