@@ -15,13 +15,13 @@
 namespace my3d
 {
 
-    enum BufferType
+    enum class BufferType
     {
         Vertex = 0,
         Index = 1
     };
 
-    enum BufferUsage
+    enum class BufferUsage
     {
         Static = 0,
         Dynamic = 1
