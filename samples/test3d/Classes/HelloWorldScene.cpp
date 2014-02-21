@@ -107,11 +107,7 @@ bool HelloWorld::init()
     m_vertexbuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
                                             numVertices * sizeof(BBVertex), vertices);
     
-    
-    C3DVertexFormat *pFormat = new C3DVertexFormat();
-    pFormat->addElement(C3DVertexElement(Vertex_Usage::Vertex_Usage_POSITION, 3));
-    pFormat->addElement(C3DVertexElement(Vertex_Usage::Vertex_Usage_COLOR, 4));
-    
+
     
 #endif
     

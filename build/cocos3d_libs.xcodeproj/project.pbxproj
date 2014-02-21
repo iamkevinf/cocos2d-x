@@ -13,6 +13,10 @@
 		582C41C118B70AB900B890A3 /* VertexDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41BF18B70AB900B890A3 /* VertexDeclaration.h */; };
 		582C41C418B7145900B890A3 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41C218B7145900B890A3 /* Effect.cpp */; };
 		582C41C518B7145900B890A3 /* Effect.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41C318B7145900B890A3 /* Effect.h */; };
+		582C41CE18B7184500B890A3 /* EffectMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41CC18B7184500B890A3 /* EffectMgr.cpp */; };
+		582C41CF18B7184500B890A3 /* EffectMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41CD18B7184500B890A3 /* EffectMgr.h */; };
+		582C41D818B72F4200B890A3 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41D618B72F4200B890A3 /* Shader.cpp */; };
+		582C41D918B72F4200B890A3 /* Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41D718B72F4200B890A3 /* Shader.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -148,6 +152,10 @@
 		582C41BF18B70AB900B890A3 /* VertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexDeclaration.h; sourceTree = "<group>"; };
 		582C41C218B7145900B890A3 /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Effect.cpp; sourceTree = "<group>"; };
 		582C41C318B7145900B890A3 /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
+		582C41CC18B7184500B890A3 /* EffectMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectMgr.cpp; sourceTree = "<group>"; };
+		582C41CD18B7184500B890A3 /* EffectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectMgr.h; sourceTree = "<group>"; };
+		582C41D618B72F4200B890A3 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		582C41D718B72F4200B890A3 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -293,6 +301,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		582C41DA18B72F4800B890A3 /* my3d */ = {
+			isa = PBXGroup;
+			children = (
+				582C41C218B7145900B890A3 /* Effect.cpp */,
+				582C41C318B7145900B890A3 /* Effect.h */,
+				582C41CC18B7184500B890A3 /* EffectMgr.cpp */,
+				582C41CD18B7184500B890A3 /* EffectMgr.h */,
+				582C41D618B72F4200B890A3 /* Shader.cpp */,
+				582C41D718B72F4200B890A3 /* Shader.h */,
+				5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */,
+				5827A93018B5D92B00EE8324 /* VertexBuffer.h */,
+				582C41BE18B70AB900B890A3 /* VertexDeclaration.cpp */,
+				582C41BF18B70AB900B890A3 /* VertexDeclaration.h */,
+			);
+			name = my3d;
+			sourceTree = "<group>";
+		};
 		583D7D9018B4728E00CFC1BD /* math */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +462,7 @@
 		584A602518B231AE000601AF /* render */ = {
 			isa = PBXGroup;
 			children = (
+				582C41DA18B72F4800B890A3 /* my3d */,
 				58CCD01618ADFE8F00BCEB08 /* C3DMaterial.cpp */,
 				58CCD01718ADFE8F00BCEB08 /* C3DMaterial.h */,
 				58CCD01818ADFE8F00BCEB08 /* C3DMaterialManager.cpp */,
@@ -464,12 +490,6 @@
 				58CCD05C18ADFE8F00BCEB08 /* MeshPart.cpp */,
 				58CCD05D18ADFE8F00BCEB08 /* MeshPart.h */,
 				58CCD06218ADFE8F00BCEB08 /* Vertex.h */,
-				5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */,
-				5827A93018B5D92B00EE8324 /* VertexBuffer.h */,
-				582C41BE18B70AB900B890A3 /* VertexDeclaration.cpp */,
-				582C41BF18B70AB900B890A3 /* VertexDeclaration.h */,
-				582C41C218B7145900B890A3 /* Effect.cpp */,
-				582C41C318B7145900B890A3 /* Effect.h */,
 			);
 			name = render;
 			sourceTree = "<group>";
@@ -535,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58CCD07D18ADFE8F00BCEB08 /* C3DEffect.h in Headers */,
+				582C41CF18B7184500B890A3 /* EffectMgr.h in Headers */,
 				58CCD06718ADFE8F00BCEB08 /* Base.h in Headers */,
 				582C41C518B7145900B890A3 /* Effect.h in Headers */,
 				58CCD0BB18ADFE8F00BCEB08 /* C3DTexture.h in Headers */,
@@ -573,6 +594,7 @@
 				58CCD0C918ADFE8F00BCEB08 /* MeshPart.h in Headers */,
 				58CCD0C718ADFE8F00BCEB08 /* MaterialParameter.h in Headers */,
 				58CCD09518ADFE8F00BCEB08 /* C3DPlane.h in Headers */,
+				582C41D918B72F4200B890A3 /* Shader.h in Headers */,
 				58CCD06D18ADFE8F00BCEB08 /* C3DAABB.h in Headers */,
 				58CCD0AF18ADFE8F00BCEB08 /* C3DSkinlessModel.h in Headers */,
 				58CCD08118ADFE8F00BCEB08 /* C3DLayer.h in Headers */,
@@ -667,6 +689,7 @@
 				58CCD0B218ADFE8F00BCEB08 /* C3DSprite.cpp in Sources */,
 				58CCD0B618ADFE8F00BCEB08 /* C3DStaticObj.cpp in Sources */,
 				58CCD0C818ADFE8F00BCEB08 /* MeshPart.cpp in Sources */,
+				582C41CE18B7184500B890A3 /* EffectMgr.cpp in Sources */,
 				58CCD06C18ADFE8F00BCEB08 /* C3DAABB.cpp in Sources */,
 				58CCD0B018ADFE8F00BCEB08 /* C3DSkinModel.cpp in Sources */,
 				58CCD08418ADFE8F00BCEB08 /* C3DMaterialManager.cpp in Sources */,
@@ -695,6 +718,7 @@
 				58CCD0A618ADFE8F00BCEB08 /* C3DResourcePool.cpp in Sources */,
 				58CCD0AC18ADFE8F00BCEB08 /* C3DSkeleton.cpp in Sources */,
 				58CCD09C18ADFE8F00BCEB08 /* C3DRenderState.cpp in Sources */,
+				582C41D818B72F4200B890A3 /* Shader.cpp in Sources */,
 				58CCD08218ADFE8F00BCEB08 /* C3DMaterial.cpp in Sources */,
 				58CCD09A18ADFE8F00BCEB08 /* C3DRenderNode.cpp in Sources */,
 				58CCD0C318ADFE8F00BCEB08 /* ElementNode.cpp in Sources */,

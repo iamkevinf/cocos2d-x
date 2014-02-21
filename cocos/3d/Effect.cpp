@@ -7,19 +7,31 @@
 //
 
 #include "Effect.h"
+#include "EffectMgr.h"
+#include "Shader.h"
 
 namespace my3d
 {
     
-    Effect::Effect()
+    
+    //////////////////////////////////////////////////////////
+    Effect::Effect(const std::string & resouce)
     : m_program(0)
+    , m_resouce(resouce)
     {
         
+        m_vertexShader = new Shader(ShaderType::Vertex);
+        m_pixelShader = new Shader(ShaderType::Pixel);
     }
     
     Effect::~Effect()
     {
-        
+        EffectMgr::instance()->del(this);
+    }
+    
+    bool Effect::isValid() const
+    {
+        return m_program != 0;
     }
     
     void Effect::bindAttribute(cocos2d::VertexAttribute index, const std::string & name)
