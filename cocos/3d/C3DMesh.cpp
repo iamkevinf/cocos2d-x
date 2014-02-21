@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DMesh.h"
 #include "MeshPart.h"
 #include "C3DVertexFormat.h"

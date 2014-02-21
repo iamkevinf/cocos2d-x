@@ -1,4 +1,4 @@
-#ifndef ResourceManager_H_
+﻿#ifndef ResourceManager_H_
 #define ResourceManager_H_
 
 #include "cocos2d.h"

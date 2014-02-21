@@ -1,4 +1,4 @@
-//
+﻿//
 //  EffectConstant.cpp
 //  cocos3d_libs
 //

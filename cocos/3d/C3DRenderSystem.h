@@ -1,4 +1,4 @@
-#ifndef RenderSystem_H_
+﻿#ifndef RenderSystem_H_
 #define RenderSystem_H_
 #include "EnumDef_GL.h"
 #include "cocos2d.h"

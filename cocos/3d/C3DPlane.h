@@ -1,4 +1,4 @@
-#ifndef C3DPLANE_H_
+﻿#ifndef C3DPLANE_H_
 #define C3DPLANE_H_
 
 #include "math/Vector3.h"

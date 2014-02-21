@@ -1,4 +1,4 @@
-#ifndef ANIMATION_H_
+﻿#ifndef ANIMATION_H_
 #define ANIMATION_H_
 
 #include <string>

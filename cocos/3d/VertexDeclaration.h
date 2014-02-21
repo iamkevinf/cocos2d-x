@@ -1,4 +1,4 @@
-//
+﻿//
 //  VertexDeclaration.h
 //  cocos3d_libs
 //

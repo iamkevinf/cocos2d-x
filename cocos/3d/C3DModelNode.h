@@ -1,4 +1,4 @@
-#ifndef C3DMODELNODE_H_
+﻿#ifndef C3DMODELNODE_H_
 #define C3DMODELNODE_H_
 
 #include "C3DNode.h"

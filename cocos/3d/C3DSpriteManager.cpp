@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DSprite.h"
 #include "C3DSpriteManager.h"
 #include "StringTool.h"

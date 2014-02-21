@@ -1,4 +1,4 @@
-#ifndef ANIMATIONVALUE_H_
+﻿#ifndef ANIMATIONVALUE_H_
 #define ANIMATIONVALUE_H_
 
 

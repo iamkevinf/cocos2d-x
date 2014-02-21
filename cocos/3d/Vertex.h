@@ -1,4 +1,4 @@
-#ifndef VERTEX_H_
+﻿#ifndef VERTEX_H_
 #define VERTEX_H_
 
 #include "Vector2.h"

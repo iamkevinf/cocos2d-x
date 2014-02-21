@@ -1,4 +1,4 @@
-#ifndef ANIMATIONCHANNEL_H_
+﻿#ifndef ANIMATIONCHANNEL_H_
 #define ANIMATIONCHANNEL_H_
 
 

@@ -1,4 +1,4 @@
-#include "C3DResourceManager.h"
+﻿#include "C3DResourceManager.h"
 #include "C3DResource.h"
 #include "C3DResourcePool.h"
 #include "Base.h"

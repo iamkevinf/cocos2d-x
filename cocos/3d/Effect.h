@@ -1,4 +1,4 @@
-//
+﻿//
 //  Effect.h
 //  cocos3d_libs
 //
@@ -12,6 +12,8 @@
 #include "CCObject.h"
 #include "EnumDef.h"
 #include "mytool/smartptr.h"
+
+#include <cassert>
 
 namespace cocos2d
 {

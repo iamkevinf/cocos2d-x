@@ -1,4 +1,4 @@
-#ifndef Stream_H_
+﻿#ifndef Stream_H_
 #define Stream_H_
 
 #include "cocos2d.h"

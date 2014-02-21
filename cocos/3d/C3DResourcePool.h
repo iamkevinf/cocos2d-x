@@ -1,4 +1,4 @@
-#ifndef ResourcePool_H_
+﻿#ifndef ResourcePool_H_
 #define ResourcePool_H_
 
 #include <map>

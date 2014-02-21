@@ -1,4 +1,4 @@
-# ifndef MATERIAL_H_
+﻿# ifndef MATERIAL_H_
 # define MATERIAL_H_
 
 #include "C3DRenderState.h"

@@ -1,4 +1,4 @@
-#ifndef CURVE_H_
+﻿#ifndef CURVE_H_
 #define CURVE_H_
 
 #include <vector>

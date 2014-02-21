@@ -9,6 +9,7 @@
 #ifndef dydg_b_smartptr_h
 #define dydg_b_smartptr_h
 
+#include <cassert>
 
 template<typename T>
 class SmartPtr
@@ -69,13 +70,13 @@ public:
     
     pointer operator -> () const
     {
-        CCAssert(m_ptr != NULL, "SmartPtr::operator ->");
+        assert(m_ptr != NULL && "SmartPtr::operator ->");
         return m_ptr;
     }
     
     reference operator * () const
     {
-        CCAssert(m_ptr != NULL, "SmartPtr::operator *");
+        assert(m_ptr != NULL && "SmartPtr::operator *");
         return *m_ptr;
     }
     

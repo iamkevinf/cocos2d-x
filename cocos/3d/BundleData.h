@@ -1,4 +1,4 @@
-#ifndef BUNDLEDATA_H_
+﻿#ifndef BUNDLEDATA_H_
 #define BUNDLEDATA_H_
 
 #include <vector>

@@ -1,4 +1,4 @@
-#include "C3DVertexDeclaration.h"
+﻿#include "C3DVertexDeclaration.h"
 #include "C3DMesh.h"
 #include "C3DEffect.h"
 #include "C3DVertexFormat.h"

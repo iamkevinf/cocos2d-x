@@ -1,4 +1,4 @@
-#ifndef TEXTURE_H_
+﻿#ifndef TEXTURE_H_
 #define TEXTURE_H_
 
 #include "EnumDef_GL.h"

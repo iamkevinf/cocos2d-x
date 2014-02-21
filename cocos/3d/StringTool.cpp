@@ -1,4 +1,4 @@
-#include "StringTool.h"
+ï»¿#include "StringTool.h"
 
 namespace cocos2d
 {
@@ -50,7 +50,7 @@ nCompareResult = strncmp(pStart + i, strKey.c_str(), strKey.size());
         }
         else
         {
-            if (!pLastPos) // Ò»¸öÐÂ×Ö·û´®µÄ¿ªÊ¼
+            if (!pLastPos) // Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ê¼
             {
                 pLastPos = pStart + i;
             }
@@ -105,7 +105,7 @@ std::vector<std::string> StringTool::StringSplitByChar(const std::string &str, c
         }
         else
         {
-            if (!pLastPos) // Ò»¸öÐÂ×Ö·û´®µÄ¿ªÊ¼
+            if (!pLastPos) // Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ê¼
             {
                 pLastPos = pStart + i;
             }

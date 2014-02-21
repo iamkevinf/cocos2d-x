@@ -1,4 +1,4 @@
-#ifndef NODELESSMODEL_H_
+﻿#ifndef NODELESSMODEL_H_
 #define NODELESSMODEL_H_
 
 #include "C3DModel.h"

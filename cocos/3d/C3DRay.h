@@ -1,4 +1,4 @@
-#ifndef RAY_H_
+﻿#ifndef RAY_H_
 #define RAY_H_
 
 #include "math/Vector3.h"

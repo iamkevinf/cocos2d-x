@@ -1,4 +1,4 @@
-//
+﻿//
 //  VertexDeclaration.cpp
 //  cocos3d_libs
 //
@@ -10,6 +10,7 @@
 #include "Effect.h"
 
 #include <map>
+#include <cassert>
 
 namespace my3d
 {

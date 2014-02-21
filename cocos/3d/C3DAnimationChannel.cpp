@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DAnimation.h"
 #include "C3DAnimationChannel.h"
 

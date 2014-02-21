@@ -1,4 +1,4 @@
-#ifndef SCENEMODEL_H_
+﻿#ifndef SCENEMODEL_H_
 #define SCENEMODEL_H_
 
 #include "C3DRenderNode.h"

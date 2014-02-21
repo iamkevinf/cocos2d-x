@@ -1,4 +1,4 @@
-#ifndef TRANSFORM_H_
+﻿#ifndef TRANSFORM_H_
 #define TRANSFORM_H_
 
 #include <list>

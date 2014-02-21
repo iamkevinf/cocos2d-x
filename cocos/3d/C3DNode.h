@@ -1,4 +1,4 @@
-#ifndef NODE_H_
+﻿#ifndef NODE_H_
 #define NODE_H_
 #include "math/Matrix.h"
 #include "Transform.h"

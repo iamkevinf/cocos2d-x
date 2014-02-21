@@ -1,4 +1,4 @@
-//
+﻿//
 //  VertexBuffer.cpp
 //  cocos3d_libs
 //

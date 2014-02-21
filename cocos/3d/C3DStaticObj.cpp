@@ -1,4 +1,4 @@
-#include "C3DStaticObj.h"
+﻿#include "C3DStaticObj.h"
 #include "Base.h"
 #include "C3DResourceLoader.h"
 #include "C3DMaterial.h"

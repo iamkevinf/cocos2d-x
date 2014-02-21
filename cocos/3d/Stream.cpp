@@ -1,4 +1,4 @@
-#include "Stream.h"
+﻿#include "Stream.h"
 #include "cocos2d.h"
 
 namespace cocos2d

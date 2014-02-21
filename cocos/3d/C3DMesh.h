@@ -1,4 +1,4 @@
-#ifndef MESH_H_
+﻿#ifndef MESH_H_
 #define MESH_H_
 
 #include "Vector3.h"

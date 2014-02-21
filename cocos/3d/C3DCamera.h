@@ -1,4 +1,4 @@
-#ifndef CAMERA_H_
+﻿#ifndef CAMERA_H_
 #define CAMERA_H_
 
 #include "base/Transform.h"

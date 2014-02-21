@@ -1,4 +1,4 @@
-#ifndef PASS_H_
+﻿#ifndef PASS_H_
 #define PASS_H_
 
 #include "C3DRenderState.h"

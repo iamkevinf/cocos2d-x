@@ -1,4 +1,4 @@
-#ifndef EFFECT_H_
+﻿#ifndef EFFECT_H_
 #define EFFECT_H_
 #include <string>
 #include <map>

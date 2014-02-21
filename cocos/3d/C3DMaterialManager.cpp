@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DMaterial.h"
 #include "ElementNode.h"
 #include "C3DMaterialManager.h"

@@ -1,4 +1,4 @@
-#ifndef Resource_H_
+﻿#ifndef Resource_H_
 #define Resource_H_
 #include <string>
 #include "cocos2d.h"

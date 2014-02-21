@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DLayer.h"
 #include "C3DAnimationClip.h"
 #include "C3DAnimation.h"

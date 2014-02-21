@@ -1,4 +1,4 @@
-#ifndef BONE_H_
+﻿#ifndef BONE_H_
 #define BONE_H_
 
 #include "C3DNode.h"

@@ -1,4 +1,4 @@
-#ifndef VERTEXFORMAT_H_
+﻿#ifndef VERTEXFORMAT_H_
 #define VERTEXFORMAT_H_
 
 #include <vector>

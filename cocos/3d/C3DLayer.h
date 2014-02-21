@@ -1,4 +1,4 @@
-#ifndef __C3DLayer_H__
+﻿#ifndef __C3DLayer_H__
 #define __C3DLayer_H__
 
 #include "cocos3d.h"

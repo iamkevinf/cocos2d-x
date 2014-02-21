@@ -1,4 +1,4 @@
-#ifndef C3DSPRITE_H_
+ï»¿#ifndef C3DSPRITE_H_
 #define C3DSPRITE_H_
 
 #include <list>
@@ -104,10 +104,10 @@ public:
 
     void setSkeleton(C3DBone* joint);
 
-    // »ñÈ¡¸ú¹Ç÷À lvlong
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ lvlong
     C3DBone* getSkeletonRootBone()const;
 
-    // ¸ù¾ÝÃû×Ö»ñµÃ¹Ç÷À lvlong
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ã¹ï¿½ï¿½ï¿½ lvlong
     C3DBone* getBone(const char* name)const;
     
     C3DAnimationClip* getAnimationClip(const char* strClip);
@@ -115,7 +115,7 @@ public:
     
     //unsigned int getTriangleCount() const;
 
-    // »ñÈ¡¶¯»­×ÜÖ¡Êý lvlong
+    // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ lvlong
     int getAnimationFrameCount();
 
     virtual C3DNode* clone(CloneContext& context) const;

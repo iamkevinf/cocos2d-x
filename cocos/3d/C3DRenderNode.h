@@ -1,4 +1,4 @@
-#ifndef COMPOUNDMODEL_H_
+﻿#ifndef COMPOUNDMODEL_H_
 #define COMPOUNDMODEL_H_
 
 #include <map>

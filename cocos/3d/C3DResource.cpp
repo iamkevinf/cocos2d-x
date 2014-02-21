@@ -1,4 +1,4 @@
-#include "C3DResource.h"
+﻿#include "C3DResource.h"
 #include "ElementNode.h"
 #include "C3DResourcePool.h"
 #include "StringTool.h"

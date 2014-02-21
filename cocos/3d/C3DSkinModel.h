@@ -1,4 +1,4 @@
-#ifndef C3DSKINMODEL_H_
+﻿#ifndef C3DSKINMODEL_H_
 #define C3DSKINMODEL_H_
 
 #include "C3DModel.h"

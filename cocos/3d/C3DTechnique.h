@@ -1,4 +1,4 @@
-#ifndef TECHNIQUE_H_
+﻿#ifndef TECHNIQUE_H_
 #define TECHNIQUE_H_
 
 #include<vector>

@@ -1,4 +1,4 @@
-#ifndef RENDERBLOCK_H_
+﻿#ifndef RENDERBLOCK_H_
 #define RENDERBLOCK_H_
 
 #include "Base.h"

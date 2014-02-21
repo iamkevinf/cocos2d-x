@@ -1,4 +1,4 @@
-#include "Base.h"
+﻿#include "Base.h"
 #include "C3DSkeleton.h"
 #include "C3DBone.h"
 #include "Vertex.h"

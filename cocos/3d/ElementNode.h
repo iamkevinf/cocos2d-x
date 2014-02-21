@@ -1,4 +1,4 @@
-#ifndef ELEMENTNODE_H_
+﻿#ifndef ELEMENTNODE_H_
 #define ELEMENTNODE_H_
 
 #include <map>

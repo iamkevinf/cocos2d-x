@@ -1,4 +1,4 @@
-#ifndef SAMPLE_H_
+﻿#ifndef SAMPLE_H_
 #define SAMPLE_H_
 
 #include "EnumDef_GL.h"

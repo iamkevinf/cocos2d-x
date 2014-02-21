@@ -1,4 +1,4 @@
-//
+﻿//
 //  Effect.cpp
 //  cocos3d_libs
 //
@@ -11,6 +11,7 @@
 #include "Shader.h"
 #include "ElementNode.h"
 #include "EffectConstant.h"
+#include <cassert>
 
 namespace my3d
 {

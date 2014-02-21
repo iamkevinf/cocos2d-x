@@ -1,4 +1,4 @@
-#ifndef SPRITEMANAGER_H_
+ï»¿#ifndef SPRITEMANAGER_H_
 #define SPRITEMANAGER_H_
 
 #include "Base.h"
@@ -10,7 +10,7 @@ class ElementNode;
 class C3DEffect;
 
 /**
-*A materialManager manager material's load£¬preload, and so on.
+*A materialManager manager material's loadï¿½ï¿½preload, and so on.
 */
 class C3DSpriteManager : public C3DResourceManager
 {

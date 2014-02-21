@@ -1,4 +1,4 @@
-//
+﻿//
 //  EffectManager.cpp
 //  cocos3d_libs
 //

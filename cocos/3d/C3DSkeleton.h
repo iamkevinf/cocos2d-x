@@ -1,4 +1,4 @@
-#ifndef SKELETON_H_
+﻿#ifndef SKELETON_H_
 #define SKELETON_H_
 
 #include <string>

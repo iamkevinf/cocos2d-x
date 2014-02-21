@@ -1,4 +1,4 @@
-#ifndef BASE_H_
+﻿#ifndef BASE_H_
 #define BASE_H_
 
 // C/C++

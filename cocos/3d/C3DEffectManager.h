@@ -1,4 +1,4 @@
-#ifndef EFFECTMANAGER_H_
+ï»¿#ifndef EFFECTMANAGER_H_
 #define EFFECTMANAGER_H_
 
 #include "Base.h"
@@ -19,7 +19,7 @@ class ElementNode;
 class C3DEffect;
 
 /**
-*A C3DEffectManager manager effect's load£¬preload, and so on.
+*A C3DEffectManager manager effect's loadï¿½ï¿½preload, and so on.
 */
 class C3DEffectManager : public C3DResourceManager
 {

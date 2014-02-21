@@ -1,4 +1,4 @@
-#ifndef RENDERSTATE_H_
+﻿#ifndef RENDERSTATE_H_
 #define RENDERSTATE_H_
 
 #include "Base.h"

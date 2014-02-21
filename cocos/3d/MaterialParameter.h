@@ -1,4 +1,4 @@
-#ifndef MATERIALPARAMETER_H_
+﻿#ifndef MATERIALPARAMETER_H_
 #define MATERIALPARAMETER_H_
 
 #include "math/Vector2.h"

@@ -1,4 +1,4 @@
-#ifndef ENUMDEF_GL_H_
+﻿#ifndef ENUMDEF_GL_H_
 #define ENUMDEF_GL_H_
 #include "Base.h"
 

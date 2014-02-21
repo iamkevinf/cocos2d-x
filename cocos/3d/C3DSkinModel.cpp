@@ -1,4 +1,4 @@
-#include "C3DSkinModel.h"
+﻿#include "C3DSkinModel.h"
 #include "C3DMesh.h"
 #include "MeshPart.h"
 #include "C3DMeshSkin.h"

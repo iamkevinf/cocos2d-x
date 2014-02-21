@@ -1,4 +1,4 @@
-#ifndef STRINGTOOL_H_
+﻿#ifndef STRINGTOOL_H_
 #define STRINGTOOL_H_
 
 #include <cctype>
