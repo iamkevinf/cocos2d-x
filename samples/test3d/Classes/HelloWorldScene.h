@@ -2,7 +2,6 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "VertexBuffer.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -25,7 +24,7 @@ public:
     
 private:
     
-    my3d::VertexBuffer * m_vertexbuffer;
+    
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -10,6 +10,7 @@
 #include "EffectMgr.h"
 #include "Shader.h"
 #include "ElementNode.h"
+#include "EffectConstant.h"
 
 namespace my3d
 {
@@ -33,6 +34,11 @@ namespace my3d
     Effect::~Effect()
     {
         EffectMgr::instance()->del(this);
+        
+        for(auto it : m_constants)
+        {
+            delete it.second;
+        }
         
         if(m_program != 0)
         {
@@ -59,6 +65,8 @@ namespace my3d
         if(pos != m_resouce.npos)
         {
             std::string path(m_resouce, 0, pos);
+            path += "/";
+            
             vshFile = path + vshFile;
             pshFile = path + pshFile;
         }
@@ -105,12 +113,58 @@ namespace my3d
             return false;
         }
         
+        parseConstants();
+        
         return true;
+    }
+    
+    void Effect::parseConstants()
+    {
+        GLint nUniforms;
+        glGetProgramiv(m_program, GL_ACTIVE_UNIFORMS, &nUniforms);
+        
+        if(nUniforms == 0) return;
+        
+        GLint nMaxNameLen;
+        glGetProgramiv(m_program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &nMaxNameLen);
+
+        char * uniformName = new char[nMaxNameLen+1];
+        unsigned int samplerIndex = 0;
+        for(int i = 0; i < nUniforms; ++i)
+        {
+            GLsizei len;
+            GLint num;
+            GLenum type;
+            glGetActiveUniform(m_program, i, nMaxNameLen, &len, &num, &type, uniformName);
+            uniformName[len] = '\0';
+            
+            GLint location = glGetUniformLocation(m_program, uniformName);
+            
+            EffectConstant* uniform = new EffectConstant();
+            uniform->m_pEffect = this;
+            uniform->m_name = uniformName;
+            uniform->m_location = location;
+            uniform->m_type = type;
+            if (type == GL_SAMPLER_2D || type == GL_SAMPLER_CUBE)
+                uniform->m_index = samplerIndex++;
+            else
+                uniform->m_index = 0;
+            
+            this->m_constants[uniformName] = uniform;
+        }
     }
     
     void Effect::bindAttribute(cocos2d::VertexAttribute index, const std::string & name)
     {
         glBindAttribLocation(m_program, index, name.c_str());
+    }
+    
+    EffectConstant * Effect::getConstant(const std::string & name)
+    {
+        auto it = m_constants.find(name);
+        if(it != m_constants.end()) return it->second;
+        
+        return nullptr;
     }
     
     bool Effect::begin()

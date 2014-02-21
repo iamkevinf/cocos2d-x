@@ -17,6 +17,8 @@
 		582C41CF18B7184500B890A3 /* EffectMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41CD18B7184500B890A3 /* EffectMgr.h */; };
 		582C41D818B72F4200B890A3 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41D618B72F4200B890A3 /* Shader.cpp */; };
 		582C41D918B72F4200B890A3 /* Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41D718B72F4200B890A3 /* Shader.h */; };
+		582C41DD18B7421A00B890A3 /* EffectConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41DB18B7421A00B890A3 /* EffectConstant.cpp */; };
+		582C41DE18B7421A00B890A3 /* EffectConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41DC18B7421A00B890A3 /* EffectConstant.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -156,6 +158,8 @@
 		582C41CD18B7184500B890A3 /* EffectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectMgr.h; sourceTree = "<group>"; };
 		582C41D618B72F4200B890A3 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		582C41D718B72F4200B890A3 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		582C41DB18B7421A00B890A3 /* EffectConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectConstant.cpp; sourceTree = "<group>"; };
+		582C41DC18B7421A00B890A3 /* EffectConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectConstant.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 			children = (
 				582C41C218B7145900B890A3 /* Effect.cpp */,
 				582C41C318B7145900B890A3 /* Effect.h */,
+				582C41DB18B7421A00B890A3 /* EffectConstant.cpp */,
+				582C41DC18B7421A00B890A3 /* EffectConstant.h */,
 				582C41CC18B7184500B890A3 /* EffectMgr.cpp */,
 				582C41CD18B7184500B890A3 /* EffectMgr.h */,
 				582C41D618B72F4200B890A3 /* Shader.cpp */,
@@ -599,6 +605,7 @@
 				58CCD0AF18ADFE8F00BCEB08 /* C3DSkinlessModel.h in Headers */,
 				58CCD08118ADFE8F00BCEB08 /* C3DLayer.h in Headers */,
 				583D7DEA18B4728E00CFC1BD /* neonmatriximpl.h in Headers */,
+				582C41DE18B7421A00B890A3 /* EffectConstant.h in Headers */,
 				58CCD07318ADFE8F00BCEB08 /* C3DAnimationChannel.h in Headers */,
 				58CCD06B18ADFE8F00BCEB08 /* BundleData.h in Headers */,
 				58CCD08B18ADFE8F00BCEB08 /* C3DModel.h in Headers */,
@@ -731,6 +738,7 @@
 				58CCD07618ADFE8F00BCEB08 /* C3DAnimationCurve.cpp in Sources */,
 				583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */,
 				58CCD08018ADFE8F00BCEB08 /* C3DLayer.cpp in Sources */,
+				582C41DD18B7421A00B890A3 /* EffectConstant.cpp in Sources */,
 				583D7DED18B4728E00CFC1BD /* Vector2.cpp in Sources */,
 				58CCD0CA18ADFE8F00BCEB08 /* Stream.cpp in Sources */,
 				58CCD08618ADFE8F00BCEB08 /* C3DMesh.cpp in Sources */,

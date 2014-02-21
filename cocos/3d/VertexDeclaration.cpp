@@ -116,7 +116,8 @@ namespace my3d
             VertexElement & e = m_elements[i];
             
             glEnableVertexAttribArray(i);
-            glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE, m_vertexSize, (void*)offset);
+            glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE,
+                                  GLsizei(m_vertexSize), reinterpret_cast<GLvoid*>(offset));
             
             pEffect->bindAttribute(i, vertexUsage2Attr(e.usage));
             

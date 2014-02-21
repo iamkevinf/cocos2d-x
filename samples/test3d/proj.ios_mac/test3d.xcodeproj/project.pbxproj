@@ -62,8 +62,8 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
-		580C697618B631A000D9D912 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 580C697518B631A000D9D912 /* effect */; };
-		580C697718B631A000D9D912 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 580C697518B631A000D9D912 /* effect */; };
+		582C41E018B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
+		582C41E118B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		583D7D8D18B471BB00CFC1BD /* libcocos3d_libs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585927F718B34E8D004E4BA3 /* libcocos3d_libs.a */; };
 		583D7DF818B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
 		583D7DF918B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
@@ -315,7 +315,7 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
-		580C697518B631A000D9D912 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
+		582C41DF18B74EA600B890A3 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
 		583D7DF718B474A500CFC1BD /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
 		585927EC18B34E8C004E4BA3 /* cocos3d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos3d_libs.xcodeproj; path = ../../../build/cocos3d_libs.xcodeproj; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -528,7 +528,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				580C697518B631A000D9D912 /* effect */,
+				582C41DF18B74EA600B890A3 /* effect */,
 				583D7DF718B474A500CFC1BD /* config */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
@@ -750,7 +750,7 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
-				580C697618B631A000D9D912 /* effect in Resources */,
+				582C41E018B74EA600B890A3 /* effect in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
@@ -772,7 +772,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				583D7DF918B474A600CFC1BD /* config in Resources */,
-				580C697718B631A000D9D912 /* effect in Resources */,
+				582C41E118B74EA600B890A3 /* effect in Resources */,
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				5087E75417EB910900C73F5D /* CloseSelected.png in Resources */,

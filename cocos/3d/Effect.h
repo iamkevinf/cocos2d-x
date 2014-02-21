@@ -20,7 +20,10 @@ namespace cocos2d
 
 namespace my3d
 {
-    typedef SmartPtr<class Shader> ShaderPtr;
+    class EffectConstant;
+    class Shader;
+    
+    typedef SmartPtr<Shader> ShaderPtr;
     
     class Effect : public cocos2d::Object
     {
@@ -33,6 +36,7 @@ namespace my3d
         bool isValid() const;
         
         void bindAttribute(cocos2d::VertexAttribute index, const std::string & name);
+        EffectConstant * getConstant(const std::string & name);
         
         bool begin();
         void end();
@@ -40,12 +44,14 @@ namespace my3d
     private:
         
         bool loadEffect(cocos2d::ElementNode * pNode);
+        void parseConstants();
         
     private:
         std::string m_resouce;
         cocos2d::ProgramHandle m_program;
         SmartPtr<Shader> m_vertexShader;
         SmartPtr<Shader> m_pixelShader;
+        std::map<std::string, EffectConstant*> m_constants;
     };
     
     typedef SmartPtr<Effect> EffectPtr;

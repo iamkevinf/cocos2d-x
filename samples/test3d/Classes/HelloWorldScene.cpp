@@ -1,9 +1,97 @@
 #include "HelloWorldScene.h"
 #include "cocos3d.h"
+#include "EffectMgr.h"
+#include "EffectConstant.h"
+#include "VertexBuffer.h"
 #include "Vertex.h"
-#include "C3DVertexFormat.h"
+#include "Effect.h"
+#include "VertexDeclaration.h"
 
 USING_NS_CC;
+
+class Test3DNode : public C3DNode
+{
+    my3d::VertexBuffer * m_vertexBuffer;
+    my3d::EffectPtr     m_effect;
+    my3d::VertexDeclaration *m_vertexDecl;
+    
+public:
+    
+    Test3DNode()
+    : m_vertexBuffer(nullptr)
+    , m_vertexDecl(nullptr)
+    {
+        
+    }
+    
+    ~Test3DNode()
+    {
+        delete m_vertexDecl;
+        delete m_vertexBuffer;
+    }
+    
+    static Test3DNode * create()
+    {
+        Test3DNode * p = new Test3DNode();
+        if(!p->initTest3D())
+        {
+            delete p;
+            return nullptr;
+        }
+        
+        p->autorelease();
+        return p;
+    }
+    
+    bool initTest3D()
+    {
+        const float size = 1000.0f;
+        const float pz = 10.0f;
+        const int numVertices = 4;
+        BBVertex vertices[numVertices];
+        vertices[0].position.set(-size, -size, pz);
+        vertices[1].position.set(-size, size, pz);
+        vertices[2].position.set(size, -size, pz);
+        vertices[3].position.set(size, size, pz);
+        for(int i = 0; i < numVertices; ++i)
+        {
+            vertices[i].color.set(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+        
+        m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
+                                                numVertices * sizeof(BBVertex), vertices);
+        
+        m_effect = my3d::EffectMgr::instance()->get("effect/test.fx");
+        
+        m_vertexDecl = new my3d::VertexDeclaration();
+        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
+        m_vertexDecl->addElement(my3d::VertexUsage::COLOR, 4);
+        
+        return true;
+    }
+    
+    virtual void draw() override
+    {
+        C3DNode::draw();
+
+        if(m_effect && m_effect->begin())
+        {
+            if(m_vertexBuffer != nullptr)
+            {
+                m_vertexBuffer->bind();
+                
+                m_vertexDecl->bind(m_effect.get());
+                
+                glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+                m_vertexBuffer->unbind();
+            }
+            
+            m_effect->end();
+        }
+    }
+
+};
+
 
 Scene* HelloWorld::createScene()
 {
@@ -21,14 +109,13 @@ Scene* HelloWorld::createScene()
 }
 
 HelloWorld::HelloWorld()
-: m_vertexbuffer(nullptr)
 {
     
 }
 
 HelloWorld::~HelloWorld()
 {
-    delete m_vertexbuffer;
+    
 }
 
 // on "init" you need to initialize your instance
@@ -77,6 +164,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
+#if 0
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
 
@@ -85,6 +173,7 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
+#endif
     
 #if 1
     C3DLayer * pLayer = C3DLayer::create();
@@ -95,19 +184,8 @@ bool HelloWorld::init()
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
     
-    const float size = 100.0f;
-    const float pz = -10.0f;
-    const int numVertices = 4;
-    BBVertex vertices[numVertices];
-    vertices[0].position.set(-size, -size, pz);
-    vertices[1].position.set(-size, size, pz);
-    vertices[2].position.set(size, -size, pz);
-    vertices[3].position.set(size, size, pz);
-    
-    m_vertexbuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-                                            numVertices * sizeof(BBVertex), vertices);
-    
-
+    Test3DNode * pNode = Test3DNode::create();
+    pScene->addChild(pNode);
     
 #endif
     
@@ -126,12 +204,6 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 
 void HelloWorld::draw()
 {
-    if(m_vertexbuffer != nullptr)
-    {
-        m_vertexbuffer->bind();
-        
-        m_vertexbuffer->unbind();
-    }
     
     Layer::draw();
 }
