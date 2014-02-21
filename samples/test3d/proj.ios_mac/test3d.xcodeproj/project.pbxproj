@@ -64,6 +64,8 @@
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
 		582C41E018B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		582C41E118B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
+		582C41E418B759C600B890A3 /* TestEGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41E218B759C600B890A3 /* TestEGL.cpp */; };
+		582C41E518B759C600B890A3 /* TestEGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41E218B759C600B890A3 /* TestEGL.cpp */; };
 		583D7D8D18B471BB00CFC1BD /* libcocos3d_libs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585927F718B34E8D004E4BA3 /* libcocos3d_libs.a */; };
 		583D7DF818B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
 		583D7DF918B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
@@ -316,6 +318,8 @@
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
 		582C41DF18B74EA600B890A3 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
+		582C41E218B759C600B890A3 /* TestEGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestEGL.cpp; path = ../Classes/TestEGL.cpp; sourceTree = "<group>"; };
+		582C41E318B759C600B890A3 /* TestEGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestEGL.h; path = ../Classes/TestEGL.h; sourceTree = "<group>"; };
 		583D7DF718B474A500CFC1BD /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
 		585927EC18B34E8C004E4BA3 /* cocos3d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos3d_libs.xcodeproj; path = ../../../build/cocos3d_libs.xcodeproj; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -400,6 +404,8 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
+				582C41E218B759C600B890A3 /* TestEGL.cpp */,
+				582C41E318B759C600B890A3 /* TestEGL.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -787,6 +793,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582C41E418B759C600B890A3 /* TestEGL.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
@@ -799,6 +806,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582C41E518B759C600B890A3 /* TestEGL.cpp in Sources */,
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,

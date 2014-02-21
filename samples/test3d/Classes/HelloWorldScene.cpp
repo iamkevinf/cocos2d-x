@@ -7,7 +7,11 @@
 #include "Effect.h"
 #include "VertexDeclaration.h"
 
+#include "TestEGL.h"
+
 USING_NS_CC;
+
+TestEGL::UserData g_userData;
 
 class Test3DNode : public C3DNode
 {
@@ -67,6 +71,8 @@ public:
         m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
         m_vertexDecl->addElement(my3d::VertexUsage::COLOR, 4);
         
+        TestEGL::Init(&g_userData);
+        
         return true;
     }
     
@@ -74,6 +80,7 @@ public:
     {
         C3DNode::draw();
 
+#if 0
         if(m_effect && m_effect->begin())
         {
             if(m_vertexBuffer != nullptr)
@@ -88,6 +95,10 @@ public:
             
             m_effect->end();
         }
+#else
+        TestEGL::Draw(&g_userData);
+        
+#endif
     }
 
 };
@@ -208,3 +219,4 @@ void HelloWorld::draw()
     Layer::draw();
 }
 
+//////////////////////////////////////////////////////////
