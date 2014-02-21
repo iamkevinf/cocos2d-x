@@ -28,7 +28,10 @@ namespace my3d
             return;
         }
         
-        loadEffect(doc);
+        if(!loadEffect(doc))
+        {
+            CCLOGERROR("load effect failed!");
+        }
     }
     
     Effect::~Effect()
