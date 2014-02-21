@@ -25,6 +25,7 @@ namespace my3d
         CC_DISALLOW_COPY_AND_ASSIGN(Shader);
     public:
         Shader(ShaderType type);
+        Shader(ShaderType type, const std::string & resouce, const std::string & defines);
         virtual ~Shader();
         
         bool isValid() const;
@@ -36,6 +37,10 @@ namespace my3d
         GLuint getShader() const { return m_shader; }
         
     private:
+        bool createShader();
+        void deleteShader();
+        
+        std::string m_resouce;
         ShaderType m_type;
         bool m_valid;
         bool m_compiled;

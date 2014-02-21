@@ -115,6 +115,7 @@ namespace cocos2d
 		* Gets the element value by specified name.
 		*/
 		const char* getElement(const char* name = nullptr) const;
+        const std::string & getString(const std::string & name) const;
 
 		/**
 		* template function to get element value by specified name.

@@ -5,6 +5,11 @@
 #include "Vector2.h"
 #include "Stream.h"
 
+namespace
+{
+    const std::string EmptyString;
+}
+
 namespace cocos2d
 {
 
@@ -756,6 +761,19 @@ namespace cocos2d
 
 		return nullptr;
 	}
+    
+    const std::string & ElementNode::getString(const std::string & name) const
+    {
+        for (size_t i = 0; i < _elements.size(); ++i)
+        {
+            if (_elements[i].key == name)
+            {
+                return _elements[i].value;
+            }
+        }
+        
+        return EmptyString;
+    }
 
 	const char* ElementNode::getElementFlag(const char* flagName)
 	{

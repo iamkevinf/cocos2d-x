@@ -7,6 +7,7 @@
 //
 
 #include "Shader.h"
+#include "Stream.h"
 
 namespace my3d
 {
@@ -15,14 +16,60 @@ namespace my3d
         , m_type(type)
         , m_compiled(false)
     {
-        m_shader = glCreateShader(type == ShaderType::Vertex ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER);
-        if(m_shader == 0)
+        createShader();
+    }
+    
+    Shader::Shader(ShaderType type, const std::string & resouce, const std::string & defines)
+        : m_valid(false)
+        , m_type(type)
+        , m_compiled(false)
+        , m_resouce(resouce)
+    {
+        int length;
+        char* source = cocos2d::StreamManager::readAll(resouce.c_str(), &length);
+        if(source != nullptr)
         {
-            CCLOGERROR("create shader failed!");
+            std::string code(source, length);
+            delete source;
+            
+            createShader();
+            
+            std::vector<std::string> codes;
+            codes.push_back(defines);
+            
+#ifdef OPENGL_ES
+            if (!codes.back().empty())
+                codes.back() += "\n";
+            codes.back() += OPENGL_ES_DEFINE;
+#endif
+            codes.push_back("\n");
+            codes.push_back(code);
+            
+            setCode(codes);
+        }
+        else
+        {
+            CCLOGERROR("load shader '%s' failed!", resouce.c_str());
         }
     }
     
     Shader::~Shader()
+    {
+        deleteShader();
+    }
+    
+    bool Shader::createShader()
+    {
+        m_shader = glCreateShader(m_type == ShaderType::Vertex ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER);
+        if(m_shader == 0)
+        {
+            CCLOGERROR("create shader failed!");
+        }
+        
+        return m_shader != 0;
+    }
+    
+    void Shader::deleteShader()
     {
         if(m_shader != 0)
         {

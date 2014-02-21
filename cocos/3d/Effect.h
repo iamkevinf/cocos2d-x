@@ -13,6 +13,11 @@
 #include "EnumDef.h"
 #include "mytool/smartptr.h"
 
+namespace cocos2d
+{
+    class ElementNode;
+}
+
 namespace my3d
 {
     typedef SmartPtr<class Shader> ShaderPtr;
@@ -28,6 +33,13 @@ namespace my3d
         bool isValid() const;
         
         void bindAttribute(cocos2d::VertexAttribute index, const std::string & name);
+        
+        bool begin();
+        void end();
+        
+    private:
+        
+        bool loadEffect(cocos2d::ElementNode * pNode);
         
     private:
         std::string m_resouce;
