@@ -53,7 +53,7 @@ public:
     bool initTest3D()
     {
         const float size = 2.8f;
-        const float pz = 0.0f;
+        const float pz = -10.0f;
         
         m_vertices[0].position.set(-size, -size, pz);
         m_vertices[0].color.set(0.0f, 0.0f, 1.0f, 1.0f);
@@ -92,6 +92,11 @@ public:
         C3DScene *pScene = pMainLayer->get3DScene();
         C3DCamera *pCamera = pScene->getActiveCamera();
         
+        static float angle = 0.0f;
+        Matrix matWorld;
+        Matrix::createRotationX(angle, &matWorld);
+        angle += 0.1;
+        
         Matrix matViewProj = pCamera->getViewProjectionMatrix();
         Vector3 pos;
         for(int i = 0; i<s_numVertices; ++i)
@@ -106,6 +111,12 @@ public:
             if(pConst)
             {
                 pConst->bindValue(matViewProj);
+            }
+            
+            pConst = m_effect->getConstant("u_matWorld");
+            if(pConst)
+            {
+                pConst->bindValue(matWorld);
             }
             
             if(m_vertexBuffer != nullptr)
@@ -217,7 +228,7 @@ bool HelloWorld::init()
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
-    pCamera->setPosition(0, 2, 0);
+    pCamera->setPosition(0, 0, 0);
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
