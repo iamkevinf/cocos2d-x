@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
-#include "3d/cocos3d.h"
+#include "cocos3d.h"
+#include "Vertex.h"
+#include "C3DVertexFormat.h"
 
 USING_NS_CC;
 
@@ -16,6 +18,17 @@ Scene* HelloWorld::createScene()
 
     // return the scene
     return scene;
+}
+
+HelloWorld::HelloWorld()
+: m_vertexbuffer(nullptr)
+{
+    
+}
+
+HelloWorld::~HelloWorld()
+{
+    delete m_vertexbuffer;
 }
 
 // on "init" you need to initialize your instance
@@ -81,6 +94,25 @@ bool HelloWorld::init()
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
+    
+    const float size = 100.0f;
+    const float pz = -10.0f;
+    const int numVertices = 4;
+    BBVertex vertices[numVertices];
+    vertices[0].position.set(-size, -size, pz);
+    vertices[1].position.set(-size, size, pz);
+    vertices[2].position.set(size, -size, pz);
+    vertices[3].position.set(size, size, pz);
+    
+    m_vertexbuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
+                                            numVertices * sizeof(BBVertex), vertices);
+    
+    
+    C3DVertexFormat *pFormat = new C3DVertexFormat();
+    pFormat->addElement(C3DVertexElement(Vertex_Usage::Vertex_Usage_POSITION, 3));
+    pFormat->addElement(C3DVertexElement(Vertex_Usage::Vertex_Usage_COLOR, 4));
+    
+    
 #endif
     
     return true;
@@ -95,3 +127,16 @@ void HelloWorld::menuCloseCallback(Object* pSender)
     exit(0);
 #endif
 }
+
+void HelloWorld::draw()
+{
+    if(m_vertexbuffer != nullptr)
+    {
+        m_vertexbuffer->bind();
+        
+        m_vertexbuffer->unbind();
+    }
+    
+    Layer::draw();
+}
+

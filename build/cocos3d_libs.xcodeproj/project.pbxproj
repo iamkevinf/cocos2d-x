@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5827A93118B5D92B00EE8324 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */; };
 		5827A93218B5D92B00EE8324 /* VertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5827A93018B5D92B00EE8324 /* VertexBuffer.h */; };
+		582C41C018B70AB900B890A3 /* VertexDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41BE18B70AB900B890A3 /* VertexDeclaration.cpp */; };
+		582C41C118B70AB900B890A3 /* VertexDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41BF18B70AB900B890A3 /* VertexDeclaration.h */; };
+		582C41C418B7145900B890A3 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41C218B7145900B890A3 /* Effect.cpp */; };
+		582C41C518B7145900B890A3 /* Effect.h in Headers */ = {isa = PBXBuildFile; fileRef = 582C41C318B7145900B890A3 /* Effect.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -140,6 +144,10 @@
 /* Begin PBXFileReference section */
 		5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBuffer.cpp; sourceTree = "<group>"; };
 		5827A93018B5D92B00EE8324 /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexBuffer.h; sourceTree = "<group>"; };
+		582C41BE18B70AB900B890A3 /* VertexDeclaration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexDeclaration.cpp; sourceTree = "<group>"; };
+		582C41BF18B70AB900B890A3 /* VertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexDeclaration.h; sourceTree = "<group>"; };
+		582C41C218B7145900B890A3 /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Effect.cpp; sourceTree = "<group>"; };
+		582C41C318B7145900B890A3 /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -458,6 +466,10 @@
 				58CCD06218ADFE8F00BCEB08 /* Vertex.h */,
 				5827A92F18B5D92B00EE8324 /* VertexBuffer.cpp */,
 				5827A93018B5D92B00EE8324 /* VertexBuffer.h */,
+				582C41BE18B70AB900B890A3 /* VertexDeclaration.cpp */,
+				582C41BF18B70AB900B890A3 /* VertexDeclaration.h */,
+				582C41C218B7145900B890A3 /* Effect.cpp */,
+				582C41C318B7145900B890A3 /* Effect.h */,
 			);
 			name = render;
 			sourceTree = "<group>";
@@ -524,6 +536,7 @@
 			files = (
 				58CCD07D18ADFE8F00BCEB08 /* C3DEffect.h in Headers */,
 				58CCD06718ADFE8F00BCEB08 /* Base.h in Headers */,
+				582C41C518B7145900B890A3 /* Effect.h in Headers */,
 				58CCD0BB18ADFE8F00BCEB08 /* C3DTexture.h in Headers */,
 				58CCD0A718ADFE8F00BCEB08 /* C3DResourcePool.h in Headers */,
 				583D7DF018B4728E00CFC1BD /* Vector3.h in Headers */,
@@ -579,6 +592,7 @@
 				58CCD09118ADFE8F00BCEB08 /* C3DOBB.h in Headers */,
 				58CCD0B918ADFE8F00BCEB08 /* C3DTechnique.h in Headers */,
 				58CCD09B18ADFE8F00BCEB08 /* C3DRenderNode.h in Headers */,
+				582C41C118B70AB900B890A3 /* VertexDeclaration.h in Headers */,
 				58CCD0A518ADFE8F00BCEB08 /* C3DResourceManager.h in Headers */,
 				58CCD08318ADFE8F00BCEB08 /* C3DMaterial.h in Headers */,
 				58CCD0C518ADFE8F00BCEB08 /* EnumDef_GL.h in Headers */,
@@ -673,6 +687,7 @@
 				58CCD0AA18ADFE8F00BCEB08 /* C3DScene.cpp in Sources */,
 				58CCD07418ADFE8F00BCEB08 /* C3DAnimationClip.cpp in Sources */,
 				58CCD07818ADFE8F00BCEB08 /* C3DBone.cpp in Sources */,
+				582C41C018B70AB900B890A3 /* VertexDeclaration.cpp in Sources */,
 				58CCD0C618ADFE8F00BCEB08 /* MaterialParameter.cpp in Sources */,
 				583D7DF518B4731E00CFC1BD /* Transform.cpp in Sources */,
 				58CCD0BC18ADFE8F00BCEB08 /* C3DVertexDeclaration.cpp in Sources */,
@@ -700,6 +715,7 @@
 				583D7DE918B4728E00CFC1BD /* neonmatriximpl.c in Sources */,
 				58CCD09218ADFE8F00BCEB08 /* C3DPass.cpp in Sources */,
 				58CCD09018ADFE8F00BCEB08 /* C3DOBB.cpp in Sources */,
+				582C41C418B7145900B890A3 /* Effect.cpp in Sources */,
 				58CCD06A18ADFE8F00BCEB08 /* BundleData.cpp in Sources */,
 				58CCD0A218ADFE8F00BCEB08 /* C3DResourceLoader.cpp in Sources */,
 				58CCD0BE18ADFE8F00BCEB08 /* C3DVertexFormat.cpp in Sources */,

@@ -82,9 +82,7 @@ namespace my3d
 
     bool BufferBase::init()
     {
-        GLuint buffers[1] = {0};
-        glGenBuffers(1, buffers);
-        m_vb = buffers[0];
+        glGenBuffers(1, &m_vb);
         return m_vb != 0;
     }
 
@@ -102,8 +100,7 @@ namespace my3d
     {
         if(isValid())
         {
-            GLuint buffers[1] = {m_vb};
-            glDeleteBuffers(1, buffers);
+            glDeleteBuffers(1, &m_vb);
             m_vb = 0;
         }
     }

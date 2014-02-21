@@ -189,6 +189,7 @@ typedef GLuint IndexBufferHandle;
 typedef GLuint TextureHandle;
 typedef GLuint FrameBufferHandle;
 typedef GLuint RenderBufferHandle;
+typedef GLuint ProgramHandle;
 }
 
 /**

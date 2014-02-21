@@ -956,7 +956,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../cocos/3d";
 			};
 			name = Debug;
 		};
@@ -983,7 +983,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../cocos/3d";
 			};
 			name = Release;
 		};
