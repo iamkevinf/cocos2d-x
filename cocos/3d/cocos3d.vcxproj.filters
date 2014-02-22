@@ -1,66 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="AnimationValue.cpp" />
-    <ClCompile Include="AttachNode.cpp" />
-    <ClCompile Include="BonePart.cpp" />
-    <ClCompile Include="BundleData.cpp" />
-    <ClCompile Include="C3DAABB.cpp" />
-    <ClCompile Include="C3DActionListener.cpp" />
-    <ClCompile Include="C3DAnimation.cpp" />
-    <ClCompile Include="C3DAnimationChannel.cpp" />
-    <ClCompile Include="C3DAnimationClip.cpp" />
-    <ClCompile Include="C3DAnimationCurve.cpp" />
-    <ClCompile Include="C3DBone.cpp" />
-    <ClCompile Include="C3DCamera.cpp" />
-    <ClCompile Include="C3DEffect.cpp" />
-    <ClCompile Include="C3DEffectManager.cpp" />
-    <ClCompile Include="C3DLayer.cpp" />
-    <ClCompile Include="C3DMaterial.cpp" />
-    <ClCompile Include="C3DMaterialManager.cpp" />
-    <ClCompile Include="C3DMesh.cpp" />
-    <ClCompile Include="C3DMeshSkin.cpp" />
-    <ClCompile Include="C3DModel.cpp" />
-    <ClCompile Include="C3DModelNode.cpp" />
-    <ClCompile Include="C3DNode.cpp" />
-    <ClCompile Include="C3DOBB.cpp" />
-    <ClCompile Include="C3DPass.cpp" />
-    <ClCompile Include="C3DPlane.cpp" />
-    <ClCompile Include="C3DRay.cpp" />
-    <ClCompile Include="C3DRenderBlock.cpp" />
-    <ClCompile Include="C3DRenderNode.cpp" />
-    <ClCompile Include="C3DRenderState.cpp" />
-    <ClCompile Include="C3DRenderSystem.cpp" />
-    <ClCompile Include="C3DResource.cpp" />
-    <ClCompile Include="C3DResourceLoader.cpp" />
-    <ClCompile Include="C3DResourceManager.cpp" />
-    <ClCompile Include="C3DResourcePool.cpp" />
-    <ClCompile Include="C3DSampler.cpp" />
-    <ClCompile Include="C3DScene.cpp" />
-    <ClCompile Include="C3DSkeleton.cpp" />
-    <ClCompile Include="C3DSkinlessModel.cpp" />
-    <ClCompile Include="C3DSkinModel.cpp" />
-    <ClCompile Include="C3DSprite.cpp" />
-    <ClCompile Include="C3DSpriteManager.cpp" />
-    <ClCompile Include="C3DStaticObj.cpp" />
-    <ClCompile Include="C3DTechnique.cpp" />
-    <ClCompile Include="C3DTexture.cpp" />
-    <ClCompile Include="C3DVertexDeclaration.cpp" />
-    <ClCompile Include="C3DVertexFormat.cpp" />
-    <ClCompile Include="C3DViewport.cpp" />
-    <ClCompile Include="ElementNode.cpp" />
-    <ClCompile Include="MaterialParameter.cpp" />
-    <ClCompile Include="MeshPart.cpp" />
-    <ClCompile Include="Stream.cpp" />
-    <ClCompile Include="StringTool.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="..\math\MathUtilty.cpp" />
-    <ClCompile Include="..\math\Matrix.cpp" />
-    <ClCompile Include="..\math\neonmatriximpl.c" />
-    <ClCompile Include="..\math\Quaternion.cpp" />
-    <ClCompile Include="..\math\Vector2.cpp" />
-    <ClCompile Include="..\math\Vector3.cpp" />
-    <ClCompile Include="..\math\Vector4.cpp" />
     <ClCompile Include="my3d\Effect.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
@@ -79,74 +19,189 @@
     <ClCompile Include="my3d\VertexDeclaration.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
+    <ClCompile Include="BundleData.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DActionListener.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DAABB.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DCamera.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DLayer.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DModel.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DModelNode.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DNode.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DOBB.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DPlane.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DRay.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DRenderBlock.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DRenderNode.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DRenderState.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DRenderSystem.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DScene.cpp">
+      <Filter>node</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSkinlessModel.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSkinModel.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DStaticObj.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DVertexFormat.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DViewport.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementNode.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\MathUtilty.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Matrix.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Vector2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Vector3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Vector4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\neonmatriximpl.c">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Quaternion.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="StringTool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DEffect.cpp">
+      <Filter>render\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DEffectManager.cpp">
+      <Filter>render\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DTechnique.cpp">
+      <Filter>render\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DVertexDeclaration.cpp">
+      <Filter>render\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DPass.cpp">
+      <Filter>render\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DMaterial.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DMaterialManager.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialParameter.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DResource.cpp">
+      <Filter>render\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DResourceLoader.cpp">
+      <Filter>render\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DResourceManager.cpp">
+      <Filter>render\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DResourcePool.cpp">
+      <Filter>render\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DTexture.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSampler.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSprite.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSpriteManager.cpp">
+      <Filter>render\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationValue.cpp">
+      <Filter>model\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DAnimation.cpp">
+      <Filter>model\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DAnimationChannel.cpp">
+      <Filter>model\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DAnimationClip.cpp">
+      <Filter>model\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DAnimationCurve.cpp">
+      <Filter>model\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DMesh.cpp">
+      <Filter>model\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DMeshSkin.cpp">
+      <Filter>model\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshPart.cpp">
+      <Filter>model\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="AttachNode.cpp">
+      <Filter>model\bone</Filter>
+    </ClCompile>
+    <ClCompile Include="BonePart.cpp">
+      <Filter>model\bone</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DBone.cpp">
+      <Filter>model\bone</Filter>
+    </ClCompile>
+    <ClCompile Include="C3DSkeleton.cpp">
+      <Filter>model\bone</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationValue.h" />
-    <ClInclude Include="AttachNode.h" />
-    <ClInclude Include="Base.h" />
-    <ClInclude Include="BonePart.h" />
-    <ClInclude Include="BundleData.h" />
-    <ClInclude Include="C3DAABB.h" />
-    <ClInclude Include="C3DActionListener.h" />
-    <ClInclude Include="C3DAnimation.h" />
-    <ClInclude Include="C3DAnimationChannel.h" />
-    <ClInclude Include="C3DAnimationClip.h" />
-    <ClInclude Include="C3DAnimationCurve.h" />
-    <ClInclude Include="C3DBone.h" />
-    <ClInclude Include="C3DCamera.h" />
-    <ClInclude Include="C3DEffect.h" />
-    <ClInclude Include="C3DEffectManager.h" />
-    <ClInclude Include="C3DLayer.h" />
-    <ClInclude Include="C3DMaterial.h" />
-    <ClInclude Include="C3DMaterialManager.h" />
-    <ClInclude Include="C3DMesh.h" />
-    <ClInclude Include="C3DMeshSkin.h" />
-    <ClInclude Include="C3DModel.h" />
-    <ClInclude Include="C3DModelNode.h" />
-    <ClInclude Include="C3DNode.h" />
-    <ClInclude Include="C3DOBB.h" />
-    <ClInclude Include="C3DPass.h" />
-    <ClInclude Include="C3DPlane.h" />
-    <ClInclude Include="C3DRay.h" />
-    <ClInclude Include="C3DRenderBlock.h" />
-    <ClInclude Include="C3DRenderNode.h" />
-    <ClInclude Include="C3DRenderState.h" />
-    <ClInclude Include="C3DRenderSystem.h" />
-    <ClInclude Include="C3DResource.h" />
-    <ClInclude Include="C3DResourceLoader.h" />
-    <ClInclude Include="C3DResourceManager.h" />
-    <ClInclude Include="C3DResourcePool.h" />
-    <ClInclude Include="C3DSampler.h" />
-    <ClInclude Include="C3DScene.h" />
-    <ClInclude Include="C3DSkeleton.h" />
-    <ClInclude Include="C3DSkinlessModel.h" />
-    <ClInclude Include="C3DSkinModel.h" />
-    <ClInclude Include="C3DSprite.h" />
-    <ClInclude Include="C3DSpriteManager.h" />
-    <ClInclude Include="C3DStaticObj.h" />
-    <ClInclude Include="C3DTechnique.h" />
-    <ClInclude Include="C3DTexture.h" />
-    <ClInclude Include="C3DVertexDeclaration.h" />
-    <ClInclude Include="C3DVertexFormat.h" />
-    <ClInclude Include="C3DViewport.h" />
     <ClInclude Include="cocos3d.h" />
-    <ClInclude Include="ElementNode.h" />
-    <ClInclude Include="EnumDef.h" />
-    <ClInclude Include="EnumDef_GL.h" />
-    <ClInclude Include="MaterialParameter.h" />
-    <ClInclude Include="MeshPart.h" />
-    <ClInclude Include="Stream.h" />
-    <ClInclude Include="StringTool.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vertex.h" />
-    <ClInclude Include="..\math\CocosMath.h" />
-    <ClInclude Include="..\math\MathUtilty.h" />
-    <ClInclude Include="..\math\Matrix.h" />
-    <ClInclude Include="..\math\neonmatriximpl.h" />
-    <ClInclude Include="..\math\Quaternion.h" />
-    <ClInclude Include="..\math\Vector2.h" />
-    <ClInclude Include="..\math\Vector3.h" />
-    <ClInclude Include="..\math\Vector4.h" />
     <ClInclude Include="my3d\Effect.h">
       <Filter>my3d</Filter>
     </ClInclude>
@@ -168,17 +223,261 @@
     <ClInclude Include="my3d\my3d.h">
       <Filter>my3d</Filter>
     </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="BundleData.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DActionListener.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DAABB.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DCamera.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DLayer.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DModel.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DModelNode.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DNode.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DOBB.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DPlane.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DRay.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DRenderBlock.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DRenderNode.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DRenderState.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DRenderSystem.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DScene.h">
+      <Filter>node</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSkinlessModel.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSkinModel.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DStaticObj.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DVertexFormat.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DViewport.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementNode.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumDef.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumDef_GL.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\CocosMath.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\MathUtilty.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Matrix.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Vector2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\neonmatriximpl.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Quaternion.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DEffect.h">
+      <Filter>render\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DEffectManager.h">
+      <Filter>render\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DTechnique.h">
+      <Filter>render\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DVertexDeclaration.h">
+      <Filter>render\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DPass.h">
+      <Filter>render\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DMaterial.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DMaterialManager.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialParameter.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DResource.h">
+      <Filter>render\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DResourceLoader.h">
+      <Filter>render\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DResourceManager.h">
+      <Filter>render\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DResourcePool.h">
+      <Filter>render\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DTexture.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSampler.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSprite.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSpriteManager.h">
+      <Filter>render\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationValue.h">
+      <Filter>model\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DAnimation.h">
+      <Filter>model\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DAnimationChannel.h">
+      <Filter>model\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DAnimationClip.h">
+      <Filter>model\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DAnimationCurve.h">
+      <Filter>model\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DMesh.h">
+      <Filter>model\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DMeshSkin.h">
+      <Filter>model\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshPart.h">
+      <Filter>model\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="AttachNode.h">
+      <Filter>model\bone</Filter>
+    </ClInclude>
+    <ClInclude Include="BonePart.h">
+      <Filter>model\bone</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DBone.h">
+      <Filter>model\bone</Filter>
+    </ClInclude>
+    <ClInclude Include="C3DSkeleton.h">
+      <Filter>model\bone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\math\Vector4.inl" />
-    <None Include="..\math\Matrix.inl" />
-    <None Include="..\math\Quaternion.inl" />
-    <None Include="..\math\Vector2.inl" />
-    <None Include="..\math\Vector3.inl" />
+    <None Include="..\math\Matrix.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="..\math\Vector2.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="..\math\Vector3.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="..\math\Vector4.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="..\math\Quaternion.inl">
+      <Filter>math</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="my3d">
       <UniqueIdentifier>{f13e6a77-3a3b-48f7-bf26-33681372dcbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="node">
+      <UniqueIdentifier>{ee01c039-77c6-48f0-9e96-3e8ea3118369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{5d43de7c-ab81-48ac-838c-3a18ed352165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{023c223b-87cd-4219-b8e1-e8330b22c6a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{4e782dac-a352-44cb-bb8e-ab140fdfe6fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{7584fce9-4006-4864-a39e-b399003b62aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{2128a8fe-9778-4457-bbd8-be629bc8d544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\effect">
+      <UniqueIdentifier>{883fd1f1-442c-46d7-abdf-568fe1bf3903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\material">
+      <UniqueIdentifier>{b09067d8-2428-41d3-a21d-adf82cb0c342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\resource">
+      <UniqueIdentifier>{c0a32d65-bf93-406a-ad10-50b1053c7e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\texture">
+      <UniqueIdentifier>{356175d8-ca54-42c5-807b-6d8280e1d0f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model\animation">
+      <UniqueIdentifier>{a598409b-da7d-4d12-a72b-f2f27cf87a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model\mesh">
+      <UniqueIdentifier>{74b77059-c08e-409c-a8e4-05f9ad54b689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model\bone">
+      <UniqueIdentifier>{b1b0be5a-858e-4825-a6cb-c5244d63e8f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
