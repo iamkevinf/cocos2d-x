@@ -8,22 +8,26 @@
 
 USING_NS_CC;
 
-TestEGL::UserData g_userData;
+namespace
+{
+    TestEGL::UserData g_userData;
+    const int numIndices = 6 * 2 * 3;
+}
 
 class Test3DNode : public C3DNode
 {
-    my3d::VertexBuffer * m_vertexBuffer;
+    my3d::VertexBuffer  *m_vertexBuffer;
+    my3d::IndexBuffer   *m_indexBuffer;
     my3d::EffectPtr     m_effect;
     my3d::VertexDeclaration *m_vertexDecl;
-    BBVertex m_vertices[4];
-    
-    static const int s_numVertices = 4;
+    std::vector<BBVertex> m_vertices;
     
 public:
     
     Test3DNode()
-    : m_vertexBuffer(nullptr)
-    , m_vertexDecl(nullptr)
+        : m_vertexBuffer(nullptr)
+        , m_vertexDecl(nullptr)
+        , m_indexBuffer(nullptr)
     {
         
     }
@@ -32,6 +36,7 @@ public:
     {
         delete m_vertexDecl;
         delete m_vertexBuffer;
+        delete m_indexBuffer;
     }
     
     static Test3DNode * create()
@@ -50,25 +55,44 @@ public:
     bool initTest3D()
     {
         const float size = 2.8f;
-        const float pz = -10.0f;
+        const float pz = -0.0f;
+
+        m_vertices.resize(8);
         
-        m_vertices[0].position.set(-size, -size, pz);
+        m_vertices[0].position.set(-size, -size, size);
         m_vertices[0].color.set(0.0f, 0.0f, 1.0f, 1.0f);
         
-        m_vertices[1].position.set(-size, size, pz);
+        m_vertices[1].position.set(-size, size, size);
         m_vertices[1].color.set(0.0f, 1.0f, 0.0f, 1.0f);
         
-        m_vertices[2].position.set(size, -size, pz);
-        m_vertices[2].color.set(1.0f, 0.0f, 0.0f, 1.0f);
+        m_vertices[2].position.set(size, size, size);
+        m_vertices[2].color.set(0.0f, 1.0f, 1.0f, 1.0f);
         
-        m_vertices[3].position.set(size, size, pz);
-        m_vertices[3].color.set(0.0f, 1.0f, 1.0f, 1.0f);
-        
+        m_vertices[3].position.set(size, -size, size);
+        m_vertices[3].color.set(1.0f, 0.0f, 0.0f, 1.0f);
+
+        for (int i = 0; i < 4; ++i)
+        {
+            m_vertices[i + 4] = m_vertices[i];
+            m_vertices[i + 4].position.z = -size;
+        }
 
         
+        unsigned short indices[numIndices] = {
+            0, 1, 2,  0, 2, 3, //front
+            3, 2, 6,  3, 6, 7, //right
+            7, 6, 5,  7, 5, 4, //back
+            4, 5, 1,  4, 1, 0, //left
+            1, 5, 6,  1, 6, 2, //top
+            4, 0, 3,  4, 3, 7, //bottom
+        };
+
         m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-                                                s_numVertices * sizeof(BBVertex), m_vertices);
+            8 * sizeof(BBVertex), &m_vertices[0]);
         
+        m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
+            numIndices * sizeof(unsigned short), &indices[0]);
+
         m_effect = my3d::EffectMgr::instance()->get("effect/test.fx");
         
         m_vertexDecl = new my3d::VertexDeclaration();
@@ -85,45 +109,27 @@ public:
         C3DNode::draw();
 
 #if 1
-        C3DLayer *pMainLayer = C3DLayer::getMainLayer();
-        C3DScene *pScene = pMainLayer->get3DScene();
-        C3DCamera *pCamera = pScene->getActiveCamera();
-        
-        static float angle = 0.0f;
-        Matrix matWorld;
-        Matrix::createRotationX(angle, &matWorld);
-        angle += 0.1f;
-        
-        Matrix matViewProj = pCamera->getViewProjectionMatrix();
-        Vector3 pos;
-        for(int i = 0; i<s_numVertices; ++i)
-        {
-            pos = m_vertices[i].position;
-            matViewProj.transformPoint(&pos);
-        }
+        this->rotateY(0.01f);
+
+        glEnable(GL_CULL_FACE);
         
         if(m_effect && m_effect->begin())
         {
-            my3d::EffectConstant *pConst = m_effect->getConstant("u_matViewProj");
+            my3d::EffectConstant *pConst = m_effect->getConstant("u_matWorldViewProj");
             if(pConst)
             {
-                pConst->bindValue(matViewProj);
-            }
-            
-            pConst = m_effect->getConstant("u_matWorld");
-            if(pConst)
-            {
-                pConst->bindValue(matWorld);
+                pConst->bindValue(this->getWorldViewProjectionMatrix());
             }
             
             if(m_vertexBuffer != nullptr)
             {
                 m_vertexBuffer->bind();
+                m_indexBuffer->bind();
                 m_vertexDecl->bind(m_effect.get());
-                
-                
-                
-                glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+                glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);
+
+                m_indexBuffer->unbind();
                 m_vertexBuffer->unbind();
             }
             
@@ -209,7 +215,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-#if 0
+#if 1
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
 
@@ -225,7 +231,7 @@ bool HelloWorld::init()
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
-    pCamera->setPosition(0, 0, 0);
+    pCamera->setPosition(0, 0, 12.0f);
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
