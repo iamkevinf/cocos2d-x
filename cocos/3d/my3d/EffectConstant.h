@@ -9,7 +9,7 @@
 #ifndef __cocos3d_libs__EffectConstant__
 #define __cocos3d_libs__EffectConstant__
 
-#include "Base.h"
+#include "../Base.h"
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 #include "math/Vector4.h"

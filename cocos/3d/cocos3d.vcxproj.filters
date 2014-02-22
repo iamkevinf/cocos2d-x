@@ -48,18 +48,12 @@
     <ClCompile Include="C3DVertexDeclaration.cpp" />
     <ClCompile Include="C3DVertexFormat.cpp" />
     <ClCompile Include="C3DViewport.cpp" />
-    <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectConstant.cpp" />
-    <ClCompile Include="EffectMgr.cpp" />
     <ClCompile Include="ElementNode.cpp" />
     <ClCompile Include="MaterialParameter.cpp" />
     <ClCompile Include="MeshPart.cpp" />
-    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StringTool.cpp" />
     <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="VertexDeclaration.cpp" />
     <ClCompile Include="..\math\MathUtilty.cpp" />
     <ClCompile Include="..\math\Matrix.cpp" />
     <ClCompile Include="..\math\neonmatriximpl.c" />
@@ -67,6 +61,24 @@
     <ClCompile Include="..\math\Vector2.cpp" />
     <ClCompile Include="..\math\Vector3.cpp" />
     <ClCompile Include="..\math\Vector4.cpp" />
+    <ClCompile Include="my3d\Effect.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\EffectConstant.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\EffectMgr.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\Shader.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\VertexBuffer.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\VertexDeclaration.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationValue.h" />
@@ -118,21 +130,15 @@
     <ClInclude Include="C3DVertexFormat.h" />
     <ClInclude Include="C3DViewport.h" />
     <ClInclude Include="cocos3d.h" />
-    <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectConstant.h" />
-    <ClInclude Include="EffectMgr.h" />
     <ClInclude Include="ElementNode.h" />
     <ClInclude Include="EnumDef.h" />
     <ClInclude Include="EnumDef_GL.h" />
     <ClInclude Include="MaterialParameter.h" />
     <ClInclude Include="MeshPart.h" />
-    <ClInclude Include="Shader.h" />
     <ClInclude Include="Stream.h" />
     <ClInclude Include="StringTool.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="VertexDeclaration.h" />
     <ClInclude Include="..\math\CocosMath.h" />
     <ClInclude Include="..\math\MathUtilty.h" />
     <ClInclude Include="..\math\Matrix.h" />
@@ -141,6 +147,27 @@
     <ClInclude Include="..\math\Vector2.h" />
     <ClInclude Include="..\math\Vector3.h" />
     <ClInclude Include="..\math\Vector4.h" />
+    <ClInclude Include="my3d\Effect.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\EffectConstant.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\EffectMgr.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\Shader.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\VertexBuffer.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\VertexDeclaration.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\my3d.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\math\Vector4.inl" />
@@ -148,5 +175,10 @@
     <None Include="..\math\Quaternion.inl" />
     <None Include="..\math\Vector2.inl" />
     <None Include="..\math\Vector3.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="my3d">
+      <UniqueIdentifier>{f13e6a77-3a3b-48f7-bf26-33681372dcbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

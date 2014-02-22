@@ -9,7 +9,7 @@
 #include "Effect.h"
 #include "EffectMgr.h"
 #include "Shader.h"
-#include "ElementNode.h"
+#include "../ElementNode.h"
 #include "EffectConstant.h"
 #include <cassert>
 

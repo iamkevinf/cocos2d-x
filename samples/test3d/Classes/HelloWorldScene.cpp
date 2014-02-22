@@ -1,11 +1,8 @@
 #include "HelloWorldScene.h"
 #include "cocos3d.h"
-#include "EffectMgr.h"
-#include "EffectConstant.h"
-#include "VertexBuffer.h"
 #include "Vertex.h"
-#include "Effect.h"
-#include "VertexDeclaration.h"
+
+#include "my3d/my3d.h"
 
 #include "TestEGL.h"
 
@@ -95,7 +92,7 @@ public:
         static float angle = 0.0f;
         Matrix matWorld;
         Matrix::createRotationX(angle, &matWorld);
-        angle += 0.1;
+        angle += 0.1f;
         
         Matrix matViewProj = pCamera->getViewProjectionMatrix();
         Vector3 pos;

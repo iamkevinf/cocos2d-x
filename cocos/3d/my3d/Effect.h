@@ -10,7 +10,7 @@
 #define __cocos3d_libs__Effect__
 
 #include "CCObject.h"
-#include "EnumDef.h"
+#include "../EnumDef.h"
 #include "mytool/smartptr.h"
 
 #include <cassert>

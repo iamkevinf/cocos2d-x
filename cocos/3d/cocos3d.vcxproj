@@ -65,18 +65,18 @@
     <ClCompile Include="C3DVertexDeclaration.cpp" />
     <ClCompile Include="C3DVertexFormat.cpp" />
     <ClCompile Include="C3DViewport.cpp" />
-    <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectConstant.cpp" />
-    <ClCompile Include="EffectMgr.cpp" />
     <ClCompile Include="ElementNode.cpp" />
     <ClCompile Include="MaterialParameter.cpp" />
     <ClCompile Include="MeshPart.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="my3d\Effect.cpp" />
+    <ClCompile Include="my3d\EffectConstant.cpp" />
+    <ClCompile Include="my3d\EffectMgr.cpp" />
+    <ClCompile Include="my3d\Shader.cpp" />
+    <ClCompile Include="my3d\VertexBuffer.cpp" />
+    <ClCompile Include="my3d\VertexDeclaration.cpp" />
     <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StringTool.cpp" />
     <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="VertexDeclaration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\math\CocosMath.h" />
@@ -136,21 +136,22 @@
     <ClInclude Include="C3DVertexFormat.h" />
     <ClInclude Include="C3DViewport.h" />
     <ClInclude Include="cocos3d.h" />
-    <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectConstant.h" />
-    <ClInclude Include="EffectMgr.h" />
     <ClInclude Include="ElementNode.h" />
     <ClInclude Include="EnumDef.h" />
     <ClInclude Include="EnumDef_GL.h" />
     <ClInclude Include="MaterialParameter.h" />
     <ClInclude Include="MeshPart.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="my3d\Effect.h" />
+    <ClInclude Include="my3d\EffectConstant.h" />
+    <ClInclude Include="my3d\EffectMgr.h" />
+    <ClInclude Include="my3d\my3d.h" />
+    <ClInclude Include="my3d\Shader.h" />
+    <ClInclude Include="my3d\VertexBuffer.h" />
+    <ClInclude Include="my3d\VertexDeclaration.h" />
     <ClInclude Include="Stream.h" />
     <ClInclude Include="StringTool.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="VertexDeclaration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\math\Matrix.inl">

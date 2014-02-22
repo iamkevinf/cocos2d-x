@@ -10,7 +10,7 @@
 #define __cocos3d_libs__Shader__
 
 #include "CCObject.h"
-#include "EnumDef.h"
+#include "../EnumDef.h"
 
 namespace my3d
 {

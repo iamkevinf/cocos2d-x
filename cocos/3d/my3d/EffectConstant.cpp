@@ -7,10 +7,10 @@
 //
 
 #include "EffectConstant.h"
-#include "EnumDef.h"
-#include "C3DTexture.h"
-#include "C3DSampler.h"
-#include "C3DRenderState.h"
+#include "../EnumDef.h"
+#include "../C3DTexture.h"
+#include "../C3DSampler.h"
+#include "../C3DRenderState.h"
 
 using namespace cocos2d;
 
