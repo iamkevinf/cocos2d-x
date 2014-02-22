@@ -125,7 +125,7 @@ public:
             {
                 m_vertexBuffer->bind();
                 m_indexBuffer->bind();
-                m_vertexDecl->bind(m_effect.get());
+                m_vertexDecl->bind();
 
                 glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);
 
@@ -215,7 +215,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
-#if 1
+#if 0
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
 

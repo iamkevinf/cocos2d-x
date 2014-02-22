@@ -15,7 +15,12 @@
 
 namespace my3d
 {
-    static Effect * s_pEffectBegined = nullptr;
+    /*static*/ Effect * Effect::s_pActiveEffect = nullptr;
+
+    /*static*/ Effect * Effect::getActiveEffect()
+    {
+        return s_pActiveEffect;
+    }
     
     //////////////////////////////////////////////////////////
     Effect::Effect(const std::string & resouce)
@@ -38,6 +43,11 @@ namespace my3d
     Effect::~Effect()
     {
         EffectMgr::instance()->del(this);
+
+        if (this == s_pActiveEffect)
+        {
+            s_pActiveEffect = nullptr;
+        }
         
         for(auto it : m_constants)
         {
@@ -173,20 +183,20 @@ namespace my3d
     
     bool Effect::begin()
     {
-        CCAssert(s_pEffectBegined == nullptr, "Effect::begin invalid!" );
+        CCAssert(s_pActiveEffect == nullptr, "Effect::begin invalid!");
         
         if(m_program == 0) return false;
         
         glUseProgram(m_program);
-        s_pEffectBegined = this;
+        s_pActiveEffect = this;
         return true;
     }
     
     void Effect::end()
     {
-        CCAssert(s_pEffectBegined == this, "Effect::end invalied");
+        CCAssert(s_pActiveEffect == this, "Effect::end invalied");
         
-        s_pEffectBegined = nullptr;
+        s_pActiveEffect = nullptr;
         glUseProgram(0);
     }
     

@@ -109,7 +109,10 @@ namespace my3d
     
     void VertexDeclaration::bind(Effect * pEffect)
     {
-        assert(pEffect != nullptr);
+        if (pEffect == nullptr)
+            pEffect = Effect::getActiveEffect();
+
+        assert(pEffect != nullptr && "VertexDeclaration::bind failed! no active effect was found!");
         
         unsigned int offset = 0;
         for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)

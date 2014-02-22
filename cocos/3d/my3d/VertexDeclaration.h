@@ -79,7 +79,7 @@ namespace my3d
         const VertexElement & getElement(int i) const;
         size_t getVertexSize() const;
         
-        void bind(Effect * pEffect);
+        void bind(Effect *pEffect=nullptr);
         void unbind();
         
     private:

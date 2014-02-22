@@ -42,6 +42,8 @@ namespace my3d
         
         bool begin();
         void end();
+
+        static Effect * getActiveEffect();
         
     private:
         
@@ -54,6 +56,8 @@ namespace my3d
         SmartPtr<Shader> m_vertexShader;
         SmartPtr<Shader> m_pixelShader;
         std::map<std::string, EffectConstant*> m_constants;
+
+        static Effect * s_pActiveEffect;
     };
     
     typedef SmartPtr<Effect> EffectPtr;
