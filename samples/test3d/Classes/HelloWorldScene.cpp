@@ -79,12 +79,12 @@ public:
 
         
         unsigned short indices[numIndices] = {
-            0, 1, 2,  0, 2, 3, //front
-            3, 2, 6,  3, 6, 7, //right
-            7, 6, 5,  7, 5, 4, //back
-            4, 5, 1,  4, 1, 0, //left
-            1, 5, 6,  1, 6, 2, //top
-            4, 0, 3,  4, 3, 7, //bottom
+            0, 2, 1,  0, 3, 2, //front
+            3, 6, 2,  3, 7, 6, //right
+            7, 5, 6,  7, 4, 5, //back
+            4, 1, 5,  4, 0, 1, //left
+            1, 6, 5,  1, 2, 6, //top
+            4, 3, 0,  4, 7, 3, //bottom
         };
 
         m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
@@ -113,7 +113,8 @@ public:
         C3DNode::draw();
 
 #if 1
-        glEnable(GL_CULL_FACE);
+        my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
+        my3d::renderDev()->setCullFace(my3d::CullFace::Back);
         
         if(m_effect && m_effect->begin())
         {

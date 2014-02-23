@@ -1,15 +1,10 @@
 #ifndef H_M3D_RENDER_DEVICE_H
 #define H_M3D_RENDER_DEVICE_H
 
-#include "M3DBase.h"
+#include "M3DRenderState.h"
 
 namespace my3d
 {
-    enum class RenderState
-    {
-        ZEnable,
-        CullFace,
-    };
 
     class RenderDevice
     {
@@ -34,6 +29,16 @@ namespace my3d
         const cocos2d::Matrix & getWorldViewProjection() const;
 
         void setRenderState(RenderState state, bool enable);
+        void setBlendFun(BlendFun src, BlendFun dst);
+        void setCullFace(CullFace mode);
+        void setFrontFace(bool isCW);
+        void setDepthFun(CompareFun fun);
+        void setScissor(int32 x, int32 y, uint32 width, uint32 height);
+        void setStencilMask(uint32 mask);
+        void setStencilFun(CompareFun fun, int32 ref, uint32 mask);
+        void setStencilOp(StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass);
+        void setStencilOpSeparate(CullFace face, StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass);
+        void setColorMask(uint32 color);
 
     private:
         std::vector<cocos2d::Matrix> m_matWorlds;

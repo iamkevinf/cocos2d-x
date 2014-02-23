@@ -10,29 +10,6 @@ namespace my3d
         const uint32 WorldViewProj = 1 << 2;
     }
 
-    namespace
-    {
-        std::map<RenderState, GLenum> stateMap;
-    }
-
-    GLenum renderState2GL(RenderState state)
-    {
-        if (stateMap.empty())
-        {
-#define REG_STATE_MAP(RS_STATE, GL_STATE) stateMap.insert(std::pair<RenderState, GLenum>(RS_STATE, GL_STATE))
-
-            REG_STATE_MAP(RenderState::CullFace, GL_CULL_FACE);
-
-#undef REG_STATE_MAP
-        }
-
-        auto it = stateMap.find(state);
-        if (it != stateMap.end()) return it->second;
-
-        return 0;
-    }
-
-
     RenderDevice::RenderDevice()
         : m_dirty(0)
     {
@@ -123,10 +100,74 @@ namespace my3d
 
     void RenderDevice::setRenderState(RenderState state, bool enable)
     {
-        GLenum glstate = renderState2GL(state);
+        GLenum glstate = renderState2Sys(state);
 
         if (enable) glEnable(glstate);
         else glDisable(glstate);
+    }
+
+    void RenderDevice::setBlendFun(BlendFun src, BlendFun dst)
+    {
+        glBlendFunc(blendFun2Sys(src), blendFun2Sys(dst));
+    }
+
+    void RenderDevice::setCullFace(CullFace mode)
+    {
+        glCullFace(cullFace2Sys(mode));
+    }
+
+    void RenderDevice::setFrontFace(bool isCW)
+    {
+        glFrontFace(isCW ? GL_CW : GL_CCW);
+    }
+
+    void RenderDevice::setDepthFun(CompareFun fun)
+    {
+        glDepthFunc(compareFun2Sys(fun));
+    }
+
+    void RenderDevice::setScissor(int32 x, int32 y, uint32 width, uint32 height)
+    {
+        glScissor(x, y, width, height);
+    }
+
+    void RenderDevice::setStencilMask(uint32 mask)
+    {
+        glStencilMask(mask);
+    }
+
+    void RenderDevice::setStencilFun(CompareFun fun, int32 ref, uint32 mask)
+    {
+        glStencilFunc(compareFun2Sys(fun), ref, mask);
+    }
+
+    void RenderDevice::setStencilOp(StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass)
+    {
+        glStencilOp(
+            stencilOp2Sys(stencilFail),
+            stencilOp2Sys(depthFail),
+            stencilOp2Sys(depthPass)
+            );
+    }
+
+    void RenderDevice::setStencilOpSeparate(CullFace face, StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass)
+    {
+        glStencilOpSeparate(
+            cullFace2Sys(face),
+            stencilOp2Sys(stencilFail),
+            stencilOp2Sys(depthFail),
+            stencilOp2Sys(depthPass)
+            );
+    }
+
+    void RenderDevice::setColorMask(uint32 color)
+    {
+        
+        GLboolean r = color & ColorMask::R ? GL_TRUE : GL_FALSE;
+        GLboolean g = color & ColorMask::G ? GL_TRUE : GL_FALSE;
+        GLboolean b = color & ColorMask::B ? GL_TRUE : GL_FALSE;
+        GLboolean a = color & ColorMask::A ? GL_TRUE : GL_FALSE;
+        glColorMask(r, g, b, a);
     }
 
 }//end namespace my3d
