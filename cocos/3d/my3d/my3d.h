@@ -8,5 +8,7 @@
 #include "EffectConstant.h"
 #include "Effect.h"
 #include "EffectMgr.h"
+#include "M3DInit.h"
+#include "M3DRenderDevice.h"
 
 #endif //H_MY3D_H

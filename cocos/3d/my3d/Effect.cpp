@@ -165,6 +165,12 @@ namespace my3d
                 uniform->m_index = 0;
             
             this->m_constants[uniformName] = uniform;
+            
+            EffectAutoConstant *pAutoConst = EffectAutoConstant::get(uniformName);
+            if (pAutoConst)
+            {
+                m_autoConsts.push_back(std::make_pair(pAutoConst, uniform));
+            }
         }
     }
     
@@ -189,6 +195,12 @@ namespace my3d
         
         glUseProgram(m_program);
         s_pActiveEffect = this;
+
+        for (auto it : m_autoConsts)
+        {
+            it.first->apply(it.second);
+        }
+
         return true;
     }
     

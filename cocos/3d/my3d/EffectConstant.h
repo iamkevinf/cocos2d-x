@@ -9,11 +9,7 @@
 #ifndef __cocos3d_libs__EffectConstant__
 #define __cocos3d_libs__EffectConstant__
 
-#include "../Base.h"
-#include "math/Vector2.h"
-#include "math/Vector3.h"
-#include "math/Vector4.h"
-#include "math/Matrix.h"
+#include "M3DBase.h"
 
 namespace cocos2d
 {
@@ -25,6 +21,19 @@ namespace cocos2d
 namespace my3d
 {
     class Effect;
+
+    namespace EffectConstType
+    {
+        const std::string World = "u_matWorld";
+        const std::string View = "u_matView";
+        const std::string Proj = "u_matProj";
+        const std::string ViewProj = "u_matViewProj";
+        const std::string WorldViewProj = "u_matWorldViewProj";
+        const std::string AmbientColor = "u_ambientColor";
+        const std::string OmitLight = "u_omitLight";
+        const std::string DirLight = "u_dirLight";
+        const std::string SpotLight = "u_spotLight";
+    }
     
     /**
      * Represents a uniform variable within an effect.
@@ -102,6 +111,23 @@ namespace my3d
         GLenum      m_type;
         unsigned int m_index;
         Effect*     m_pEffect;
+    };
+
+    class EffectAutoConstant
+    {
+    public:
+
+        virtual void apply(EffectConstant *pConst) = 0;
+
+        static EffectAutoConstant * get(const std::string & name);
+        static void set(const std::string & name, EffectAutoConstant *autoConst);
+        static void fini();
+
+    protected:
+        EffectAutoConstant();
+        virtual ~EffectAutoConstant();
+
+        static std::map<std::string, EffectAutoConstant*> s_autoConstMap;
     };
 }
 

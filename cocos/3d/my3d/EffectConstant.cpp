@@ -130,5 +130,41 @@ namespace my3d
         glUniform1i(m_location, m_index);
     }
 
+    //////////////////////////////////////////////////////////////////
+
+    /*static*/ std::map<std::string, EffectAutoConstant*> EffectAutoConstant::s_autoConstMap;
+
+    /*static*/ EffectAutoConstant * EffectAutoConstant::get(const std::string & name)
+    {
+        auto it = s_autoConstMap.find(name);
+        if (it != s_autoConstMap.end()) return it->second;
+
+        return nullptr;
+    }
+
+    /*static*/ void EffectAutoConstant::set(const std::string & name, EffectAutoConstant * autoConst)
+    {
+        s_autoConstMap.insert(std::make_pair(name, autoConst));
+    }
+
+    /*static*/ void EffectAutoConstant::fini()
+    {
+        for (auto it = s_autoConstMap.begin(); it != s_autoConstMap.end(); ++it)
+        {
+            delete it->second;
+        }
+        s_autoConstMap.clear();
+    }
+
+    
+    EffectAutoConstant::EffectAutoConstant()
+    {
+
+    }
+
+    EffectAutoConstant::~EffectAutoConstant()
+    {
+
+    }
 
 }

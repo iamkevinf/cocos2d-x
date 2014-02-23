@@ -69,8 +69,11 @@
     <ClCompile Include="MaterialParameter.cpp" />
     <ClCompile Include="MeshPart.cpp" />
     <ClCompile Include="my3d\Effect.cpp" />
+    <ClCompile Include="my3d\EffectAutoConstImp.cpp" />
     <ClCompile Include="my3d\EffectConstant.cpp" />
     <ClCompile Include="my3d\EffectMgr.cpp" />
+    <ClCompile Include="my3d\M3DInit.cpp" />
+    <ClCompile Include="my3d\M3DRenderDevice.cpp" />
     <ClCompile Include="my3d\Shader.cpp" />
     <ClCompile Include="my3d\VertexBuffer.cpp" />
     <ClCompile Include="my3d\VertexDeclaration.cpp" />
@@ -142,8 +145,13 @@
     <ClInclude Include="MaterialParameter.h" />
     <ClInclude Include="MeshPart.h" />
     <ClInclude Include="my3d\Effect.h" />
+    <ClInclude Include="my3d\EffectAutoConstImp.h" />
     <ClInclude Include="my3d\EffectConstant.h" />
     <ClInclude Include="my3d\EffectMgr.h" />
+    <ClInclude Include="my3d\M3DBase.h" />
+    <ClInclude Include="my3d\M3DConfig.h" />
+    <ClInclude Include="my3d\M3DInit.h" />
+    <ClInclude Include="my3d\M3DRenderDevice.h" />
     <ClInclude Include="my3d\my3d.h" />
     <ClInclude Include="my3d\Shader.h" />
     <ClInclude Include="my3d\VertexBuffer.h" />

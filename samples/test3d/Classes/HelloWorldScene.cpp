@@ -106,21 +106,17 @@ public:
     
     virtual void draw() override
     {
+        this->rotateY(0.01f);
+
+        my3d::renderDev()->pushWorld(this->getWorldMatrix());
+
         C3DNode::draw();
 
 #if 1
-        this->rotateY(0.01f);
-
         glEnable(GL_CULL_FACE);
         
         if(m_effect && m_effect->begin())
         {
-            my3d::EffectConstant *pConst = m_effect->getConstant("u_matWorldViewProj");
-            if(pConst)
-            {
-                pConst->bindValue(this->getWorldViewProjectionMatrix());
-            }
-            
             if(m_vertexBuffer != nullptr)
             {
                 m_vertexBuffer->bind();
@@ -139,6 +135,8 @@ public:
         TestEGL::Draw(&g_userData);
         
 #endif
+
+        my3d::renderDev()->popWorld();
     }
 
 };
@@ -235,6 +233,9 @@ bool HelloWorld::init()
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
+
+    my3d::renderDev()->setView(pCamera->getViewMatrix());
+    my3d::renderDev()->setProjection(pCamera->getProjectionMatrix());
     
     Test3DNode * pNode = Test3DNode::create();
     pScene->addChild(pNode);

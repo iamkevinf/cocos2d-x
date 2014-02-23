@@ -23,6 +23,7 @@ namespace cocos2d
 namespace my3d
 {
     class EffectConstant;
+    class EffectAutoConstant;
     class Shader;
     
     typedef SmartPtr<Shader> ShaderPtr;
@@ -56,6 +57,7 @@ namespace my3d
         SmartPtr<Shader> m_vertexShader;
         SmartPtr<Shader> m_pixelShader;
         std::map<std::string, EffectConstant*> m_constants;
+        std::vector<std::pair<EffectAutoConstant*, EffectConstant*>> m_autoConsts;
 
         static Effect * s_pActiveEffect;
     };

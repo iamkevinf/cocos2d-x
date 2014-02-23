@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "my3d/M3DInit.h"
 
 USING_NS_CC;
 
@@ -9,6 +10,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
+    my3d::fini();
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
@@ -24,11 +26,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+    if (!my3d::init()) return false;
+
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
 
     // run
     director->runWithScene(scene);
+
 
     return true;
 }

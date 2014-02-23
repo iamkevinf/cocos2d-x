@@ -199,6 +199,15 @@
     <ClCompile Include="C3DSkeleton.cpp">
       <Filter>model\bone</Filter>
     </ClCompile>
+    <ClCompile Include="my3d\M3DRenderDevice.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\M3DInit.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\EffectAutoConstImp.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cocos3d.h" />
@@ -417,6 +426,21 @@
     </ClInclude>
     <ClInclude Include="C3DSkeleton.h">
       <Filter>model\bone</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DRenderDevice.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DConfig.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DInit.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DBase.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\EffectAutoConstImp.h">
+      <Filter>my3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
