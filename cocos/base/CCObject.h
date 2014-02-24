@@ -124,7 +124,7 @@ public:
      */
     inline void retain()
     {
-        CCASSERT(_reference > 0, "reference count should greater than 0");
+        //CCASSERT(_reference > 0, "reference count should greater than 0");
         ++_reference;
     }
 
@@ -184,7 +184,12 @@ public:
      */
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
     
+    
     friend class AutoreleasePool;
+    
+#if COCOS2D_DEBUG > 0
+    virtual bool isISmartObject() const { return false; }
+#endif
 };
 
 
@@ -196,6 +201,10 @@ public:
     virtual ~ISmartObject();
     
     virtual Object* autorelease();
+    
+#if COCOS2D_DEBUG > 0
+    virtual bool isISmartObject() const { return true; }
+#endif
 };
 
 
