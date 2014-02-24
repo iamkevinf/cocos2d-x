@@ -9,7 +9,21 @@
 #ifndef dydg_b_smartptr_h
 #define dydg_b_smartptr_h
 
-#include <cassert>
+#include "cocos2d.h"
+
+#if COCOS2D_DEBUG > 0
+#define CHECK_SMART_OBJECT(p) \
+    do{\
+        if(p && !p->isISmartObject())\
+        {\
+            CCLOG("The object '%s' is not a smartobject, this may cause memory leak!",\
+                  typeid(*p).name());\
+        }\
+    }while(0);
+
+#else
+#define CHECK_SMART_OBJECT(p)
+#endif
 
 template<typename T>
 class SmartPtr
@@ -29,7 +43,11 @@ public:
     SmartPtr(pointer p)
     : m_ptr(p)
     {
-        if(m_ptr != NULL) m_ptr->retain();
+        if(m_ptr != NULL)
+        {
+            m_ptr->retain();
+            CHECK_SMART_OBJECT(m_ptr);
+        }
     }
     
     SmartPtr(const this_type & o)
@@ -86,7 +104,11 @@ public:
         {
             if(m_ptr != NULL) m_ptr->release();
             m_ptr = p;
-            if(m_ptr != NULL) m_ptr->retain();
+            if(m_ptr != NULL)
+            {
+                m_ptr->retain();
+                CHECK_SMART_OBJECT(m_ptr);
+            }
         }
         return *this;
     }

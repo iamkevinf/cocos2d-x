@@ -48,6 +48,12 @@ public:
 	static C3DTexture* create(int width, int height, Format fmt, bool generateMipmaps = false);
 	static C3DTexture* create(int width, int height, Format fmt, const void* data, ssize_t dataLen, bool generateMipmaps = false);
 
+    //load is not autoreleased.
+    static C3DTexture* loadTexture(const std::string & path, bool generateMipmaps = false);
+	static C3DTexture* loadTexture(int width, int height, Format fmt, bool generateMipmaps = false);
+	static C3DTexture* loadTexture(int width, int height, Format fmt, const void* data, ssize_t dataLen, bool generateMipmaps = false);
+    
+    
 	/**
 	* Returns the texture width.
 	*/
@@ -97,6 +103,8 @@ public:
 	* get texture path
 	*/
 	const char* getPath() const { return _path.c_str(); };
+    
+    const std::string getResource() const { return _path; }
 
 private:
 
@@ -104,11 +112,6 @@ private:
 	* Constructor.
 	*/
 	C3DTexture();
-
-	/**
-	* Copy constructor.
-	*/
-	C3DTexture(const C3DTexture& copy);
 
 	/**
 	* Destructor.
@@ -128,6 +131,7 @@ private:
 
 	cocos2d::CCTexture2D * _texture;
 };
+    
 }
 
 #endif

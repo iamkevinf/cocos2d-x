@@ -23,7 +23,7 @@ namespace my3d
             REG_STATE_MAP(RenderState::MutiSample, GL_MULTISAMPLE);
             REG_STATE_MAP(RenderState::ScissorTest, GL_SCISSOR_TEST);
             REG_STATE_MAP(RenderState::StencilTest, GL_STENCIL_TEST);
-            REG_STATE_MAP(RenderState::PointSize, GL_PROGRAM_POINT_SIZE);
+            REG_STATE_MAP(RenderState::PointSize, GL_PROGRAM_POINT_SIZE_EXT);
 
 #undef REG_STATE_MAP
         }
@@ -145,6 +145,72 @@ namespace my3d
 
         default:
             return GL_KEEP;
+        }
+    }
+    
+    GLenum textureTarget2Sys(TextureTarget tex)
+    {
+        switch(tex)
+        {
+            case TextureTarget::Tex2D:
+                return GL_TEXTURE_2D;
+            
+            case TextureTarget::TexCubeMap:
+                return GL_TEXTURE_CUBE_MAP;
+            
+            default:
+                assert(0 && "invalid TextureTarget!");
+                return 0;
+        };
+    }
+    
+    GLenum textureParam2Sys(TextureParam tex)
+    {
+        switch(tex)
+        {
+            case TextureParam::MinFilter:
+                return GL_TEXTURE_MIN_FILTER;
+            
+            case TextureParam::MagFilter:
+                return GL_TEXTURE_MAG_FILTER;
+            
+            case TextureParam::WrapU:
+                return GL_TEXTURE_WRAP_S;
+            
+            case TextureParam::WrapV:
+                return GL_TEXTURE_WRAP_R;
+            
+            default:
+                assert(0 && "invalid TextureParam!");
+                return 0;
+        };
+    }
+    
+    GLint textureFilter2sys(TextureFilter tex)
+    {
+        switch (tex)
+        {
+            case TextureFilter::Near:
+                return GL_NEAREST;
+            
+            case TextureFilter::Linear:
+                return GL_LINEAR;
+            
+            case TextureFilter::NearMipmapNear:
+                return GL_NEAREST_MIPMAP_LINEAR;
+            
+            case TextureFilter::NearMipmapLinear:
+                return GL_NEAREST_MIPMAP_LINEAR;
+            
+            case TextureFilter::LinearMipmapNear:
+                return GL_LINEAR_MIPMAP_NEAREST;
+            
+            case TextureFilter::LinearMipmapLinear:
+                return GL_LINEAR_MIPMAP_LINEAR;
+            
+            default:
+                assert(0 && "Invalid TextureFilter");
+                return 0;
         }
     }
 

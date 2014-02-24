@@ -124,7 +124,7 @@ public:
      */
     inline void retain()
     {
-        CCASSERT(_reference > 0, "reference count should greater than 0");
+        //CCASSERT(_reference > 0, "reference count should greater than 0");
         ++_reference;
     }
 
@@ -143,7 +143,7 @@ public:
      * @js NA
      * @lua NA
      */
-    Object* autorelease();
+    virtual Object* autorelease();
 
     /**
      * Returns a boolean value that indicates whether there is only one
@@ -184,7 +184,27 @@ public:
      */
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
     
+    
     friend class AutoreleasePool;
+    
+#if COCOS2D_DEBUG > 0
+    virtual bool isISmartObject() const { return false; }
+#endif
+};
+
+
+//smart object, witch can be managed by smart pointer automatically.
+class CC_DLL ISmartObject : public Object
+{
+public:
+    ISmartObject();
+    virtual ~ISmartObject();
+    
+    virtual Object* autorelease();
+    
+#if COCOS2D_DEBUG > 0
+    virtual bool isISmartObject() const { return true; }
+#endif
 };
 
 

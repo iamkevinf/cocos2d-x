@@ -113,12 +113,39 @@ namespace my3d
         const uint32 G = 0xff << 8;
         const uint32 B = 0xff << 0;
     }
+    
+    enum class TextureTarget
+    {
+        Tex2D,
+        TexCubeMap,
+    };
+    
+    enum TextureParam
+    {
+        MinFilter,
+        MagFilter,
+        WrapU,
+        WrapV,
+    };
+    
+    enum TextureFilter
+    {
+        Near,
+        Linear,
+        NearMipmapNear,
+        NearMipmapLinear,
+        LinearMipmapNear,
+        LinearMipmapLinear,
+    };
 
     GLenum renderState2Sys(RenderState state);
     GLenum blendFun2Sys(BlendFun state);
     GLenum cullFace2Sys(CullFace mode);
     GLenum compareFun2Sys(CompareFun fun);
     GLenum stencilOp2Sys(StencilOp op);
+    GLenum textureTarget2Sys(TextureTarget tex);
+    GLenum textureParam2Sys(TextureParam tex);
+    GLint textureFilter2sys(TextureFilter tex);
 
 
 }//end namespace my3d

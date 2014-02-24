@@ -28,7 +28,7 @@ namespace my3d
     
     typedef SmartPtr<Shader> ShaderPtr;
     
-    class Effect : public cocos2d::Object
+    class Effect : public cocos2d::ISmartObject
     {
         CC_DISALLOW_COPY_AND_ASSIGN(Effect);
     public:

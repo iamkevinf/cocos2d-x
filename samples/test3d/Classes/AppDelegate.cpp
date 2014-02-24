@@ -1,8 +1,10 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "my3d/M3DInit.h"
+#include "mytool/memorycheck.h"
 
 USING_NS_CC;
+
 
 AppDelegate::AppDelegate() {
 
@@ -11,12 +13,15 @@ AppDelegate::AppDelegate() {
 AppDelegate::~AppDelegate() 
 {
     my3d::fini();
+    InstanceCounter::deleteInstance();
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
     auto eglView = EGLView::getInstance();
+    
+    InstanceCounter::getInstance()->beginSchedule();
 
     director->setOpenGLView(eglView);
 	
@@ -34,8 +39,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     director->runWithScene(scene);
 
-
     return true;
+}
+
+void AppDelegate::upateInstanceCounter(float time)
+{
+    
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too

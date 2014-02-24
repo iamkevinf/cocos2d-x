@@ -3,11 +3,15 @@
 
 #include "EnumDef_GL.h"
 #include "cocos2d.h"
+#include "mytool/smartptr.h"
 
 NS_CC_BEGIN
 
 class C3DTexture;
 class ElementNode;
+
+typedef SmartPtr<C3DTexture> TexturePtr;
+typedef SmartPtr<class C3DSampler> SamplerPtr;
 
 /**
 * Defnies a texture sampler.
@@ -23,7 +27,7 @@ class C3DSampler : public cocos2d::CCObject
 
 public:
     C3DSampler();
-    C3DSampler(C3DTexture* texture);
+    C3DSampler(TexturePtr texture);
     ~C3DSampler();
 
     /**
@@ -33,7 +37,7 @@ public:
     *
     * @return The new sampler.
     */
-    static C3DSampler* create(C3DTexture* texture);
+    static C3DSampler* create(TexturePtr texture);
 
     /**
     * Creates a sampler for the specified texture.
@@ -43,7 +47,10 @@ public:
     *
     * @return The new sampler.
     */
-    static C3DSampler* create(const char* path, bool generateMipmaps = false);
+    static C3DSampler* create(const std::string & path, bool generateMipmaps = false);
+    
+    static SamplerPtr loadSampler(TexturePtr texture);
+    static SamplerPtr loadSampler(const std::string & path, bool generateMipmaps = false);
 
     /**
     * Sets the wrap mode for this sampler.
@@ -64,7 +71,7 @@ public:
     /**
     * Returns the texture for this sampler.
     */
-    C3DTexture* getTexture() const;
+    TexturePtr getTexture() const;
 
     /**
     * Binds the texture of this sampler to the renderer and applies the sampler state.
@@ -78,14 +85,14 @@ public:
     Texture_Filter getMinFilter() const { return _minFilter; }
     Texture_Filter getMagFilter() const { return _magFilter; }
 
-    void setTexture(const char* path, bool generateMipmaps = false);
+    void setTexture(const std::string & path, bool generateMipmaps = false);
 
     bool load(ElementNode* node);
     bool save(ElementNode* node);
 
 private:
     
-    C3DTexture* _texture;
+    TexturePtr _texture;
     Texture_Wrap _wrapS;
     Texture_Wrap _wrapT;
     Texture_Filter _minFilter;
