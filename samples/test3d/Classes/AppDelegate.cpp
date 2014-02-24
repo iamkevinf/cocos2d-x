@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "my3d/M3DInit.h"
+#include "mytool/memorycheck.h"
 
 USING_NS_CC;
 
@@ -11,6 +12,7 @@ AppDelegate::AppDelegate() {
 AppDelegate::~AppDelegate() 
 {
     my3d::fini();
+    dumpAllObjectCounter();
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {

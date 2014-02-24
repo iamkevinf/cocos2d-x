@@ -25,11 +25,13 @@ inline unsigned long nextPOT(unsigned long x)
 }
 
     
-C3DTexture::C3DTexture() : _handle(0), _mipmapped(false), _width(0), _height(0), /*_cached(false), */_texture(nullptr)
-{
-}
-
-C3DTexture::C3DTexture(const C3DTexture& copy)
+C3DTexture::C3DTexture()
+    : _handle(0)
+    , _mipmapped(false)
+    , _width(0)
+    , _height(0)
+    /*, _cached(false), */
+    , _texture(nullptr)
 {
 }
 

@@ -103,6 +103,8 @@ public:
 	* get texture path
 	*/
 	const char* getPath() const { return _path.c_str(); };
+    
+    const std::string getResource() const { return _path; }
 
 private:
 
@@ -110,11 +112,6 @@ private:
 	* Constructor.
 	*/
 	C3DTexture();
-
-	/**
-	* Copy constructor.
-	*/
-	C3DTexture(const C3DTexture& copy);
 
 	/**
 	* Destructor.

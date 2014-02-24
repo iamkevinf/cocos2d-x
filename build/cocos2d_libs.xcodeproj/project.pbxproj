@@ -1868,6 +1868,8 @@
 		50A1FF1918290ED4001840C4 /* UIListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1FF1618290ED4001840C4 /* UIListView.cpp */; };
 		50A1FF1A18290ED4001840C4 /* UIListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A1FF1718290ED4001840C4 /* UIListView.h */; };
 		50A1FF1B18290ED4001840C4 /* UIListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A1FF1718290ED4001840C4 /* UIListView.h */; };
+		58E2553518BB4E3700E08A7A /* memorycheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2553318BB4E3700E08A7A /* memorycheck.cpp */; };
+		58E2553618BB4E3700E08A7A /* memorycheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2553418BB4E3700E08A7A /* memorycheck.h */; };
 		593BDCF2184D0A6E00C21E48 /* CCCustomCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593BDCD8184D0A6E00C21E48 /* CCCustomCommand.cpp */; };
 		593BDCF3184D0A6E00C21E48 /* CCCustomCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593BDCD8184D0A6E00C21E48 /* CCCustomCommand.cpp */; };
 		593BDCF4184D0A6E00C21E48 /* CCCustomCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 593BDCD9184D0A6E00C21E48 /* CCCustomCommand.h */; };
@@ -3068,6 +3070,8 @@
 		582C41C918B714A200B890A3 /* smartptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smartptr.h; sourceTree = "<group>"; };
 		582C41CA18B714A200B890A3 /* testtool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testtool.cpp; sourceTree = "<group>"; };
 		582C41CB18B714A200B890A3 /* testtool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testtool.h; sourceTree = "<group>"; };
+		58E2553318BB4E3700E08A7A /* memorycheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memorycheck.cpp; sourceTree = "<group>"; };
+		58E2553418BB4E3700E08A7A /* memorycheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorycheck.h; sourceTree = "<group>"; };
 		593BDCD8184D0A6E00C21E48 /* CCCustomCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCCustomCommand.cpp; sourceTree = "<group>"; };
 		593BDCD9184D0A6E00C21E48 /* CCCustomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCustomCommand.h; sourceTree = "<group>"; };
 		593BDCDA184D0A6E00C21E48 /* CCGroupCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGroupCommand.cpp; sourceTree = "<group>"; };
@@ -5383,6 +5387,8 @@
 				582C41C918B714A200B890A3 /* smartptr.h */,
 				582C41CA18B714A200B890A3 /* testtool.cpp */,
 				582C41CB18B714A200B890A3 /* testtool.h */,
+				58E2553318BB4E3700E08A7A /* memorycheck.cpp */,
+				58E2553418BB4E3700E08A7A /* memorycheck.h */,
 			);
 			name = mytool;
 			path = ../cocos/mytool;
@@ -5524,6 +5530,7 @@
 				1A5700E3180BC6060088DEC7 /* CCDouble.h in Headers */,
 				1A5700E5180BC6060088DEC7 /* CCFloat.h in Headers */,
 				1A5700E9180BC6060088DEC7 /* CCGeometry.h in Headers */,
+				58E2553618BB4E3700E08A7A /* memorycheck.h in Headers */,
 				1A5700EB180BC6060088DEC7 /* CCInteger.h in Headers */,
 				1A5700EF180BC6060088DEC7 /* CCNS.h in Headers */,
 				1A0DB7371823828F0025743D /* CCEGLView.h in Headers */,
@@ -6841,6 +6848,7 @@
 				46A170581807CC1C005B8026 /* CCEventDispatcherMac.mm in Sources */,
 				46A170CA1807CEBB005B8026 /* plane.c in Sources */,
 				46A170EA1807CECA005B8026 /* CCPhysicsJoint.cpp in Sources */,
+				58E2553518BB4E3700E08A7A /* memorycheck.cpp in Sources */,
 				46A170141807CBFC005B8026 /* CCFileUtilsApple.mm in Sources */,
 				46A1701D1807CBFC005B8026 /* CCFileUtils.cpp in Sources */,
 				46A170EF1807CECA005B8026 /* CCPhysicsWorld.cpp in Sources */,

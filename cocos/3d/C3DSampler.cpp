@@ -3,6 +3,7 @@
 #include "C3DTexture.h"
 #include "Stream.h"
 #include "ElementNode.h"
+#include "my3d/M3DTextureMgr.h"
 
 NS_CC_BEGIN
 
@@ -15,13 +16,12 @@ C3DSampler::C3DSampler()
     _minFilter = Texture_Filter_LINEAR;
 }
 
-C3DSampler::C3DSampler(C3DTexture* texture)
+C3DSampler::C3DSampler(TexturePtr texture)
 :_texture(texture)
 ,_wrapS(Texture_Wrap_REPEAT)
 ,_wrapT(Texture_Wrap_REPEAT)
 ,_magFilter(Texture_Filter_LINEAR)
 {
-    texture->retain();
     _minFilter = texture->isMipmapped() ? Texture_Filter_LINEAR_MIPMAP_LINEAR : Texture_Filter_LINEAR;
 }
 
@@ -30,36 +30,27 @@ C3DSampler::~C3DSampler()
     SAFE_RELEASE(_texture);
 }
 
-C3DSampler* C3DSampler::create(C3DTexture* texture)
+C3DSampler* C3DSampler::create(TexturePtr texture)
 {
-    assert(texture != nullptr);    
+    assert(texture);
 
-    C3DSampler* sample = new C3DSampler(texture);
-
-    return sample;
+    return new C3DSampler(texture);
 }
 
-C3DSampler* C3DSampler::create(const char* path, bool generateMipmaps)
+C3DSampler* C3DSampler::create(const std::string & path, bool generateMipmaps)
 {
-    C3DTexture* texture = C3DTexture::create(path, generateMipmaps);
-
-    assert(texture != nullptr);    
-
-    C3DSampler* sample = new C3DSampler(texture);
-
-    return sample;
-}
-
-void C3DSampler::setTexture(const char* path, bool generateMipmaps)
-{
-    SAFE_RELEASE(_texture);
-    C3DTexture* texture = C3DTexture::create(path, generateMipmaps);
-
-    assert(texture != nullptr);    
+    TexturePtr texture = my3d::TextureMgr::instance()->get(path);
+    if(!texture) return nullptr;
     
-    _texture = texture;    
-    _texture->retain();    
-   
+    if(generateMipmaps) texture->generateMipmaps();
+    
+    return new C3DSampler(texture);
+}
+
+void C3DSampler::setTexture(const std::string & path, bool generateMipmaps)
+{
+    _texture = my3d::TextureMgr::instance()->get(path);
+    if(_texture && generateMipmaps) _texture->generateMipmaps();
 }
 
 void C3DSampler::setWrapMode(Texture_Wrap wrapS, Texture_Wrap wrapT)
@@ -74,15 +65,14 @@ void C3DSampler::setFilterMode(Texture_Filter minificationFilter, Texture_Filter
     _magFilter = magnificationFilter;
 }
 
-C3DTexture* C3DSampler::getTexture() const
+TexturePtr C3DSampler::getTexture() const
 {
     return _texture;
 }
 
 void C3DSampler::bind()
 {
-    if(_texture == nullptr)
-        return;
+    if(!_texture) return;
 
     GL_ASSERT( glBindTexture(GL_TEXTURE_2D, _texture->getHandle()) );
     GL_ASSERT( glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (GLenum)_wrapS) );
