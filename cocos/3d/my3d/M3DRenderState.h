@@ -74,6 +74,37 @@ namespace my3d
         Invert,
     };
 
+    enum class TexType
+    {
+        Tex2D,
+        Tex3D,
+        TexCubeMap,
+    };
+
+#if 0
+    enum class TexOp
+    {
+        GL_DEPTH_STENCIL_TEXTURE_MODE,
+        GL_TEXTURE_BASE_LEVEL,
+        GL_TEXTURE_COMPARE_FUNC,
+        GL_TEXTURE_COMPARE_MODE,
+        GL_TEXTURE_LOD_BIAS,
+        GL_TEXTURE_MIN_FILTER,
+        GL_TEXTURE_MAG_FILTER,
+        GL_TEXTURE_MIN_LOD,
+        GL_TEXTURE_MAX_LOD,
+        GL_TEXTURE_MAX_LEVEL,
+        GL_TEXTURE_SWIZZLE_R,
+        GL_TEXTURE_SWIZZLE_G,
+        GL_TEXTURE_SWIZZLE_B,
+        GL_TEXTURE_SWIZZLE_A,
+        GL_TEXTURE_WRAP_S,
+        GL_TEXTURE_WRAP_T,
+        GL_TEXTURE_WRAP_R,
+        GL_TEXTURE_BORDER_COLOR,
+        GL_TEXTURE_SWIZZLE_RGBA
+    };
+#endif
 
     namespace ColorMask
     {

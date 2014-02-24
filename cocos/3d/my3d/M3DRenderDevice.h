@@ -2,6 +2,7 @@
 #define H_M3D_RENDER_DEVICE_H
 
 #include "M3DRenderState.h"
+#include "M3DMaterial.h"
 
 namespace my3d
 {
@@ -39,6 +40,7 @@ namespace my3d
         void setStencilOp(StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass);
         void setStencilOpSeparate(CullFace face, StencilOp stencilFail, StencilOp depthFail, StencilOp depthPass);
         void setColorMask(uint32 color);
+        void setShadeMode();
 
     private:
         std::vector<cocos2d::Matrix> m_matWorlds;

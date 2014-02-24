@@ -211,6 +211,15 @@
     <ClCompile Include="my3d\M3DRenderState.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
+    <ClCompile Include="my3d\M3DColor.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\M3DLightDir.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="my3d\M3DMaterial.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cocos3d.h" />
@@ -446,6 +455,15 @@
       <Filter>my3d</Filter>
     </ClInclude>
     <ClInclude Include="my3d\M3DRenderState.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DColor.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DLightDir.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DMaterial.h">
       <Filter>my3d</Filter>
     </ClInclude>
   </ItemGroup>

@@ -170,4 +170,9 @@ namespace my3d
         glColorMask(r, g, b, a);
     }
 
+    void RenderDevice::setShadeMode()
+    {
+        glShadeModel();
+    }
+
 }//end namespace my3d

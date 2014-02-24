@@ -72,7 +72,10 @@
     <ClCompile Include="my3d\EffectAutoConstImp.cpp" />
     <ClCompile Include="my3d\EffectConstant.cpp" />
     <ClCompile Include="my3d\EffectMgr.cpp" />
+    <ClCompile Include="my3d\M3DColor.cpp" />
     <ClCompile Include="my3d\M3DInit.cpp" />
+    <ClCompile Include="my3d\M3DLightDir.cpp" />
+    <ClCompile Include="my3d\M3DMaterial.cpp" />
     <ClCompile Include="my3d\M3DRenderDevice.cpp" />
     <ClCompile Include="my3d\M3DRenderState.cpp" />
     <ClCompile Include="my3d\Shader.cpp" />
@@ -150,8 +153,11 @@
     <ClInclude Include="my3d\EffectConstant.h" />
     <ClInclude Include="my3d\EffectMgr.h" />
     <ClInclude Include="my3d\M3DBase.h" />
+    <ClInclude Include="my3d\M3DColor.h" />
     <ClInclude Include="my3d\M3DConfig.h" />
     <ClInclude Include="my3d\M3DInit.h" />
+    <ClInclude Include="my3d\M3DLightDir.h" />
+    <ClInclude Include="my3d\M3DMaterial.h" />
     <ClInclude Include="my3d\M3DRenderDevice.h" />
     <ClInclude Include="my3d\M3DRenderState.h" />
     <ClInclude Include="my3d\my3d.h" />
