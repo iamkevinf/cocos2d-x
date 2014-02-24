@@ -34,6 +34,7 @@ namespace my3d
             TexturePtr tex = Texture::loadTexture(name);
             if(tex) tex->release();
             
+            m_textures.insert(std::make_pair(name, tex.get()));
             return tex;
         }
         

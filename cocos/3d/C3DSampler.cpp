@@ -27,7 +27,6 @@ C3DSampler::C3DSampler(TexturePtr texture)
 
 C3DSampler::~C3DSampler()
 {
-    SAFE_RELEASE(_texture);
 }
 
 C3DSampler* C3DSampler::create(TexturePtr texture)
@@ -45,6 +44,29 @@ C3DSampler* C3DSampler::create(const std::string & path, bool generateMipmaps)
     if(generateMipmaps) texture->generateMipmaps();
     
     return new C3DSampler(texture);
+}
+
+/*static*/ SamplerPtr C3DSampler::loadSampler(TexturePtr texture)
+{
+    assert(texture);
+    
+    SamplerPtr samp = new C3DSampler(texture);
+    samp->release();
+    
+    return samp;
+}
+
+/*static*/ SamplerPtr C3DSampler::loadSampler(const std::string & path, bool generateMipmaps)
+{
+    TexturePtr texture = my3d::TextureMgr::instance()->get(path);
+    if(!texture) return nullptr;
+    
+    if(generateMipmaps) texture->generateMipmaps();
+    
+    SamplerPtr samp = new C3DSampler(texture);
+    samp->release();
+    
+    return samp;
 }
 
 void C3DSampler::setTexture(const std::string & path, bool generateMipmaps)

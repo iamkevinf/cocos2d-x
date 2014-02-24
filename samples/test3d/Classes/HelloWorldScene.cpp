@@ -14,13 +14,15 @@ namespace
     const int numIndices = 6 * 2 * 3;
 }
 
+//#define TEST_EGL
+
 class Test3DNode : public C3DNode
 {
     my3d::VertexBuffer  *m_vertexBuffer;
     my3d::IndexBuffer   *m_indexBuffer;
-    my3d::EffectPtr     m_effect;
     my3d::VertexDeclaration *m_vertexDecl;
-    std::vector<BBVertex> m_vertices;
+    my3d::EffectPtr     m_effect;
+    SamplerPtr  m_sampler;
     
 public:
     
@@ -52,31 +54,93 @@ public:
         return p;
     }
     
-    bool initTest3D()
+    bool initVertexBuffer_1()
     {
         const float size = 2.8f;
-        const float pz = -0.0f;
-
-        m_vertices.resize(8);
         
-        m_vertices[0].position.set(-size, -size, size);
-        m_vertices[0].color.set(0.0f, 0.0f, 1.0f, 1.0f);
+        const int numVertices = 8;
+        BBVertex vertices[numVertices];
         
-        m_vertices[1].position.set(-size, size, size);
-        m_vertices[1].color.set(0.0f, 1.0f, 0.0f, 1.0f);
+        vertices[0].position.set(-size, -size, size);
+        vertices[0].color.set(0.0f, 0.0f, 1.0f, 1.0f);
         
-        m_vertices[2].position.set(size, size, size);
-        m_vertices[2].color.set(0.0f, 1.0f, 1.0f, 1.0f);
+        vertices[1].position.set(-size, size, size);
+        vertices[1].color.set(0.0f, 1.0f, 0.0f, 1.0f);
         
-        m_vertices[3].position.set(size, -size, size);
-        m_vertices[3].color.set(1.0f, 0.0f, 0.0f, 1.0f);
-
+        vertices[2].position.set(size, size, size);
+        vertices[2].color.set(0.0f, 1.0f, 1.0f, 1.0f);
+        
+        vertices[3].position.set(size, -size, size);
+        vertices[3].color.set(1.0f, 0.0f, 0.0f, 1.0f);
+        
         for (int i = 0; i < 4; ++i)
         {
-            m_vertices[i + 4] = m_vertices[i];
-            m_vertices[i + 4].position.z = -size;
+            vertices[i + 4] = vertices[i];
+            vertices[i + 4].position.z = -size;
         }
+        
+        m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
+                                                numVertices * sizeof(BBVertex), &vertices[0]);
+        
+        m_effect = my3d::EffectMgr::instance()->get("effect/test1.shader");
+        
+        m_vertexDecl = new my3d::VertexDeclaration();
+        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
+        m_vertexDecl->addElement(my3d::VertexUsage::COLOR, 4);
+        
+        return true;
+    }
+    
+    bool initVertexBuffer_2()
+    {
+        const float size = 2.8f;
+        
+        const int numVertices = 8;
+        VertexPositionUV vertices[numVertices];
+        
+        vertices[0].position.set(-size, -size, size);
+        vertices[0].uv.set(0.0f, 1.0f);
+        
+        vertices[1].position.set(-size, size, size);
+        vertices[1].uv.set(0.0f, 0.0f);
+        
+        vertices[2].position.set(size, size, size);
+        vertices[2].uv.set(1.0f, 0.0f);
+        
+        vertices[3].position.set(size, -size, size);
+        vertices[3].uv.set(1.0f, 1.0f);
+        
+        for (int i = 0; i < 4; ++i)
+        {
+            vertices[i + 4] = vertices[i];
+            vertices[i + 4].position.z = -size;
+        }
+        
+        vertices[4].uv.set(1, 1);
+        vertices[5].uv.set(1, 0);
+        vertices[6].uv.set(0, 0);
+        vertices[7].uv.set(0, 1);
+        
+        m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
+                                                numVertices * sizeof(BBVertex), &vertices[0]);
+        
+        m_vertexDecl = new my3d::VertexDeclaration();
+        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
+        m_vertexDecl->addElement(my3d::VertexUsage::TEXCOORD0, 2);
 
+        m_effect = my3d::EffectMgr::instance()->get("effect/test2.shader");
+        m_sampler = C3DSampler::create("HelloWorld.png");
+        
+        return true;
+    }
+    
+    bool initTest3D()
+    {
+#if 0
+        initVertexBuffer_1();
+#else
+        initVertexBuffer_2();
+#endif
         
         unsigned short indices[numIndices] = {
             0, 2, 1,  0, 3, 2, //front
@@ -86,20 +150,13 @@ public:
             1, 6, 5,  1, 2, 6, //top
             4, 3, 0,  4, 7, 3, //bottom
         };
-
-        m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-            8 * sizeof(BBVertex), &m_vertices[0]);
         
         m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
             numIndices * sizeof(unsigned short), &indices[0]);
 
-        m_effect = my3d::EffectMgr::instance()->get("effect/test.fx");
-        
-        m_vertexDecl = new my3d::VertexDeclaration();
-        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
-        m_vertexDecl->addElement(my3d::VertexUsage::COLOR, 4);
-        
+#ifdef TEST_EGL
         TestEGL::Init(&g_userData);
+#endif
         
         return true;
     }
@@ -118,6 +175,12 @@ public:
         
         if(m_effect && m_effect->begin())
         {
+            my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Sampler);
+            if(m_sampler && pConst)
+            {
+                pConst->bindValue(m_sampler.get());
+            }
+            
             if(m_vertexBuffer != nullptr)
             {
                 m_vertexBuffer->bind();
@@ -132,9 +195,10 @@ public:
             
             m_effect->end();
         }
-#else
-        TestEGL::Draw(&g_userData);
+#endif
         
+#ifdef TEST_EGL
+        TestEGL::Draw(&g_userData);
 #endif
 
         my3d::renderDev()->popWorld();

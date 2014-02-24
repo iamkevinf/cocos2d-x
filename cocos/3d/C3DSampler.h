@@ -11,6 +11,7 @@ class C3DTexture;
 class ElementNode;
 
 typedef SmartPtr<C3DTexture> TexturePtr;
+typedef SmartPtr<class C3DSampler> SamplerPtr;
 
 /**
 * Defnies a texture sampler.
@@ -47,6 +48,9 @@ public:
     * @return The new sampler.
     */
     static C3DSampler* create(const std::string & path, bool generateMipmaps = false);
+    
+    static SamplerPtr loadSampler(TexturePtr texture);
+    static SamplerPtr loadSampler(const std::string & path, bool generateMipmaps = false);
 
     /**
     * Sets the wrap mode for this sampler.
