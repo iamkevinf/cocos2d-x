@@ -23,7 +23,7 @@ namespace my3d
             REG_STATE_MAP(RenderState::MutiSample, GL_MULTISAMPLE);
             REG_STATE_MAP(RenderState::ScissorTest, GL_SCISSOR_TEST);
             REG_STATE_MAP(RenderState::StencilTest, GL_STENCIL_TEST);
-            REG_STATE_MAP(RenderState::PointSize, GL_PROGRAM_POINT_SIZE);
+            REG_STATE_MAP(RenderState::PointSize, GL_PROGRAM_POINT_SIZE_EXT);
 
 #undef REG_STATE_MAP
         }
