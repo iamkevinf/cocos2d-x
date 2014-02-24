@@ -501,7 +501,6 @@
 		584A602518B231AE000601AF /* render */ = {
 			isa = PBXGroup;
 			children = (
-				582C41DA18B72F4800B890A3 /* my3d */,
 				58CCD01618ADFE8F00BCEB08 /* C3DMaterial.cpp */,
 				58CCD01718ADFE8F00BCEB08 /* C3DMaterial.h */,
 				58CCD01818ADFE8F00BCEB08 /* C3DMaterialManager.cpp */,
@@ -572,6 +571,7 @@
 		58CCCFF618ADFE8F00BCEB08 /* 3d */ = {
 			isa = PBXGroup;
 			children = (
+				582C41DA18B72F4800B890A3 /* my3d */,
 				58CCD05618ADFE8F00BCEB08 /* cocos3d.h */,
 				584A602418B23178000601AF /* animation */,
 				584A601F18B230C6000601AF /* base */,

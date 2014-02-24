@@ -3,118 +3,55 @@
 
 namespace my3d
 {
+    EffectConstantProxy::EffectConstantProxy(EffectApplyFun fun)
+        : m_fun(fun)
+    {
+        assert(fun && "EffectConstantFun - fun must not be null!");
+    }
     
-    EffectWorldConst::EffectWorldConst()
+    EffectConstantProxy::~EffectConstantProxy()
     {
+        
     }
-
-    EffectWorldConst::~EffectWorldConst()
+    
+    void EffectConstantProxy::apply(EffectConstant *pConst)
     {
+        (*m_fun)(pConst);
     }
+    
+    //////////////////////////////////////////////////////////////////
 
-    void EffectWorldConst::apply(EffectConstant *pConst)
+    void effectApplyWorld(EffectConstant *pConst)
     {
         pConst->bindValue(renderDev()->getWorld());
     }
 
-    //////////////////////////////////////////////////////////////////
 
-    EffectViewProjConst::EffectViewProjConst()
-    {
-
-    }
-
-    EffectViewProjConst::~EffectViewProjConst()
-    {
-
-    }
-
-    void EffectViewProjConst::apply(EffectConstant *pConst)
+    void effectApplyViewProj(EffectConstant *pConst)
     {
         pConst->bindValue(renderDev()->getViewProjection());
     }
 
-    //////////////////////////////////////////////////////////////////
-    
-    EffectWorldViewProjConst::EffectWorldViewProjConst()
-    {
-
-    }
-
-    EffectWorldViewProjConst::~EffectWorldViewProjConst()
-    {
-
-    }
-
-    void EffectWorldViewProjConst::apply(EffectConstant *pConst)
+    void effectApplyWorldViewProj(EffectConstant *pConst)
     {
         pConst->bindValue(renderDev()->getWorldViewProjection());
     }
 
-    //////////////////////////////////////////////////////////////////
-
-
-    EffectAmbientConst::EffectAmbientConst()
+    void effectApplyAmbient(EffectConstant *pConst)
     {
     }
 
-    EffectAmbientConst::~EffectAmbientConst()
-    {
-    }
-
-    void EffectAmbientConst::apply(EffectConstant *pConst)
-    {
-    }
-
-    //////////////////////////////////////////////////////////////////
-
-   
-    EffectOmitLightConst::EffectOmitLightConst()
-    {
-
-    }
-    EffectOmitLightConst::~EffectOmitLightConst()
+    void effectApplyOmitLight(EffectConstant *pConst)
     {
 
     }
 
-    void EffectOmitLightConst::apply(EffectConstant *pConst)
+    void effectApplyDirLight(EffectConstant *pConst)
     {
 
     }
 
-
-    //////////////////////////////////////////////////////////////////
-
-    
-    EffectDirLightConst::EffectDirLightConst()
-    {
-
-    }
-    EffectDirLightConst::~EffectDirLightConst()
-    {
-
-    }
-
-    void EffectDirLightConst::apply(EffectConstant *pConst)
-    {
-
-    }
-
-    
-    //////////////////////////////////////////////////////////////////
-
-    
-    EffectSpotLightConst::EffectSpotLightConst()
-    {
-    }
-
-    EffectSpotLightConst::~EffectSpotLightConst()
-    {
-
-    }
-
-    void EffectSpotLightConst::apply(EffectConstant *pConst)
+    void effectApplySpotLight(EffectConstant *pConst)
     {
 
     }

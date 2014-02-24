@@ -169,5 +169,19 @@ namespace my3d
         GLboolean a = color & ColorMask::A ? GL_TRUE : GL_FALSE;
         glColorMask(r, g, b, a);
     }
+    
+    void RenderDevice::setTextureActive(GLenum tex)
+    {
+        glActiveTexture(tex);
+    }
+    
+    void RenderDevice::setTextureFilter(TextureTarget target, TextureParam param, TextureFilter filter)
+    {
+        glTexParameteri(
+                        textureTarget2Sys(target),
+                        textureParam2Sys(param),
+                        textureFilter2sys(filter)
+                        );
+    }
 
 }//end namespace my3d

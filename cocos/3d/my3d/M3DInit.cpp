@@ -17,15 +17,15 @@ namespace my3d
         assert(s_pRenderDev == nullptr);
         s_pRenderDev = new RenderDevice();
 
-#define REG_EFFECT_CONST_FACTORY(TYPE, FACTORY) EffectAutoConstant::set(TYPE, new FACTORY())
+#define REG_EFFECT_CONST_FACTORY(TYPE, FACTORY) EffectAutoConstant::set(TYPE, new EffectConstantProxy(FACTORY))
 
-        REG_EFFECT_CONST_FACTORY(EffectConstType::World, EffectWorldConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::ViewProj, EffectViewProjConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::WorldViewProj, EffectWorldViewProjConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::AmbientColor, EffectAmbientConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::OmitLight, EffectOmitLightConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::DirLight, EffectDirLightConst);
-        REG_EFFECT_CONST_FACTORY(EffectConstType::SpotLight, EffectSpotLightConst);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::World, effectApplyWorld);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::ViewProj, effectApplyViewProj);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::WorldViewProj, effectApplyWorldViewProj);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::AmbientColor, effectApplyAmbient);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::OmitLight, effectApplyOmitLight);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::DirLight, effectApplyDirLight);
+        REG_EFFECT_CONST_FACTORY(EffectConstType::SpotLight, effectApplySpotLight);
 
 #undef REG_EFFECT_CONST_FACTORY
 

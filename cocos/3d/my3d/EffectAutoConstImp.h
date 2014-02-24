@@ -5,75 +5,26 @@
 
 namespace my3d
 {
-    class EffectWorldConst : public EffectAutoConstant
+    
+    typedef void (*EffectApplyFun)(EffectConstant *);
+    
+    class EffectConstantProxy : public EffectAutoConstant
     {
+        EffectApplyFun m_fun;
     public:
-        EffectWorldConst();
-        ~EffectWorldConst();
-
+        EffectConstantProxy(EffectApplyFun fun);
+        ~EffectConstantProxy();
+        
         virtual void apply(EffectConstant *pConst) override;
-
     };
-
-    class EffectViewProjConst : public EffectAutoConstant
-    {
-    public:
-        EffectViewProjConst();
-        ~EffectViewProjConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
-
-    class EffectWorldViewProjConst : public EffectAutoConstant
-    {
-    public:
-        EffectWorldViewProjConst();
-        ~EffectWorldViewProjConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
-
-    class EffectAmbientConst : public EffectAutoConstant
-    {
-    public:
-        EffectAmbientConst();
-        ~EffectAmbientConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
-
-    class EffectOmitLightConst : public EffectAutoConstant
-    {
-    public:
-        EffectOmitLightConst();
-        ~EffectOmitLightConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
-
-    class EffectDirLightConst : public EffectAutoConstant
-    {
-    public:
-        EffectDirLightConst();
-        ~EffectDirLightConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
-
-    class EffectSpotLightConst : public EffectAutoConstant
-    {
-    public:
-        EffectSpotLightConst();
-        ~EffectSpotLightConst();
-
-        virtual void apply(EffectConstant *pConst) override;
-
-    };
+    
+    void effectApplyWorld(EffectConstant *pConst);
+    void effectApplyViewProj(EffectConstant *pConst);
+    void effectApplyWorldViewProj(EffectConstant *pConst);
+    void effectApplyAmbient(EffectConstant *pConst);
+    void effectApplyOmitLight(EffectConstant *pConst);
+    void effectApplyDirLight(EffectConstant *pConst);
+    void effectApplySpotLight(EffectConstant *pConst);
 
 }//end namespace my3d
 
