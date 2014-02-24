@@ -20,7 +20,7 @@ namespace my3d
         Pixel = 1,
     };
     
-    class Shader : public cocos2d::Object
+    class Shader : public cocos2d::ISmartObject
     {
         CC_DISALLOW_COPY_AND_ASSIGN(Shader);
     public:

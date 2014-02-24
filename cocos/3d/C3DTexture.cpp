@@ -5,14 +5,26 @@
 #include "CCTexture2D.h"
 #include "CCTextureCache.h"
 #include "ccUtils.h"
+#include "my3d/M3DTextureMgr.h"
 
 using namespace std;
 using namespace cocos2d;
 
 namespace cocos2d
 {
-static std::vector<C3DTexture*> __textureCache;
+   
+inline unsigned long nextPOT(unsigned long x)
+{
+    x = x - 1;
+    x = x | (x >> 1);
+    x = x | (x >> 2);
+    x = x | (x >> 4);
+    x = x | (x >> 8);
+    x = x | (x >>16);
+    return x + 1;
+}
 
+    
 C3DTexture::C3DTexture() : _handle(0), _mipmapped(false), _width(0), _height(0), /*_cached(false), */_texture(nullptr)
 {
 }
@@ -23,146 +35,138 @@ C3DTexture::C3DTexture(const C3DTexture& copy)
 
 C3DTexture::~C3DTexture()
 {
-	std::vector<C3DTexture*>::iterator itr = std::find(__textureCache.begin(), __textureCache.end(), this);
-	if (itr != __textureCache.end())
-	{
-		__textureCache.erase(itr);
-	}
+    my3d::TextureMgr::instance()->del(this);
+    
 	SAFE_RELEASE(_texture);
 }
 
 C3DTexture* C3DTexture::create(const char* path, bool generateMipmaps)
 {
-	for (size_t i = 0; i < __textureCache.size(); ++i) {
-		C3DTexture* t = __textureCache[i];
-		if (t->_path == path)
-		{
-			// If 'generateMipmaps' is true, call C3DTexture::generateMipamps() to force the
-			// texture to generate its mipmap chain if it hasn't already done so.
-			if (generateMipmaps && !t->isMipmapped())
-			{
-				t->generateMipmaps();
-			}
+	C3DTexture* retTexture = loadTexture(path, generateMipmaps);
+    if(retTexture != nullptr)
+        retTexture->autorelease();
+    
+    return retTexture;
+}
+    
+C3DTexture* C3DTexture::create(int width, int height, C3DTexture::Format fmt, const void* data, ssize_t dataLen, bool generateMipmaps)
+{
+    C3DTexture* retTexture = loadTexture(width, height, fmt, data, dataLen, generateMipmaps);
+    if(retTexture != nullptr)
+    retTexture->autorelease();
+    
+    return retTexture;
+}
 
-			// Found a match.
-			t->retain();
+C3DTexture* C3DTexture::create(int width, int height, C3DTexture::Format fmt, bool generateMipmaps)
+{
+    C3DTexture *retTexture = loadTexture(width, height, fmt, generateMipmaps);
+    if(retTexture != nullptr)
+    retTexture->autorelease();
+    
+    return retTexture;
+}
 
-			return t;
-		}
-	}
+#ifdef USE_PVRTC
+C3DTexture* C3DTexture::createCompressedPVRTC(const char* path)
+{
+    return create(path, false);
+}
+#endif
+    
 
-	CCTexture2D* tex = CCTextureCache::sharedTextureCache()->addImage(path);
+/*static*/ C3DTexture* C3DTexture::loadTexture(const std::string & path, bool generateMipmaps)
+{
+	Texture2D* tex = Director::getInstance()->getTextureCache()->addImage(path);
 	if (tex == nullptr)
 	{
-		LOG_ERROR_VARG("failed to load texture file: %s", path);
-
+		CCLOGERROR("failed to load texture file: %s", path.c_str());
 		return nullptr;
 	}
-
-	if (generateMipmaps)
-		tex->generateMipmap();
+    
+	if (generateMipmaps) tex->generateMipmap();
 	tex->retain();
+    
 	C3DTexture* retTexture = new C3DTexture();
 	retTexture->_texture = tex;
 	retTexture->_path = path;
 	retTexture->_width = tex->getPixelsWide();
 	retTexture->_height = tex->getPixelsHigh();
-
-	retTexture->autorelease();
+    
 	return retTexture;
 }
-
-inline unsigned long nextPOT(unsigned long x)
+    
+/*static*/ C3DTexture* C3DTexture::loadTexture(int width, int height, Format fmt, bool generateMipmaps)
 {
-	x = x - 1;
-	x = x | (x >> 1);
-	x = x | (x >> 2);
-	x = x | (x >> 4);
-	x = x | (x >> 8);
-	x = x | (x >>16);
-	return x + 1;
-}
-
-C3DTexture* C3DTexture::create(int width, int height, C3DTexture::Format fmt, const void* data, ssize_t dataLen, bool generateMipmaps)
-{
-	CCTexture2DPixelFormat format;
-	switch(fmt)
-	{
-		case C3DTexture::RGBA:
-			format = kCCTexture2DPixelFormat_RGBA8888;
-			break;
-		case C3DTexture::RGB:
-			format = kCCTexture2DPixelFormat_RGB888;
-			break;
-
-		default:
-			return nullptr;
-	}
-
-	CCTexture2D* texture2D = new CCTexture2D();
-	texture2D->initWithData(data, dataLen, format, width, height, CCSize(width, height));
-
-	C3DTexture* retTexture = new C3DTexture();
-	retTexture->_texture = texture2D;
-	retTexture->_width = width;
-	retTexture->_height = height;
-	retTexture->_mipmapped = generateMipmaps;
-	retTexture->autorelease();
-
-	if (generateMipmaps)
-		retTexture->generateMipmaps();
-
-	return retTexture;
-}
-
-C3DTexture* C3DTexture::create(int width, int height, C3DTexture::Format fmt, bool generateMipmaps)
-{
-	GLuint handle;
+    GLuint handle;
 	GL_ASSERT(glGenTextures(1, &handle));
 	GL_ASSERT(glBindTexture(GL_TEXTURE_2D, handle));
-
+    
 	// Specify OpenGL texture image
 	GLenum internalFormat = GL_RGBA;
 	GLenum type = GL_UNSIGNED_BYTE;
 	switch(fmt)
 	{
 		case RGBA:
-			internalFormat = GL_RGBA;
-			break;
+        internalFormat = GL_RGBA;
+        break;
 		case RGB:
-			internalFormat = GL_RGB;
-			break;
+        internalFormat = GL_RGB;
+        break;
 		case ALPHA:
-			internalFormat = GL_ALPHA;
-			break;
+        internalFormat = GL_ALPHA;
+        break;
 		case DEPTH:
-			internalFormat = GL_DEPTH_COMPONENT;
-			type = GL_UNSIGNED_SHORT;
-			break;
+        internalFormat = GL_DEPTH_COMPONENT;
+        type = GL_UNSIGNED_SHORT;
+        break;
 		default:
-			LOG_ERROR_VARG("Unknown texture formmat: %d", fmt);
-
-			return nullptr;
+        LOG_ERROR_VARG("Unknown texture formmat: %d", fmt);
+        
+        return nullptr;
 	}
-
+    
 	GL_ASSERT(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, (GLenum)fmt, type, 0));
-
+    
 	C3DTexture* retTexture = new C3DTexture();
 	retTexture->_handle = handle;
 	retTexture->_texture = nullptr;
 	retTexture->_width = width;
 	retTexture->_height = height;
 	retTexture->_mipmapped = false;
-	retTexture->autorelease();
 	return retTexture;
 }
-
-#ifdef USE_PVRTC
-C3DTexture* C3DTexture::createCompressedPVRTC(const char* path)
+    
+/*static*/ C3DTexture* C3DTexture::loadTexture(int width, int height, Format fmt, const void* data, ssize_t dataLen, bool generateMipmaps)
 {
-	return create(path, false);
+    CCTexture2DPixelFormat format;
+    switch(fmt)
+    {
+        case C3DTexture::RGBA:
+        format = kCCTexture2DPixelFormat_RGBA8888;
+        break;
+        case C3DTexture::RGB:
+        format = kCCTexture2DPixelFormat_RGB888;
+        break;
+        
+        default:
+        return nullptr;
+    }
+    
+    CCTexture2D* texture2D = new CCTexture2D();
+    texture2D->initWithData(data, dataLen, format, width, height, CCSize(width, height));
+    
+    C3DTexture* retTexture = new C3DTexture();
+    retTexture->_texture = texture2D;
+    retTexture->_width = width;
+    retTexture->_height = height;
+    retTexture->_mipmapped = generateMipmaps;
+    
+    if (generateMipmaps)
+    retTexture->generateMipmaps();
+    
+    return retTexture;
 }
-#endif
 
 unsigned int C3DTexture::getWidth() const
 {

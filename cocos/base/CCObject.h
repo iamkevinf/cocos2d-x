@@ -143,7 +143,7 @@ public:
      * @js NA
      * @lua NA
      */
-    Object* autorelease();
+    virtual Object* autorelease();
 
     /**
      * Returns a boolean value that indicates whether there is only one
@@ -185,6 +185,17 @@ public:
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
     
     friend class AutoreleasePool;
+};
+
+
+//smart object, witch can be managed by smart pointer automatically.
+class CC_DLL ISmartObject : public Object
+{
+public:
+    ISmartObject();
+    virtual ~ISmartObject();
+    
+    virtual Object* autorelease();
 };
 
 

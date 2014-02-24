@@ -67,7 +67,7 @@ namespace my3d
     };
     
     
-    class VertexDeclaration : public cocos2d::Object
+    class VertexDeclaration : public cocos2d::ISmartObject
     {
     public:
         

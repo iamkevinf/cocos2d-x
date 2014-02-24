@@ -156,6 +156,8 @@
 		58E2552818BAE5C500E08A7A /* VertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551118BAE5C500E08A7A /* VertexBuffer.h */; };
 		58E2552918BAE5C500E08A7A /* VertexDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2551218BAE5C500E08A7A /* VertexDeclaration.cpp */; };
 		58E2552A18BAE5C500E08A7A /* VertexDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551318BAE5C500E08A7A /* VertexDeclaration.h */; };
+		58E2553118BB409D00E08A7A /* M3DTextureMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */; };
+		58E2553218BB409D00E08A7A /* M3DTextureMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2553018BB409D00E08A7A /* M3DTextureMgr.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -314,6 +316,8 @@
 		58E2551118BAE5C500E08A7A /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexBuffer.h; path = my3d/VertexBuffer.h; sourceTree = "<group>"; };
 		58E2551218BAE5C500E08A7A /* VertexDeclaration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexDeclaration.cpp; path = my3d/VertexDeclaration.cpp; sourceTree = "<group>"; };
 		58E2551318BAE5C500E08A7A /* VertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexDeclaration.h; path = my3d/VertexDeclaration.h; sourceTree = "<group>"; };
+		58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DTextureMgr.cpp; path = my3d/M3DTextureMgr.cpp; sourceTree = "<group>"; };
+		58E2553018BB409D00E08A7A /* M3DTextureMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DTextureMgr.h; path = my3d/M3DTextureMgr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +334,8 @@
 		582C41DA18B72F4800B890A3 /* my3d */ = {
 			isa = PBXGroup;
 			children = (
+				58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */,
+				58E2553018BB409D00E08A7A /* M3DTextureMgr.h */,
 				58E254FD18BAE5C500E08A7A /* Effect.cpp */,
 				58E254FE18BAE5C500E08A7A /* Effect.h */,
 				58E254FF18BAE5C500E08A7A /* EffectAutoConstImp.cpp */,
@@ -593,6 +599,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E2553218BB409D00E08A7A /* M3DTextureMgr.h in Headers */,
 				58CCD07D18ADFE8F00BCEB08 /* C3DEffect.h in Headers */,
 				58E2552418BAE5C500E08A7A /* my3d.h in Headers */,
 				58CCD06718ADFE8F00BCEB08 /* Base.h in Headers */,
@@ -793,6 +800,7 @@
 				58CCD09218ADFE8F00BCEB08 /* C3DPass.cpp in Sources */,
 				58CCD09018ADFE8F00BCEB08 /* C3DOBB.cpp in Sources */,
 				58CCD06A18ADFE8F00BCEB08 /* BundleData.cpp in Sources */,
+				58E2553118BB409D00E08A7A /* M3DTextureMgr.cpp in Sources */,
 				58CCD0A218ADFE8F00BCEB08 /* C3DResourceLoader.cpp in Sources */,
 				58CCD0BE18ADFE8F00BCEB08 /* C3DVertexFormat.cpp in Sources */,
 				583D7DEF18B4728E00CFC1BD /* Vector3.cpp in Sources */,

@@ -91,4 +91,22 @@ void Object::acceptVisitor(DataVisitor &visitor)
     visitor.visitObject(this);
 }
 
+
+ISmartObject::ISmartObject()
+{
+    _reference = 0;
+}
+
+ISmartObject::~ISmartObject()
+{
+    
+}
+
+Object* ISmartObject::autorelease()
+{
+    this->retain();
+    
+    return Object::autorelease();
+}
+
 NS_CC_END

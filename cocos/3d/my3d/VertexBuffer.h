@@ -27,7 +27,7 @@ namespace my3d
         Dynamic = 1
     };
 
-    class BufferBase : public cocos2d::Object
+    class BufferBase : public cocos2d::ISmartObject
     {
         BufferBase(const BufferBase &);
         const BufferBase & operator = (const BufferBase &);
