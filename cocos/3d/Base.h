@@ -124,8 +124,8 @@ extern void printError(const char* format, ...);
 #define MATH_PIX2                   6.28318530717958647693f
 #define MATH_EPSILON                0.000001f
 #define MATH_CLAMP(x, lo, hi)       ((x < lo) ? lo : ((x > hi) ? hi : x))
-#ifndef M_1_PI
-#define M_1_PI                      0.31830988618379067154
+#ifndef MATH_1_PI
+#define MATH_1_PI                      0.31830988618379067154
 #endif
 
 // NOMINMAX makes sure that windef.h doesn't add macros min and max
