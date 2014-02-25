@@ -79,12 +79,19 @@ namespace my3d
         const VertexElement & getElement(int i) const;
         size_t getVertexSize() const;
         
-        void bind(Effect *pEffect=nullptr);
+        void bind();
         void unbind();
         
     private:
+        
+        void bindEffectAttr(Effect * pEffect);
+        
+        
         size_t m_vertexSize;
         std::vector<VertexElement> m_elements;
+        
+        static VertexDeclaration * s_pActiveDecl;
+        friend class Effect;
     };
 
 }//end namespace my3d

@@ -174,28 +174,27 @@ public:
         my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
         my3d::renderDev()->setCullFace(my3d::CullFace::Back);
         
-        if(m_effect && m_effect->begin())
+        if(m_vertexBuffer != nullptr)
         {
-            my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Sampler);
-            if(m_sampler && pConst)
-            {
-                pConst->bindValue(m_sampler.get());
-            }
+            m_vertexBuffer->bind();
+            m_indexBuffer->bind();
+            m_vertexDecl->bind();
             
-            if(m_vertexBuffer != nullptr)
+            if(m_effect && m_effect->begin())
             {
-                m_vertexBuffer->bind();
-                m_indexBuffer->bind();
-                m_vertexDecl->bind();
-
+                my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Sampler);
+                if(m_sampler && pConst) pConst->bindValue(m_sampler.get());
+                
                 glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);
-
-                m_indexBuffer->unbind();
-                m_vertexBuffer->unbind();
+                
+                m_effect->end();
             }
             
-            m_effect->end();
+            m_indexBuffer->unbind();
+            m_vertexBuffer->unbind();
         }
+        
+        
 #endif
         
 #ifdef TEST_EGL

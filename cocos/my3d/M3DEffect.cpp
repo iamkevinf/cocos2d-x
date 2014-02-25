@@ -10,6 +10,7 @@
 #include "M3DEffectMgr.h"
 #include "M3DShader.h"
 #include "M3DEffectConstant.h"
+#include "M3DVertexDeclaration.h"
 
 #include "../3d/ElementNode.h"
 
@@ -189,12 +190,20 @@ namespace my3d
     
     bool Effect::begin()
     {
-        CCAssert(s_pActiveEffect == nullptr, "Effect::begin invalid!");
+        CCAssert(s_pActiveEffect == nullptr, "Effect::begin - invalid operation!");
         
         if(m_program == 0) return false;
         
+        if(VertexDeclaration::s_pActiveDecl == nullptr)
+        {
+            assert(0 && "Effect::begin - failed! please set vertex declaration first.");
+            return false;
+        }
+        
         glUseProgram(m_program);
         s_pActiveEffect = this;
+        
+        VertexDeclaration::s_pActiveDecl->bindEffectAttr(this);
 
         for (auto it : m_autoConsts)
         {

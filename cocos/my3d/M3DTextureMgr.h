@@ -9,15 +9,12 @@
 #ifndef __cocos3d_libs__M3DTextureMgr__
 #define __cocos3d_libs__M3DTextureMgr__
 
-#include "../3d/C3DTexture.h"
+
 #include "mytool/singleton.h"
-#include "mytool/smartptr.h"
+#include "M3DTexture.h"
 
 namespace my3d
 {
-    typedef cocos2d::C3DTexture Texture;
-    typedef SmartPtr<cocos2d::C3DTexture> TexturePtr;
-    
     class TextureMgr : public Singleton<TextureMgr>
     {
     public:

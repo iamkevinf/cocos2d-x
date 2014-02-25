@@ -25,6 +25,12 @@ namespace my3d
         Static = 0,
         Dynamic = 1
     };
+    
+    enum class IndexType
+    {
+        Index16,
+        Index32,
+    };
 
     class BufferBase : public cocos2d::ISmartObject
     {

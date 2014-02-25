@@ -73,14 +73,17 @@ namespace my3d
     }
     
     //////////////////////////////////////////////////////////////////
+    /*static*/ VertexDeclaration * VertexDeclaration::s_pActiveDecl = nullptr;
+    
     VertexDeclaration::VertexDeclaration()
         : m_vertexSize(0)
     {
         
     }
+    
     VertexDeclaration::~VertexDeclaration()
     {
-        
+        if(this == s_pActiveDecl) s_pActiveDecl = nullptr;
     }
     
     void VertexDeclaration::addElement(const VertexElement & e)
@@ -105,12 +108,9 @@ namespace my3d
         return m_vertexSize;
     }
     
-    void VertexDeclaration::bind(Effect * pEffect)
+    void VertexDeclaration::bind()
     {
-        if (pEffect == nullptr)
-            pEffect = Effect::getActiveEffect();
-
-        assert(pEffect != nullptr && "VertexDeclaration::bind failed! no active effect was found!");
+        s_pActiveDecl = this;
         
         unsigned int offset = 0;
         for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
@@ -121,17 +121,28 @@ namespace my3d
             glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE,
                                   GLsizei(m_vertexSize), reinterpret_cast<GLvoid*>(offset));
             
-            pEffect->bindAttribute(i, vertexUsage2Attr(e.usage));
-            
             offset += e.size();
         }
     }
     
     void VertexDeclaration::unbind()
     {
+        assert(s_pActiveDecl == this && "VertexDeclaration::unbind - invalid operation!");
+        s_pActiveDecl = nullptr;
+        
         for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
         {
             glDisableVertexAttribArray(i);
+        }
+    }
+    
+    void VertexDeclaration::bindEffectAttr(Effect * pEffect)
+    {
+        assert (pEffect != nullptr);
+        
+        for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
+        {
+            pEffect->bindAttribute(i, vertexUsage2Attr(m_elements[i].usage));
         }
     }
 
