@@ -133,14 +133,14 @@
 		58CCD0CC18ADFE8F00BCEB08 /* StringTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58CCD06018ADFE8F00BCEB08 /* StringTool.cpp */; };
 		58CCD0CD18ADFE8F00BCEB08 /* StringTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 58CCD06118ADFE8F00BCEB08 /* StringTool.h */; };
 		58CCD0CE18ADFE8F00BCEB08 /* Vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 58CCD06218ADFE8F00BCEB08 /* Vertex.h */; };
-		58E2551418BAE5C500E08A7A /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E254FD18BAE5C500E08A7A /* Effect.cpp */; };
-		58E2551518BAE5C500E08A7A /* Effect.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E254FE18BAE5C500E08A7A /* Effect.h */; };
-		58E2551618BAE5C500E08A7A /* EffectAutoConstImp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E254FF18BAE5C500E08A7A /* EffectAutoConstImp.cpp */; };
-		58E2551718BAE5C500E08A7A /* EffectAutoConstImp.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550018BAE5C500E08A7A /* EffectAutoConstImp.h */; };
-		58E2551818BAE5C500E08A7A /* EffectConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550118BAE5C500E08A7A /* EffectConstant.cpp */; };
-		58E2551918BAE5C500E08A7A /* EffectConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550218BAE5C500E08A7A /* EffectConstant.h */; };
-		58E2551A18BAE5C500E08A7A /* EffectMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550318BAE5C500E08A7A /* EffectMgr.cpp */; };
-		58E2551B18BAE5C500E08A7A /* EffectMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550418BAE5C500E08A7A /* EffectMgr.h */; };
+		58E2551418BAE5C500E08A7A /* M3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E254FD18BAE5C500E08A7A /* M3DEffect.cpp */; };
+		58E2551518BAE5C500E08A7A /* M3DEffect.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E254FE18BAE5C500E08A7A /* M3DEffect.h */; };
+		58E2551618BAE5C500E08A7A /* M3DEffectAutoConstImp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E254FF18BAE5C500E08A7A /* M3DEffectAutoConstImp.cpp */; };
+		58E2551718BAE5C500E08A7A /* M3DEffectAutoConstImp.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550018BAE5C500E08A7A /* M3DEffectAutoConstImp.h */; };
+		58E2551818BAE5C500E08A7A /* M3DEffectConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550118BAE5C500E08A7A /* M3DEffectConstant.cpp */; };
+		58E2551918BAE5C500E08A7A /* M3DEffectConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550218BAE5C500E08A7A /* M3DEffectConstant.h */; };
+		58E2551A18BAE5C500E08A7A /* M3DEffectMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550318BAE5C500E08A7A /* M3DEffectMgr.cpp */; };
+		58E2551B18BAE5C500E08A7A /* M3DEffectMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550418BAE5C500E08A7A /* M3DEffectMgr.h */; };
 		58E2551C18BAE5C500E08A7A /* M3DBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550518BAE5C500E08A7A /* M3DBase.h */; };
 		58E2551D18BAE5C500E08A7A /* M3DConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550618BAE5C500E08A7A /* M3DConfig.h */; };
 		58E2551E18BAE5C500E08A7A /* M3DInit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550718BAE5C500E08A7A /* M3DInit.cpp */; };
@@ -150,12 +150,12 @@
 		58E2552218BAE5C500E08A7A /* M3DRenderState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550B18BAE5C500E08A7A /* M3DRenderState.cpp */; };
 		58E2552318BAE5C500E08A7A /* M3DRenderState.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550C18BAE5C500E08A7A /* M3DRenderState.h */; };
 		58E2552418BAE5C500E08A7A /* my3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550D18BAE5C500E08A7A /* my3d.h */; };
-		58E2552518BAE5C500E08A7A /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550E18BAE5C500E08A7A /* Shader.cpp */; };
-		58E2552618BAE5C500E08A7A /* Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550F18BAE5C500E08A7A /* Shader.h */; };
-		58E2552718BAE5C500E08A7A /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2551018BAE5C500E08A7A /* VertexBuffer.cpp */; };
-		58E2552818BAE5C500E08A7A /* VertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551118BAE5C500E08A7A /* VertexBuffer.h */; };
-		58E2552918BAE5C500E08A7A /* VertexDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2551218BAE5C500E08A7A /* VertexDeclaration.cpp */; };
-		58E2552A18BAE5C500E08A7A /* VertexDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551318BAE5C500E08A7A /* VertexDeclaration.h */; };
+		58E2552518BAE5C500E08A7A /* M3DShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2550E18BAE5C500E08A7A /* M3DShader.cpp */; };
+		58E2552618BAE5C500E08A7A /* M3DShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2550F18BAE5C500E08A7A /* M3DShader.h */; };
+		58E2552718BAE5C500E08A7A /* M3DVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2551018BAE5C500E08A7A /* M3DVertexBuffer.cpp */; };
+		58E2552818BAE5C500E08A7A /* M3DVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551118BAE5C500E08A7A /* M3DVertexBuffer.h */; };
+		58E2552918BAE5C500E08A7A /* M3DVertexDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2551218BAE5C500E08A7A /* M3DVertexDeclaration.cpp */; };
+		58E2552A18BAE5C500E08A7A /* M3DVertexDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2551318BAE5C500E08A7A /* M3DVertexDeclaration.h */; };
 		58E2553118BB409D00E08A7A /* M3DTextureMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */; };
 		58E2553218BB409D00E08A7A /* M3DTextureMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 58E2553018BB409D00E08A7A /* M3DTextureMgr.h */; };
 /* End PBXBuildFile section */
@@ -293,14 +293,14 @@
 		58CCD06018ADFE8F00BCEB08 /* StringTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringTool.cpp; sourceTree = "<group>"; };
 		58CCD06118ADFE8F00BCEB08 /* StringTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTool.h; sourceTree = "<group>"; };
 		58CCD06218ADFE8F00BCEB08 /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
-		58E254FD18BAE5C500E08A7A /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effect.cpp; path = my3d/Effect.cpp; sourceTree = "<group>"; };
-		58E254FE18BAE5C500E08A7A /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Effect.h; path = my3d/Effect.h; sourceTree = "<group>"; };
-		58E254FF18BAE5C500E08A7A /* EffectAutoConstImp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EffectAutoConstImp.cpp; path = my3d/EffectAutoConstImp.cpp; sourceTree = "<group>"; };
-		58E2550018BAE5C500E08A7A /* EffectAutoConstImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectAutoConstImp.h; path = my3d/EffectAutoConstImp.h; sourceTree = "<group>"; };
-		58E2550118BAE5C500E08A7A /* EffectConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EffectConstant.cpp; path = my3d/EffectConstant.cpp; sourceTree = "<group>"; };
-		58E2550218BAE5C500E08A7A /* EffectConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectConstant.h; path = my3d/EffectConstant.h; sourceTree = "<group>"; };
-		58E2550318BAE5C500E08A7A /* EffectMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EffectMgr.cpp; path = my3d/EffectMgr.cpp; sourceTree = "<group>"; };
-		58E2550418BAE5C500E08A7A /* EffectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EffectMgr.h; path = my3d/EffectMgr.h; sourceTree = "<group>"; };
+		58E254FD18BAE5C500E08A7A /* M3DEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DEffect.cpp; path = my3d/M3DEffect.cpp; sourceTree = "<group>"; };
+		58E254FE18BAE5C500E08A7A /* M3DEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DEffect.h; path = my3d/M3DEffect.h; sourceTree = "<group>"; };
+		58E254FF18BAE5C500E08A7A /* M3DEffectAutoConstImp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DEffectAutoConstImp.cpp; path = my3d/M3DEffectAutoConstImp.cpp; sourceTree = "<group>"; };
+		58E2550018BAE5C500E08A7A /* M3DEffectAutoConstImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DEffectAutoConstImp.h; path = my3d/M3DEffectAutoConstImp.h; sourceTree = "<group>"; };
+		58E2550118BAE5C500E08A7A /* M3DEffectConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DEffectConstant.cpp; path = my3d/M3DEffectConstant.cpp; sourceTree = "<group>"; };
+		58E2550218BAE5C500E08A7A /* M3DEffectConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DEffectConstant.h; path = my3d/M3DEffectConstant.h; sourceTree = "<group>"; };
+		58E2550318BAE5C500E08A7A /* M3DEffectMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DEffectMgr.cpp; path = my3d/M3DEffectMgr.cpp; sourceTree = "<group>"; };
+		58E2550418BAE5C500E08A7A /* M3DEffectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DEffectMgr.h; path = my3d/M3DEffectMgr.h; sourceTree = "<group>"; };
 		58E2550518BAE5C500E08A7A /* M3DBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DBase.h; path = my3d/M3DBase.h; sourceTree = "<group>"; };
 		58E2550618BAE5C500E08A7A /* M3DConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DConfig.h; path = my3d/M3DConfig.h; sourceTree = "<group>"; };
 		58E2550718BAE5C500E08A7A /* M3DInit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DInit.cpp; path = my3d/M3DInit.cpp; sourceTree = "<group>"; };
@@ -310,12 +310,12 @@
 		58E2550B18BAE5C500E08A7A /* M3DRenderState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DRenderState.cpp; path = my3d/M3DRenderState.cpp; sourceTree = "<group>"; };
 		58E2550C18BAE5C500E08A7A /* M3DRenderState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DRenderState.h; path = my3d/M3DRenderState.h; sourceTree = "<group>"; };
 		58E2550D18BAE5C500E08A7A /* my3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = my3d.h; path = my3d/my3d.h; sourceTree = "<group>"; };
-		58E2550E18BAE5C500E08A7A /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = my3d/Shader.cpp; sourceTree = "<group>"; };
-		58E2550F18BAE5C500E08A7A /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = my3d/Shader.h; sourceTree = "<group>"; };
-		58E2551018BAE5C500E08A7A /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = my3d/VertexBuffer.cpp; sourceTree = "<group>"; };
-		58E2551118BAE5C500E08A7A /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexBuffer.h; path = my3d/VertexBuffer.h; sourceTree = "<group>"; };
-		58E2551218BAE5C500E08A7A /* VertexDeclaration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexDeclaration.cpp; path = my3d/VertexDeclaration.cpp; sourceTree = "<group>"; };
-		58E2551318BAE5C500E08A7A /* VertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexDeclaration.h; path = my3d/VertexDeclaration.h; sourceTree = "<group>"; };
+		58E2550E18BAE5C500E08A7A /* M3DShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DShader.cpp; path = my3d/M3DShader.cpp; sourceTree = "<group>"; };
+		58E2550F18BAE5C500E08A7A /* M3DShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DShader.h; path = my3d/M3DShader.h; sourceTree = "<group>"; };
+		58E2551018BAE5C500E08A7A /* M3DVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DVertexBuffer.cpp; path = my3d/M3DVertexBuffer.cpp; sourceTree = "<group>"; };
+		58E2551118BAE5C500E08A7A /* M3DVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DVertexBuffer.h; path = my3d/M3DVertexBuffer.h; sourceTree = "<group>"; };
+		58E2551218BAE5C500E08A7A /* M3DVertexDeclaration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DVertexDeclaration.cpp; path = my3d/M3DVertexDeclaration.cpp; sourceTree = "<group>"; };
+		58E2551318BAE5C500E08A7A /* M3DVertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DVertexDeclaration.h; path = my3d/M3DVertexDeclaration.h; sourceTree = "<group>"; };
 		58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DTextureMgr.cpp; path = my3d/M3DTextureMgr.cpp; sourceTree = "<group>"; };
 		58E2553018BB409D00E08A7A /* M3DTextureMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DTextureMgr.h; path = my3d/M3DTextureMgr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -334,31 +334,31 @@
 		582C41DA18B72F4800B890A3 /* my3d */ = {
 			isa = PBXGroup;
 			children = (
-				58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */,
-				58E2553018BB409D00E08A7A /* M3DTextureMgr.h */,
-				58E254FD18BAE5C500E08A7A /* Effect.cpp */,
-				58E254FE18BAE5C500E08A7A /* Effect.h */,
-				58E254FF18BAE5C500E08A7A /* EffectAutoConstImp.cpp */,
-				58E2550018BAE5C500E08A7A /* EffectAutoConstImp.h */,
-				58E2550118BAE5C500E08A7A /* EffectConstant.cpp */,
-				58E2550218BAE5C500E08A7A /* EffectConstant.h */,
-				58E2550318BAE5C500E08A7A /* EffectMgr.cpp */,
-				58E2550418BAE5C500E08A7A /* EffectMgr.h */,
 				58E2550518BAE5C500E08A7A /* M3DBase.h */,
 				58E2550618BAE5C500E08A7A /* M3DConfig.h */,
+				58E254FD18BAE5C500E08A7A /* M3DEffect.cpp */,
+				58E254FE18BAE5C500E08A7A /* M3DEffect.h */,
+				58E254FF18BAE5C500E08A7A /* M3DEffectAutoConstImp.cpp */,
+				58E2550018BAE5C500E08A7A /* M3DEffectAutoConstImp.h */,
+				58E2550118BAE5C500E08A7A /* M3DEffectConstant.cpp */,
+				58E2550218BAE5C500E08A7A /* M3DEffectConstant.h */,
+				58E2550318BAE5C500E08A7A /* M3DEffectMgr.cpp */,
+				58E2550418BAE5C500E08A7A /* M3DEffectMgr.h */,
 				58E2550718BAE5C500E08A7A /* M3DInit.cpp */,
 				58E2550818BAE5C500E08A7A /* M3DInit.h */,
 				58E2550918BAE5C500E08A7A /* M3DRenderDevice.cpp */,
 				58E2550A18BAE5C500E08A7A /* M3DRenderDevice.h */,
 				58E2550B18BAE5C500E08A7A /* M3DRenderState.cpp */,
 				58E2550C18BAE5C500E08A7A /* M3DRenderState.h */,
+				58E2550E18BAE5C500E08A7A /* M3DShader.cpp */,
+				58E2550F18BAE5C500E08A7A /* M3DShader.h */,
+				58E2552F18BB409D00E08A7A /* M3DTextureMgr.cpp */,
+				58E2553018BB409D00E08A7A /* M3DTextureMgr.h */,
+				58E2551018BAE5C500E08A7A /* M3DVertexBuffer.cpp */,
+				58E2551118BAE5C500E08A7A /* M3DVertexBuffer.h */,
+				58E2551218BAE5C500E08A7A /* M3DVertexDeclaration.cpp */,
+				58E2551318BAE5C500E08A7A /* M3DVertexDeclaration.h */,
 				58E2550D18BAE5C500E08A7A /* my3d.h */,
-				58E2550E18BAE5C500E08A7A /* Shader.cpp */,
-				58E2550F18BAE5C500E08A7A /* Shader.h */,
-				58E2551018BAE5C500E08A7A /* VertexBuffer.cpp */,
-				58E2551118BAE5C500E08A7A /* VertexBuffer.h */,
-				58E2551218BAE5C500E08A7A /* VertexDeclaration.cpp */,
-				58E2551318BAE5C500E08A7A /* VertexDeclaration.h */,
 			);
 			name = my3d;
 			sourceTree = "<group>";
@@ -609,9 +609,9 @@
 				58CCD0CE18ADFE8F00BCEB08 /* Vertex.h in Headers */,
 				58CCD07718ADFE8F00BCEB08 /* C3DAnimationCurve.h in Headers */,
 				58CCD0B118ADFE8F00BCEB08 /* C3DSkinModel.h in Headers */,
-				58E2552618BAE5C500E08A7A /* Shader.h in Headers */,
+				58E2552618BAE5C500E08A7A /* M3DShader.h in Headers */,
 				58CCD0AB18ADFE8F00BCEB08 /* C3DScene.h in Headers */,
-				58E2551718BAE5C500E08A7A /* EffectAutoConstImp.h in Headers */,
+				58E2551718BAE5C500E08A7A /* M3DEffectAutoConstImp.h in Headers */,
 				58CCD06418ADFE8F00BCEB08 /* AnimationValue.h in Headers */,
 				58CCD09718ADFE8F00BCEB08 /* C3DRay.h in Headers */,
 				58CCD0A118ADFE8F00BCEB08 /* C3DResource.h in Headers */,
@@ -639,7 +639,7 @@
 				58CCD09918ADFE8F00BCEB08 /* C3DRenderBlock.h in Headers */,
 				58CCD0C918ADFE8F00BCEB08 /* MeshPart.h in Headers */,
 				58CCD0C718ADFE8F00BCEB08 /* MaterialParameter.h in Headers */,
-				58E2551518BAE5C500E08A7A /* Effect.h in Headers */,
+				58E2551518BAE5C500E08A7A /* M3DEffect.h in Headers */,
 				58CCD09518ADFE8F00BCEB08 /* C3DPlane.h in Headers */,
 				58CCD06D18ADFE8F00BCEB08 /* C3DAABB.h in Headers */,
 				58CCD0AF18ADFE8F00BCEB08 /* C3DSkinlessModel.h in Headers */,
@@ -658,17 +658,17 @@
 				58CCD0CD18ADFE8F00BCEB08 /* StringTool.h in Headers */,
 				58CCD08718ADFE8F00BCEB08 /* C3DMesh.h in Headers */,
 				583D7DEE18B4728E00CFC1BD /* Vector2.h in Headers */,
-				58E2551918BAE5C500E08A7A /* EffectConstant.h in Headers */,
+				58E2551918BAE5C500E08A7A /* M3DEffectConstant.h in Headers */,
 				58CCD07B18ADFE8F00BCEB08 /* C3DCamera.h in Headers */,
 				58E2552318BAE5C500E08A7A /* M3DRenderState.h in Headers */,
 				58CCD09118ADFE8F00BCEB08 /* C3DOBB.h in Headers */,
 				58CCD0B918ADFE8F00BCEB08 /* C3DTechnique.h in Headers */,
-				58E2551B18BAE5C500E08A7A /* EffectMgr.h in Headers */,
-				58E2552818BAE5C500E08A7A /* VertexBuffer.h in Headers */,
+				58E2551B18BAE5C500E08A7A /* M3DEffectMgr.h in Headers */,
+				58E2552818BAE5C500E08A7A /* M3DVertexBuffer.h in Headers */,
 				58E2551F18BAE5C500E08A7A /* M3DInit.h in Headers */,
 				58CCD09B18ADFE8F00BCEB08 /* C3DRenderNode.h in Headers */,
 				58CCD0A518ADFE8F00BCEB08 /* C3DResourceManager.h in Headers */,
-				58E2552A18BAE5C500E08A7A /* VertexDeclaration.h in Headers */,
+				58E2552A18BAE5C500E08A7A /* M3DVertexDeclaration.h in Headers */,
 				58CCD08318ADFE8F00BCEB08 /* C3DMaterial.h in Headers */,
 				58CCD0C518ADFE8F00BCEB08 /* EnumDef_GL.h in Headers */,
 				58CCD08D18ADFE8F00BCEB08 /* C3DModelNode.h in Headers */,
@@ -753,19 +753,19 @@
 				583D7DEB18B4728E00CFC1BD /* Quaternion.cpp in Sources */,
 				58CCD07218ADFE8F00BCEB08 /* C3DAnimationChannel.cpp in Sources */,
 				58CCD0BA18ADFE8F00BCEB08 /* C3DTexture.cpp in Sources */,
-				58E2552918BAE5C500E08A7A /* VertexDeclaration.cpp in Sources */,
-				58E2552718BAE5C500E08A7A /* VertexBuffer.cpp in Sources */,
-				58E2551618BAE5C500E08A7A /* EffectAutoConstImp.cpp in Sources */,
+				58E2552918BAE5C500E08A7A /* M3DVertexDeclaration.cpp in Sources */,
+				58E2552718BAE5C500E08A7A /* M3DVertexBuffer.cpp in Sources */,
+				58E2551618BAE5C500E08A7A /* M3DEffectAutoConstImp.cpp in Sources */,
 				58CCD07018ADFE8F00BCEB08 /* C3DAnimation.cpp in Sources */,
 				58CCD07C18ADFE8F00BCEB08 /* C3DEffect.cpp in Sources */,
 				583D7DE718B4728E00CFC1BD /* Matrix.cpp in Sources */,
 				58CCD08A18ADFE8F00BCEB08 /* C3DModel.cpp in Sources */,
 				58CCD08E18ADFE8F00BCEB08 /* C3DNode.cpp in Sources */,
-				58E2552518BAE5C500E08A7A /* Shader.cpp in Sources */,
+				58E2552518BAE5C500E08A7A /* M3DShader.cpp in Sources */,
 				58CCD09418ADFE8F00BCEB08 /* C3DPlane.cpp in Sources */,
 				58CCD0B418ADFE8F00BCEB08 /* C3DSpriteManager.cpp in Sources */,
 				58CCD08818ADFE8F00BCEB08 /* C3DMeshSkin.cpp in Sources */,
-				58E2551418BAE5C500E08A7A /* Effect.cpp in Sources */,
+				58E2551418BAE5C500E08A7A /* M3DEffect.cpp in Sources */,
 				58CCD0AA18ADFE8F00BCEB08 /* C3DScene.cpp in Sources */,
 				58CCD07418ADFE8F00BCEB08 /* C3DAnimationClip.cpp in Sources */,
 				58CCD07818ADFE8F00BCEB08 /* C3DBone.cpp in Sources */,
@@ -778,7 +778,7 @@
 				58CCD09C18ADFE8F00BCEB08 /* C3DRenderState.cpp in Sources */,
 				58CCD08218ADFE8F00BCEB08 /* C3DMaterial.cpp in Sources */,
 				58CCD09A18ADFE8F00BCEB08 /* C3DRenderNode.cpp in Sources */,
-				58E2551818BAE5C500E08A7A /* EffectConstant.cpp in Sources */,
+				58E2551818BAE5C500E08A7A /* M3DEffectConstant.cpp in Sources */,
 				58E2552018BAE5C500E08A7A /* M3DRenderDevice.cpp in Sources */,
 				58CCD0C318ADFE8F00BCEB08 /* ElementNode.cpp in Sources */,
 				58CCD0A418ADFE8F00BCEB08 /* C3DResourceManager.cpp in Sources */,
@@ -788,7 +788,7 @@
 				58CCD06318ADFE8F00BCEB08 /* AnimationValue.cpp in Sources */,
 				58CCD0CC18ADFE8F00BCEB08 /* StringTool.cpp in Sources */,
 				58CCD07618ADFE8F00BCEB08 /* C3DAnimationCurve.cpp in Sources */,
-				58E2551A18BAE5C500E08A7A /* EffectMgr.cpp in Sources */,
+				58E2551A18BAE5C500E08A7A /* M3DEffectMgr.cpp in Sources */,
 				583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */,
 				58CCD08018ADFE8F00BCEB08 /* C3DLayer.cpp in Sources */,
 				583D7DED18B4728E00CFC1BD /* Vector2.cpp in Sources */,
