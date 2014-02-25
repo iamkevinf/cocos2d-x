@@ -2,7 +2,7 @@
 #define H_M3D_BASE_H
 
 
-#include "../EnumDef.h"
+#include "../3d/EnumDef.h"
 
 #include "M3DConfig.h"
 #include "mytool/smartptr.h"

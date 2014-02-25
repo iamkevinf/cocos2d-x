@@ -11,7 +11,7 @@
 #include "M3DShader.h"
 #include "M3DEffectConstant.h"
 
-#include "../ElementNode.h"
+#include "../3d/ElementNode.h"
 
 namespace my3d
 {

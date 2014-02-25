@@ -7,9 +7,9 @@
 //
 
 #include "M3DEffectConstant.h"
-#include "../C3DTexture.h"
-#include "../C3DSampler.h"
-#include "../C3DRenderState.h"
+#include "../3d/C3DTexture.h"
+#include "../3d/C3DSampler.h"
+#include "../3d/C3DRenderState.h"
 
 using namespace cocos2d;
 

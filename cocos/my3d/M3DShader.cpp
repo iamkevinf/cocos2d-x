@@ -7,7 +7,7 @@
 //
 
 #include "M3DShader.h"
-#include "../Stream.h"
+#include "../3d/Stream.h"
 
 namespace my3d
 {

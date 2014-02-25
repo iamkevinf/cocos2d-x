@@ -9,7 +9,7 @@
 #ifndef __cocos3d_libs__M3DTextureMgr__
 #define __cocos3d_libs__M3DTextureMgr__
 
-#include "../C3DTexture.h"
+#include "../3d/C3DTexture.h"
 #include "mytool/singleton.h"
 #include "mytool/smartptr.h"
 
