@@ -115,6 +115,9 @@
     <Filter Include="math">
       <UniqueIdentifier>{66f0d669-0d6a-46ad-9255-9a5c0c88c746}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mytool">
+      <UniqueIdentifier>{35a057f5-3953-4fae-940e-cfe0ef654c87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\physics\CCPhysicsBody.cpp">
@@ -624,6 +627,15 @@
     </ClCompile>
     <ClCompile Include="..\base\Transform.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mytool\memorycheck.cpp">
+      <Filter>mytool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mytool\smartptr.cpp">
+      <Filter>mytool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mytool\testtool.cpp">
+      <Filter>mytool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1260,6 +1272,18 @@
     </ClInclude>
     <ClInclude Include="..\base\Transform.h">
       <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mytool\memorycheck.h">
+      <Filter>mytool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mytool\singleton.h">
+      <Filter>mytool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mytool\smartptr.h">
+      <Filter>mytool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mytool\testtool.h">
+      <Filter>mytool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

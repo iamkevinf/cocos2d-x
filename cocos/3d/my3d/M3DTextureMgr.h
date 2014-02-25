@@ -3,13 +3,13 @@
 //  cocos3d_libs
 //
 //  Created by zhoubao on 14-2-24.
-//  Copyright (c) 2014å¹´ zhoubao. All rights reserved.
+//  Copyright (c) 2014å¹?zhoubao. All rights reserved.
 //
 
 #ifndef __cocos3d_libs__M3DTextureMgr__
 #define __cocos3d_libs__M3DTextureMgr__
 
-#include "C3DTexture.h"
+#include "../C3DTexture.h"
 #include "mytool/singleton.h"
 #include "mytool/smartptr.h"
 

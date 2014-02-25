@@ -1,4 +1,4 @@
-#include "M3DMaterial.h"
+﻿#include "M3DMaterial.h"
 
 namespace my3d
 {
@@ -12,7 +12,7 @@ namespace my3d
     {
     }
 
-    Material(Color a, Color d, Color s, Color e)
+    Material::Material(Color a, Color d, Color s, Color e)
         : ambient(a)
         , diffuse(d)
         , specular(s)

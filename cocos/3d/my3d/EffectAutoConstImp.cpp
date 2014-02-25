@@ -1,4 +1,4 @@
-#include "EffectAutoConstImp.h"
+﻿#include "EffectAutoConstImp.h"
 #include "M3DRenderDevice.h"
 
 namespace my3d

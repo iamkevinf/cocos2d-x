@@ -1,4 +1,4 @@
-#ifndef H_M3D_CONFIG_H
+﻿#ifndef H_M3D_CONFIG_H
 #define H_M3D_CONFIG_H
 
 namespace my3d

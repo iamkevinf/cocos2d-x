@@ -1,4 +1,4 @@
-//
+﻿//
 //  memorycheck.h
 //  cocos2d_libs
 //

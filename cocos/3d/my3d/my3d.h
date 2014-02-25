@@ -1,4 +1,4 @@
-#ifndef H_MY3D_H
+﻿#ifndef H_MY3D_H
 #define H_MY3D_H
 
 #include "VertexBuffer.h"

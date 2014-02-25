@@ -1,4 +1,4 @@
-#ifndef H_M3D_RENDER_DEVICE_H
+﻿#ifndef H_M3D_RENDER_DEVICE_H
 #define H_M3D_RENDER_DEVICE_H
 
 #include "M3DRenderState.h"

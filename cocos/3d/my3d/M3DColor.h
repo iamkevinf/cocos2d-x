@@ -1,4 +1,4 @@
-#ifndef H_M3D_COLOR_H
+﻿#ifndef H_M3D_COLOR_H
 #define H_M3D_COLOR_H
 
 #include "M3DConfig.h"
@@ -48,12 +48,12 @@ namespace my3d
 
     };
 
-    const Color ColorZero(0.0f, 0.0f, 0.0f, 0.0f);
-    const Color ColorBlack(0.0f, 0.0f, 0.0f, 1.0f);
-    const Color ColorWhite(1.0f, 1.0f, 1.0f, 1.0f);
-    const Color ColorRed(1.0f, 0.0f, 0.0f, 1.0f);
-    const Color ColorGreen(0.0f, 1.0f, 0.0f, 1.0f);
-    const Color ColorBlue(0.0f, 0.0f, 1.0f, 1.0f);
+    const my3d::Color ColorZero(0.0f, 0.0f, 0.0f, 0.0f);
+    const my3d::Color ColorBlack(0.0f, 0.0f, 0.0f, 1.0f);
+    const my3d::Color ColorWhite(1.0f, 1.0f, 1.0f, 1.0f);
+    const my3d::Color ColorRed(1.0f, 0.0f, 0.0f, 1.0f);
+    const my3d::Color ColorGreen(0.0f, 1.0f, 0.0f, 1.0f);
+    const my3d::Color ColorBlue(0.0f, 0.0f, 1.0f, 1.0f);
 
 }//end namespace my3d
 

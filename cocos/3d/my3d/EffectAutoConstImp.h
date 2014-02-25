@@ -1,4 +1,4 @@
-#ifndef H_EFFECT_AUTO_CONST_IMP_H
+﻿#ifndef H_EFFECT_AUTO_CONST_IMP_H
 #define H_EFFECT_AUTO_CONST_IMP_H
 
 #include "EffectConstant.h"

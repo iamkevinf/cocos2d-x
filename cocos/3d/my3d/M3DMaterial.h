@@ -1,4 +1,4 @@
-#ifndef H_M3D_MATERIAL_H
+﻿#ifndef H_M3D_MATERIAL_H
 #define H_M3D_MATERIAL_H
 
 #include "M3DColor.h"

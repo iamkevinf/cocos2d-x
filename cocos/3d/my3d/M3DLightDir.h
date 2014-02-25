@@ -1,8 +1,8 @@
-#ifndef H_M3D_LIGHT_DIR_H
+﻿#ifndef H_M3D_LIGHT_DIR_H
 #define H_M3D_LIGHT_DIR_H
 
 #include "M3DBase.h"
-#include "Color.h"
+#include "M3DColor.h"
 
 namespace my3d
 {

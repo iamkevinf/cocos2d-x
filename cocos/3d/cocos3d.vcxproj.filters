@@ -220,6 +220,9 @@
     <ClCompile Include="my3d\M3DMaterial.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
+    <ClCompile Include="my3d\M3DTextureMgr.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cocos3d.h" />
@@ -464,6 +467,9 @@
       <Filter>my3d</Filter>
     </ClInclude>
     <ClInclude Include="my3d\M3DMaterial.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="my3d\M3DTextureMgr.h">
       <Filter>my3d</Filter>
     </ClInclude>
   </ItemGroup>

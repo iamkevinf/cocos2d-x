@@ -1,4 +1,4 @@
-#include "M3DColor.h"
+﻿#include "M3DColor.h"
 #include <cassert>
 
 namespace my3d
@@ -71,8 +71,9 @@ namespace my3d
     {
         r += v.r;
         g += v.g;
-        v += v.b;
+        b += v.b;
         a += v.a;
+        return *this;
     }
 
     const Color & Color::operator -= (const Color & v)
@@ -81,6 +82,7 @@ namespace my3d
         g -= v.g;
         b -= v.b;
         a -= v.a;
+        return *this;
     }
 
     const Color & Color::operator *= (float v)
@@ -89,6 +91,7 @@ namespace my3d
         g *= v;
         b *= v;
         a *= v;
+        return *this;
     }
 
     const Color & Color::operator /= (float v)
@@ -97,6 +100,7 @@ namespace my3d
         g /= v;
         b /= v;
         a /= v;
+        return *this;
     }
 
     Color Color::operator + (const Color & v) const

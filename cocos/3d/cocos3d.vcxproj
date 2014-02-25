@@ -78,6 +78,7 @@
     <ClCompile Include="my3d\M3DMaterial.cpp" />
     <ClCompile Include="my3d\M3DRenderDevice.cpp" />
     <ClCompile Include="my3d\M3DRenderState.cpp" />
+    <ClCompile Include="my3d\M3DTextureMgr.cpp" />
     <ClCompile Include="my3d\Shader.cpp" />
     <ClCompile Include="my3d\VertexBuffer.cpp" />
     <ClCompile Include="my3d\VertexDeclaration.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="my3d\M3DMaterial.h" />
     <ClInclude Include="my3d\M3DRenderDevice.h" />
     <ClInclude Include="my3d\M3DRenderState.h" />
+    <ClInclude Include="my3d\M3DTextureMgr.h" />
     <ClInclude Include="my3d\my3d.h" />
     <ClInclude Include="my3d\Shader.h" />
     <ClInclude Include="my3d\VertexBuffer.h" />

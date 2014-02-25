@@ -206,6 +206,9 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClCompile Include="..\math\Vector2.cpp" />
     <ClCompile Include="..\math\Vector3.cpp" />
     <ClCompile Include="..\math\Vector4.cpp" />
+    <ClCompile Include="..\mytool\memorycheck.cpp" />
+    <ClCompile Include="..\mytool\smartptr.cpp" />
+    <ClCompile Include="..\mytool\testtool.cpp" />
     <ClCompile Include="..\physics\CCPhysicsBody.cpp" />
     <ClCompile Include="..\physics\CCPhysicsContact.cpp" />
     <ClCompile Include="..\physics\CCPhysicsJoint.cpp" />
@@ -392,6 +395,10 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClInclude Include="..\math\Vector2.h" />
     <ClInclude Include="..\math\Vector3.h" />
     <ClInclude Include="..\math\Vector4.h" />
+    <ClInclude Include="..\mytool\memorycheck.h" />
+    <ClInclude Include="..\mytool\singleton.h" />
+    <ClInclude Include="..\mytool\smartptr.h" />
+    <ClInclude Include="..\mytool\testtool.h" />
     <ClInclude Include="..\physics\CCPhysicsBody.h" />
     <ClInclude Include="..\physics\CCPhysicsContact.h" />
     <ClInclude Include="..\physics\CCPhysicsJoint.h" />

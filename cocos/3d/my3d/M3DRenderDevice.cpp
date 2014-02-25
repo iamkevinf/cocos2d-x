@@ -1,4 +1,4 @@
-#include "M3DRenderDevice.h"
+﻿#include "M3DRenderDevice.h"
 
 
 namespace my3d
@@ -186,7 +186,7 @@ namespace my3d
 
     void RenderDevice::setShadeMode()
     {
-        glShadeModel();
+        //glShadeModel();
     }
 
 }//end namespace my3d

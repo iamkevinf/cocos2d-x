@@ -1,4 +1,4 @@
-#ifndef H_M3D_BASE_H
+﻿#ifndef H_M3D_BASE_H
 #define H_M3D_BASE_H
 
 
