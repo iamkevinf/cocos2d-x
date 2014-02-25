@@ -189,12 +189,12 @@ namespace my3d
         //glShadeModel();
     }
     
-    void RenderDevice::drawPrimitive(PrimitiveType pt, GLint start, GLsizei count)
+    void RenderDevice::drawPrimitive(PrimitiveType pt, uint32 start, uint32 count)
     {
         glDrawArrays(primitiveType2Sys(pt), start, count);
     }
     
-    void RenderDevice::drawIndexedPrimitive(PrimitiveType pt, GLint start,  GLsizei count)
+    void RenderDevice::drawIndexedPrimitive(PrimitiveType pt, uint32 start,  uint32 count)
     {
         assert(m_indexBuffer && "Please bind the index buffer first!");
         

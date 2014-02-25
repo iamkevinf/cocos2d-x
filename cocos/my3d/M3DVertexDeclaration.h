@@ -93,6 +93,8 @@ namespace my3d
         static VertexDeclaration * s_pActiveDecl;
         friend class Effect;
     };
+    
+    typedef SmartPtr<VertexDeclaration> VertexDeclarationPtr;
 
 }//end namespace my3d
 

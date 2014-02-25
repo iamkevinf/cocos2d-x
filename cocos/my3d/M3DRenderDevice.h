@@ -49,8 +49,8 @@ namespace my3d
         void setTextureActive(GLenum tex);
         void setTextureFilter(TextureTarget target, TextureParam param, TextureFilter filter);
 
-        void drawPrimitive(PrimitiveType pt, GLint start, GLsizei count);
-        void drawIndexedPrimitive(PrimitiveType pt, GLint start, GLsizei count);
+        void drawPrimitive(PrimitiveType pt, uint32 start, uint32 count);
+        void drawIndexedPrimitive(PrimitiveType pt, uint32 start, uint32 count);
         
         void setVertexBuffer(VertexBuffer *p);
         void unsetVertexBuffer(VertexBuffer *p);

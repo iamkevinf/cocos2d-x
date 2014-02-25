@@ -19,11 +19,13 @@ namespace
 
 class Test3DNode : public C3DNode
 {
-    my3d::VertexBuffer  *m_vertexBuffer;
-    my3d::IndexBuffer   *m_indexBuffer;
-    my3d::VertexDeclaration *m_vertexDecl;
+    my3d::VertexBufferPtr  m_vertexBuffer;
+    my3d::IndexBufferPtr   m_indexBuffer;
+    my3d::VertexDeclarationPtr m_vertexDecl;
     my3d::EffectPtr     m_effect;
-    SamplerPtr  m_sampler;
+    my3d::TexturePtr    m_texture;
+    
+    my3d::MeshPtr m_mesh;
     
 public:
     
@@ -37,9 +39,6 @@ public:
     
     ~Test3DNode()
     {
-        delete m_vertexDecl;
-        delete m_vertexBuffer;
-        delete m_indexBuffer;
     }
     
     static Test3DNode * create()
@@ -130,7 +129,7 @@ public:
         m_vertexDecl->addElement(my3d::VertexUsage::TEXCOORD0, 2);
 
         m_effect = my3d::EffectMgr::instance()->get("effect/test2.shader");
-        m_sampler = C3DSampler::create("HelloWorld.png");
+        m_texture = my3d::TextureMgr::instance()->get("HelloWorld.png");
         
         return true;
     }
@@ -155,6 +154,17 @@ public:
         m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
             numIndices * sizeof(unsigned short), &indices[0]);
 
+        m_mesh = new my3d::Mesh();
+        m_mesh->setVertexBuffer(m_vertexBuffer);
+        m_mesh->setVertexDecl(m_vertexDecl);
+        m_mesh->setIndexBuffer(m_indexBuffer);
+        
+        my3d::SubMeshPtr subMesh = new my3d::SubMesh();
+        subMesh->setPrimitive(my3d::PrimitiveType::TriangleList, 0, numIndices);
+        subMesh->setEffect(m_effect);
+        subMesh->setTexture(m_texture);
+        m_mesh->addSubMeshes(subMesh);
+        
 #ifdef TEST_EGL
         TestEGL::Init(&g_userData);
 #endif
@@ -174,7 +184,8 @@ public:
         my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
         my3d::renderDev()->setCullFace(my3d::CullFace::Back);
         
-        if(m_vertexBuffer != nullptr)
+#if 0
+        if(m_vertexBuffer)
         {
             m_vertexBuffer->bind();
             m_indexBuffer->bind();
@@ -182,8 +193,8 @@ public:
             
             if(m_effect && m_effect->begin())
             {
-                my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Sampler);
-                if(m_sampler && pConst) pConst->bindValue(m_sampler.get());
+                my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Texture);
+                if(m_texture && pConst) pConst->bindValue(m_texture.get());
                 
                 my3d::renderDev()->drawIndexedPrimitive(my3d::PrimitiveType::TriangleList, 0, numIndices);
                 
@@ -193,6 +204,12 @@ public:
             m_indexBuffer->unbind();
             m_vertexBuffer->unbind();
         }
+#else
+      if(m_mesh)
+      {
+          m_mesh->draw();
+      }
+#endif
         
         
 #endif

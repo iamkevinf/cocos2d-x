@@ -93,6 +93,9 @@ namespace my3d
         virtual void unbind();
     };
     
+    typedef SmartPtr<VertexBuffer>  VertexBufferPtr;
+    typedef SmartPtr<IndexBuffer>   IndexBufferPtr;
+    
 }//end namespace my3d
 
 
