@@ -120,7 +120,7 @@ namespace my3d
         TexCubeMap,
     };
     
-    enum TextureParam
+    enum class TextureParam
     {
         MinFilter,
         MagFilter,
@@ -128,7 +128,7 @@ namespace my3d
         WrapV,
     };
     
-    enum TextureFilter
+    enum class TextureFilter
     {
         Near,
         Linear,
@@ -136,6 +136,17 @@ namespace my3d
         NearMipmapLinear,
         LinearMipmapNear,
         LinearMipmapLinear,
+    };
+    
+    enum class PrimitiveType
+    {
+        PointList,
+        LineList,
+        LineStrip,
+        LineLoop,
+        TriangleList,
+        TriangleStrip,
+        TriangleFan,
     };
 
     GLenum renderState2Sys(RenderState state);
@@ -145,7 +156,8 @@ namespace my3d
     GLenum stencilOp2Sys(StencilOp op);
     GLenum textureTarget2Sys(TextureTarget tex);
     GLenum textureParam2Sys(TextureParam tex);
-    GLint textureFilter2sys(TextureFilter tex);
+    GLint textureFilter2Sys(TextureFilter tex);
+    GLenum primitiveType2Sys(PrimitiveType type);
 
 
 }//end namespace my3d

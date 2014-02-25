@@ -185,7 +185,7 @@ public:
                 my3d::EffectConstant *pConst = m_effect->getConstant(my3d::EffectConstType::Sampler);
                 if(m_sampler && pConst) pConst->bindValue(m_sampler.get());
                 
-                glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);
+                my3d::renderDev()->drawIndexedPrimitive(my3d::PrimitiveType::TriangleList, 0, numIndices);
                 
                 m_effect->end();
             }

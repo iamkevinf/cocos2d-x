@@ -9,10 +9,6 @@
 
 namespace my3d
 {
-    class VertexDeclaration;
-    class VertexBuffer;
-    class IndexBuffer;
-    
     class SubMesh : public cocos2d::ISmartObject
     {
     public:

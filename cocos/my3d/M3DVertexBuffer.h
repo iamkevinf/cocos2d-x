@@ -28,9 +28,12 @@ namespace my3d
     
     enum class IndexType
     {
+        Index8,
         Index16,
         Index32,
     };
+    
+    GLenum indexType2Sys(IndexType type);
 
     class BufferBase : public cocos2d::ISmartObject
     {
@@ -45,17 +48,17 @@ namespace my3d
         bool isValid() const;
         
         void resize(size_t size, void *data = nullptr);
-        void setVertex(size_t offset, size_t size, void *data);
+        void fill(size_t offset, size_t size, void *data);
         
-        void bind();
-        void unbind();
+        virtual void bind() = 0;
+        virtual void unbind() = 0;
         
     private:
         
         bool init();
         void destroy();
         
-    private:
+    protected:
         BufferType  m_type;
         BufferUsage m_usage;
         size_t m_size;
@@ -70,15 +73,24 @@ namespace my3d
         VertexBuffer(BufferUsage usage, size_t size, void *data=nullptr);
         ~VertexBuffer();
         
+        virtual void bind();
+        virtual void unbind();
     };
 
     //索引缓冲区
     class IndexBuffer : public BufferBase
     {
+        IndexType m_indexType;
     public:
         
         IndexBuffer(BufferUsage usage, size_t size, void *data=nullptr);
         ~IndexBuffer();
+        
+        void setIndexType(IndexType type);
+        IndexType getIndexType();
+        
+        virtual void bind();
+        virtual void unbind();
     };
     
 }//end namespace my3d

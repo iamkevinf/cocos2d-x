@@ -1,5 +1,5 @@
 ﻿#include "M3DRenderState.h"
-
+#include "mytool/testtool.h"
 
 namespace my3d
 {
@@ -74,14 +74,18 @@ namespace my3d
     {
         switch (mode)
         {
-        case CullFace::Front:
-            return GL_FRONT;
+            case CullFace::Front:
+                return GL_FRONT;
 
-        case CullFace::Back:
-            return GL_BACK;
+            case CullFace::Back:
+                return GL_BACK;
+                
+            case CullFace::FrontBack:
+                return GL_FRONT_AND_BACK;
 
-        default:
-            return GL_FRONT_AND_BACK;
+            default:
+                DO_ASSERT(0, "Invalid CullFace!");
+                return 0;
         }
     }
 
@@ -89,29 +93,30 @@ namespace my3d
     {
         switch (fun)
         {
-        case CompareFun::Never:
-            return GL_NEVER;
+            case CompareFun::Never:
+                return GL_NEVER;
 
-        case CompareFun::Less:
-            return GL_LESS;
+            case CompareFun::Less:
+                return GL_LESS;
 
-        case CompareFun::LessEqual:
-            return GL_LEQUAL;
+            case CompareFun::LessEqual:
+                return GL_LEQUAL;
 
-        case CompareFun::Equal:
-            return GL_EQUAL;
+            case CompareFun::Equal:
+                return GL_EQUAL;
 
-        case CompareFun::Greater:
-            return GL_GREATER;
+            case CompareFun::Greater:
+                return GL_GREATER;
 
-        case CompareFun::GreaterEqual:
-            return GL_GEQUAL;
+            case CompareFun::GreaterEqual:
+                return GL_GEQUAL;
 
-        case CompareFun::Always:
-            return GL_ALWAYS;
+            case CompareFun::Always:
+                return GL_ALWAYS;
 
-        default:
-            return GL_NEVER;
+            default:
+                DO_ASSERT(0, "Invalid CompareFun!");
+                return 0;
         }
     }
 
@@ -119,32 +124,33 @@ namespace my3d
     {
         switch (op)
         {
-        case StencilOp::Keep:
-            return GL_KEEP;
+            case StencilOp::Keep:
+                return GL_KEEP;
 
-        case StencilOp::Zero:
-            return GL_ZERO;
+            case StencilOp::Zero:
+                return GL_ZERO;
 
-        case StencilOp::Incr:
-            return GL_INCR;
+            case StencilOp::Incr:
+                return GL_INCR;
 
-        case StencilOp::IncrWrap:
-            return GL_INCR_WRAP;
+            case StencilOp::IncrWrap:
+                return GL_INCR_WRAP;
 
-        case StencilOp::Decr:
-            return GL_DECR;
+            case StencilOp::Decr:
+                return GL_DECR;
 
-        case StencilOp::DecrWrap:
-            return GL_DECR_WRAP;
+            case StencilOp::DecrWrap:
+                return GL_DECR_WRAP;
 
-        case StencilOp::Relpace:
-            return GL_REPLACE;
+            case StencilOp::Relpace:
+                return GL_REPLACE;
 
-        case StencilOp::Invert:
-            return GL_INVERT;
+            case StencilOp::Invert:
+                return GL_INVERT;
 
-        default:
-            return GL_KEEP;
+            default:
+                DO_ASSERT(0, "Invalid StencilOp");
+                return 0;
         }
     }
     
@@ -159,7 +165,7 @@ namespace my3d
                 return GL_TEXTURE_CUBE_MAP;
             
             default:
-                assert(0 && "invalid TextureTarget!");
+                DO_ASSERT(0, "Invalid TextureTarget");
                 return 0;
         };
     }
@@ -181,12 +187,12 @@ namespace my3d
                 return GL_TEXTURE_WRAP_R;
             
             default:
-                assert(0 && "invalid TextureParam!");
+                DO_ASSERT(0, "Invalid TextureParam");
                 return 0;
         };
     }
     
-    GLint textureFilter2sys(TextureFilter tex)
+    GLint textureFilter2Sys(TextureFilter tex)
     {
         switch (tex)
         {
@@ -209,9 +215,39 @@ namespace my3d
                 return GL_LINEAR_MIPMAP_LINEAR;
             
             default:
-                assert(0 && "Invalid TextureFilter");
+                DO_ASSERT(0, "Invalid TextureFilter");
                 return 0;
         }
     }
-
+    
+    GLenum primitiveType2Sys(PrimitiveType type)
+    {
+        switch(type)
+        {
+            case PrimitiveType::PointList:
+                return GL_POINTS;
+                
+            case PrimitiveType::LineList:
+                return GL_LINES;
+                
+            case PrimitiveType::LineStrip:
+                return GL_LINE_STRIP;
+                
+            case PrimitiveType::LineLoop:
+                return GL_LINE_LOOP;
+                
+            case PrimitiveType::TriangleList:
+                return GL_TRIANGLES;
+                
+            case PrimitiveType::TriangleStrip:
+                return GL_TRIANGLE_STRIP;
+                
+            case PrimitiveType::TriangleFan:
+                return GL_TRIANGLE_FAN;
+                
+            default:
+                DO_ASSERT(0, "Invalid PrimitiveType");
+                return 0;
+        };
+    }
 }

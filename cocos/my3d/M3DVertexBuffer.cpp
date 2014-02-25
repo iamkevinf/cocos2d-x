@@ -7,6 +7,7 @@
 //
 
 #include "M3DVertexBuffer.h"
+#include "M3DRenderDevice.h"
 
 namespace my3d
 {
@@ -36,6 +37,25 @@ namespace my3d
             default:
                 assert("unsupported buffer type!");
                 return -1;
+        };
+    }
+    
+    GLenum indexType2Sys(IndexType type)
+    {
+        switch(type)
+        {
+            case IndexType::Index8:
+                return GL_UNSIGNED_BYTE;
+                
+            case IndexType::Index16:
+                return GL_UNSIGNED_SHORT;
+                
+            case IndexType::Index32:
+                return GL_UNSIGNED_INT;
+                
+            default:
+                assert("unsupported index type!");
+                return 0;
         };
     }
 
@@ -72,8 +92,10 @@ namespace my3d
         }
     }
 
-    void BufferBase::setVertex(size_t offset, size_t size, void *data)
+    void BufferBase::fill(size_t offset, size_t size, void *data)
     {
+        assert(offset + size <= m_size && "BufferBase::fill - invalid offset and size!");
+        
         bind();
         glBufferSubData(bufferType2GL(m_type), offset, size, data);
         unbind();
@@ -84,16 +106,6 @@ namespace my3d
     {
         glGenBuffers(1, &m_vb);
         return m_vb != 0;
-    }
-
-    void BufferBase::bind()
-    {
-        glBindBuffer(bufferType2GL(m_type), m_vb);
-    }
-
-    void BufferBase::unbind()
-    {
-        glBindBuffer(bufferType2GL(m_type), 0);
     }
 
     void BufferBase::destroy()
@@ -115,20 +127,56 @@ namespace my3d
 
     VertexBuffer::~VertexBuffer()
     {
+        renderDev()->unsetVertexBuffer(this);
+    }
+    
+    void VertexBuffer::bind()
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, m_vb);
+        
+        renderDev()->setVertexBuffer(this);
+    }
+    
+    void VertexBuffer::unbind()
+    {
+        renderDev()->unsetVertexBuffer(this);
     }
 
     //////////////////////////////////////////////////////////////////////
 
     IndexBuffer::IndexBuffer(BufferUsage usage, size_t size, void *data)
     : BufferBase(BufferType::Index, usage)
+    , m_indexType(IndexType::Index16)
     {
         resize(size, data);
     }
 
     IndexBuffer::~IndexBuffer()
     {
-        
+        renderDev()->unsetIndexBuffer(this);
     }
+    
+    void IndexBuffer::setIndexType(IndexType type)
+    {
+        m_indexType = type;
+    }
+    
+    IndexType IndexBuffer::getIndexType()
+    {
+        return m_indexType;
+    }
+    
+    void IndexBuffer::bind()
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vb);
         
+        renderDev()->setIndexBuffer(this);
+    }
+    
+    void IndexBuffer::unbind()
+    {
+        renderDev()->unsetIndexBuffer(this);
+    }
+
 
 }//end namespace my3d

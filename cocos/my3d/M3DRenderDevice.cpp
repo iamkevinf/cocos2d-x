@@ -1,5 +1,5 @@
 ﻿#include "M3DRenderDevice.h"
-
+#include "M3DVertexBuffer.h"
 
 namespace my3d
 {
@@ -180,13 +180,46 @@ namespace my3d
         glTexParameteri(
                         textureTarget2Sys(target),
                         textureParam2Sys(param),
-                        textureFilter2sys(filter)
+                        textureFilter2Sys(filter)
                         );
     }
 
     void RenderDevice::setShadeMode()
     {
         //glShadeModel();
+    }
+    
+    void RenderDevice::drawPrimitive(PrimitiveType pt, GLint start, GLsizei count)
+    {
+        glDrawArrays(primitiveType2Sys(pt), start, count);
+    }
+    
+    void RenderDevice::drawIndexedPrimitive(PrimitiveType pt, GLint start,  GLsizei count)
+    {
+        assert(m_indexBuffer && "Please bind the index buffer first!");
+        
+        GLenum type = indexType2Sys(m_indexBuffer->getIndexType());
+        glDrawRangeElements(primitiveType2Sys(pt), start, start + count, count, type, nullptr);
+    }
+    
+    void RenderDevice::setVertexBuffer(VertexBuffer *p)
+    {
+        m_vertexBuffer = p;
+    }
+    
+    void RenderDevice::unsetVertexBuffer(VertexBuffer *p)
+    {
+        if(m_vertexBuffer == p) m_vertexBuffer = nullptr;
+    }
+    
+    void RenderDevice::setIndexBuffer(IndexBuffer *p)
+    {
+        m_indexBuffer = p;
+    }
+    
+    void RenderDevice::unsetIndexBuffer(IndexBuffer *p)
+    {
+        if(m_indexBuffer == p) m_indexBuffer = nullptr;
     }
 
 }//end namespace my3d

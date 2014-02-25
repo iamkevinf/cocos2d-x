@@ -6,6 +6,8 @@
 
 namespace my3d
 {
+    class VertexBuffer;
+    class IndexBuffer;
 
     class RenderDevice
     {
@@ -47,6 +49,15 @@ namespace my3d
         void setTextureActive(GLenum tex);
         void setTextureFilter(TextureTarget target, TextureParam param, TextureFilter filter);
 
+        void drawPrimitive(PrimitiveType pt, GLint start, GLsizei count);
+        void drawIndexedPrimitive(PrimitiveType pt, GLint start, GLsizei count);
+        
+        void setVertexBuffer(VertexBuffer *p);
+        void unsetVertexBuffer(VertexBuffer *p);
+        
+        void setIndexBuffer(IndexBuffer *p);
+        void unsetIndexBuffer(IndexBuffer *p);
+        
     private:
         std::vector<cocos2d::Matrix> m_matWorlds;
         cocos2d::Matrix m_matView;
@@ -55,6 +66,9 @@ namespace my3d
         mutable cocos2d::Matrix m_matViewProj;
         mutable cocos2d::Matrix m_matWorldViewProj;
         mutable uint32  m_dirty;
+        
+        VertexBuffer    *m_vertexBuffer;
+        IndexBuffer     *m_indexBuffer;
     };
 
 }//end namespace m3d
