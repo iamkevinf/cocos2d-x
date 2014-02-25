@@ -9,7 +9,7 @@
 #ifndef __cocos3d_libs__VertexDeclaration__
 #define __cocos3d_libs__VertexDeclaration__
 
-#include "cocos2d.h"
+#include "M3DBase.h"
 
 namespace my3d
 {

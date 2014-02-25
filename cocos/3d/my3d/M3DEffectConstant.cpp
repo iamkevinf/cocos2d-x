@@ -6,8 +6,7 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "EffectConstant.h"
-#include "../EnumDef.h"
+#include "M3DEffectConstant.h"
 #include "../C3DTexture.h"
 #include "../C3DSampler.h"
 #include "../C3DRenderState.h"

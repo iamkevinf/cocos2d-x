@@ -1,7 +1,7 @@
 ﻿#ifndef H_EFFECT_AUTO_CONST_IMP_H
 #define H_EFFECT_AUTO_CONST_IMP_H
 
-#include "EffectConstant.h"
+#include "M3DEffectConstant.h"
 
 namespace my3d
 {

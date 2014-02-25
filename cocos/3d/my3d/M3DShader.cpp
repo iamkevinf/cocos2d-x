@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "Shader.h"
+#include "M3DShader.h"
 #include "../Stream.h"
 
 namespace my3d

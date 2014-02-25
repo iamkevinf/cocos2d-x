@@ -9,8 +9,7 @@
 #ifndef __cocos3d_libs__VertexBuffer__
 #define __cocos3d_libs__VertexBuffer__
 
-#include "../EnumDef.h"
-#include "cocos2d.h"
+#include "M3DBase.h"
 
 namespace my3d
 {

@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "Effect.h"
-#include "EffectMgr.h"
-#include "Shader.h"
+#include "M3DEffect.h"
+#include "M3DEffectMgr.h"
+#include "M3DShader.h"
+#include "M3DEffectConstant.h"
+
 #include "../ElementNode.h"
-#include "EffectConstant.h"
-#include <cassert>
 
 namespace my3d
 {

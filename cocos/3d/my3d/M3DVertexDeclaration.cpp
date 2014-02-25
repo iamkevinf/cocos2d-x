@@ -6,11 +6,9 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "VertexDeclaration.h"
-#include "Effect.h"
+#include "M3DVertexDeclaration.h"
+#include "M3DEffect.h"
 
-#include <map>
-#include <cassert>
 
 namespace my3d
 {

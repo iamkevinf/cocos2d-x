@@ -3,7 +3,7 @@
 //  cocos3d_libs
 //
 //  Created by zhoubao on 14-2-24.
-//  Copyright (c) 2014骞?zhoubao. All rights reserved.
+//  Copyright (c) 2014年zhoubao. All rights reserved.
 //
 
 #include "M3DTextureMgr.h"

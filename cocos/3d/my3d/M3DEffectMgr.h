@@ -9,9 +9,8 @@
 #ifndef __cocos3d_libs__EffectManager__
 #define __cocos3d_libs__EffectManager__
 
-#include "Effect.h"
+#include "M3DEffect.h"
 #include "mytool/singleton.h"
-#include <map>
 
 namespace my3d
 {

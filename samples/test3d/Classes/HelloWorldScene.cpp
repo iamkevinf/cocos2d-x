@@ -11,6 +11,7 @@ USING_NS_CC;
 namespace
 {
     TestEGL::UserData g_userData;
+    
     const int numIndices = 6 * 2 * 3;
 }
 

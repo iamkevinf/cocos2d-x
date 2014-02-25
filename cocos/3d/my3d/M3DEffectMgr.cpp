@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "EffectMgr.h"
+#include "M3DEffectMgr.h"
 
 namespace my3d
 {

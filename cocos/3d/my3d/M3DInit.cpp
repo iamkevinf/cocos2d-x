@@ -1,6 +1,6 @@
 ﻿#include "M3DInit.h"
 #include "M3DRenderDevice.h"
-#include "EffectAutoConstImp.h"
+#include "M3DEffectAutoConstImp.h"
 
 namespace my3d
 {

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580316C218BC8D1100E43DA2 /* M3DColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 580316BC18BC8D1100E43DA2 /* M3DColor.cpp */; };
+		580316C318BC8D1100E43DA2 /* M3DColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 580316BD18BC8D1100E43DA2 /* M3DColor.h */; };
+		580316C418BC8D1100E43DA2 /* M3DLightDir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 580316BE18BC8D1100E43DA2 /* M3DLightDir.cpp */; };
+		580316C518BC8D1100E43DA2 /* M3DLightDir.h in Headers */ = {isa = PBXBuildFile; fileRef = 580316BF18BC8D1100E43DA2 /* M3DLightDir.h */; };
+		580316C618BC8D1100E43DA2 /* M3DMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 580316C018BC8D1100E43DA2 /* M3DMaterial.cpp */; };
+		580316C718BC8D1100E43DA2 /* M3DMaterial.h in Headers */ = {isa = PBXBuildFile; fileRef = 580316C118BC8D1100E43DA2 /* M3DMaterial.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -161,6 +167,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		580316BC18BC8D1100E43DA2 /* M3DColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DColor.cpp; path = my3d/M3DColor.cpp; sourceTree = "<group>"; };
+		580316BD18BC8D1100E43DA2 /* M3DColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DColor.h; path = my3d/M3DColor.h; sourceTree = "<group>"; };
+		580316BE18BC8D1100E43DA2 /* M3DLightDir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DLightDir.cpp; path = my3d/M3DLightDir.cpp; sourceTree = "<group>"; };
+		580316BF18BC8D1100E43DA2 /* M3DLightDir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DLightDir.h; path = my3d/M3DLightDir.h; sourceTree = "<group>"; };
+		580316C018BC8D1100E43DA2 /* M3DMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = M3DMaterial.cpp; path = my3d/M3DMaterial.cpp; sourceTree = "<group>"; };
+		580316C118BC8D1100E43DA2 /* M3DMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = M3DMaterial.h; path = my3d/M3DMaterial.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -335,6 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				58E2550518BAE5C500E08A7A /* M3DBase.h */,
+				580316BC18BC8D1100E43DA2 /* M3DColor.cpp */,
+				580316BD18BC8D1100E43DA2 /* M3DColor.h */,
 				58E2550618BAE5C500E08A7A /* M3DConfig.h */,
 				58E254FD18BAE5C500E08A7A /* M3DEffect.cpp */,
 				58E254FE18BAE5C500E08A7A /* M3DEffect.h */,
@@ -346,6 +360,10 @@
 				58E2550418BAE5C500E08A7A /* M3DEffectMgr.h */,
 				58E2550718BAE5C500E08A7A /* M3DInit.cpp */,
 				58E2550818BAE5C500E08A7A /* M3DInit.h */,
+				580316BE18BC8D1100E43DA2 /* M3DLightDir.cpp */,
+				580316BF18BC8D1100E43DA2 /* M3DLightDir.h */,
+				580316C018BC8D1100E43DA2 /* M3DMaterial.cpp */,
+				580316C118BC8D1100E43DA2 /* M3DMaterial.h */,
 				58E2550918BAE5C500E08A7A /* M3DRenderDevice.cpp */,
 				58E2550A18BAE5C500E08A7A /* M3DRenderDevice.h */,
 				58E2550B18BAE5C500E08A7A /* M3DRenderState.cpp */,
@@ -621,6 +639,7 @@
 				58CCD09F18ADFE8F00BCEB08 /* C3DRenderSystem.h in Headers */,
 				58CCD06618ADFE8F00BCEB08 /* AttachNode.h in Headers */,
 				583D7DF218B4728E00CFC1BD /* Vector4.h in Headers */,
+				580316C318BC8D1100E43DA2 /* M3DColor.h in Headers */,
 				583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */,
 				58CCD0B318ADFE8F00BCEB08 /* C3DSprite.h in Headers */,
 				58CCD09D18ADFE8F00BCEB08 /* C3DRenderState.h in Headers */,
@@ -652,6 +671,7 @@
 				58CCD0A318ADFE8F00BCEB08 /* C3DResourceLoader.h in Headers */,
 				58CCD0BF18ADFE8F00BCEB08 /* C3DVertexFormat.h in Headers */,
 				58E2552118BAE5C500E08A7A /* M3DRenderDevice.h in Headers */,
+				580316C518BC8D1100E43DA2 /* M3DLightDir.h in Headers */,
 				58CCD07918ADFE8F00BCEB08 /* C3DBone.h in Headers */,
 				58CCD07518ADFE8F00BCEB08 /* C3DAnimationClip.h in Headers */,
 				58E2551D18BAE5C500E08A7A /* M3DConfig.h in Headers */,
@@ -667,6 +687,7 @@
 				58E2552818BAE5C500E08A7A /* M3DVertexBuffer.h in Headers */,
 				58E2551F18BAE5C500E08A7A /* M3DInit.h in Headers */,
 				58CCD09B18ADFE8F00BCEB08 /* C3DRenderNode.h in Headers */,
+				580316C718BC8D1100E43DA2 /* M3DMaterial.h in Headers */,
 				58CCD0A518ADFE8F00BCEB08 /* C3DResourceManager.h in Headers */,
 				58E2552A18BAE5C500E08A7A /* M3DVertexDeclaration.h in Headers */,
 				58CCD08318ADFE8F00BCEB08 /* C3DMaterial.h in Headers */,
@@ -773,6 +794,7 @@
 				583D7DF518B4731E00CFC1BD /* Transform.cpp in Sources */,
 				58CCD0BC18ADFE8F00BCEB08 /* C3DVertexDeclaration.cpp in Sources */,
 				58CCD0B818ADFE8F00BCEB08 /* C3DTechnique.cpp in Sources */,
+				580316C218BC8D1100E43DA2 /* M3DColor.cpp in Sources */,
 				58CCD0A618ADFE8F00BCEB08 /* C3DResourcePool.cpp in Sources */,
 				58CCD0AC18ADFE8F00BCEB08 /* C3DSkeleton.cpp in Sources */,
 				58CCD09C18ADFE8F00BCEB08 /* C3DRenderState.cpp in Sources */,
@@ -783,11 +805,13 @@
 				58CCD0C318ADFE8F00BCEB08 /* ElementNode.cpp in Sources */,
 				58CCD0A418ADFE8F00BCEB08 /* C3DResourceManager.cpp in Sources */,
 				58CCD07E18ADFE8F00BCEB08 /* C3DEffectManager.cpp in Sources */,
+				580316C418BC8D1100E43DA2 /* M3DLightDir.cpp in Sources */,
 				58CCD09E18ADFE8F00BCEB08 /* C3DRenderSystem.cpp in Sources */,
 				58CCD0AE18ADFE8F00BCEB08 /* C3DSkinlessModel.cpp in Sources */,
 				58CCD06318ADFE8F00BCEB08 /* AnimationValue.cpp in Sources */,
 				58CCD0CC18ADFE8F00BCEB08 /* StringTool.cpp in Sources */,
 				58CCD07618ADFE8F00BCEB08 /* C3DAnimationCurve.cpp in Sources */,
+				580316C618BC8D1100E43DA2 /* M3DMaterial.cpp in Sources */,
 				58E2551A18BAE5C500E08A7A /* M3DEffectMgr.cpp in Sources */,
 				583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */,
 				58CCD08018ADFE8F00BCEB08 /* C3DLayer.cpp in Sources */,

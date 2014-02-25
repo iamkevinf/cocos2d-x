@@ -9,11 +9,8 @@
 #ifndef __cocos3d_libs__Effect__
 #define __cocos3d_libs__Effect__
 
-#include "CCObject.h"
-#include "../EnumDef.h"
+#include "M3DBase.h"
 #include "mytool/smartptr.h"
-
-#include <cassert>
 
 namespace cocos2d
 {

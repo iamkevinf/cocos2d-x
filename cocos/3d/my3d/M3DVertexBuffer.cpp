@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 zhoubao. All rights reserved.
 //
 
-#include "VertexBuffer.h"
+#include "M3DVertexBuffer.h"
 
 namespace my3d
 {
