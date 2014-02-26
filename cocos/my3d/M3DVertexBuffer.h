@@ -31,6 +31,7 @@ namespace my3d
         Index8,
         Index16,
         Index32,
+        IndexError,
     };
     
     GLenum indexType2Sys(IndexType type);
@@ -83,8 +84,10 @@ namespace my3d
         IndexType m_indexType;
     public:
         
-        IndexBuffer(BufferUsage usage, size_t size, void *data=nullptr);
+        IndexBuffer(BufferUsage usage, IndexType type, size_t size, void *data=nullptr);
         ~IndexBuffer();
+        
+        
         
         void setIndexType(IndexType type);
         IndexType getIndexType();

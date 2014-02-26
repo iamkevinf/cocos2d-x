@@ -196,7 +196,8 @@ namespace my3d
     
     void RenderDevice::drawIndexedPrimitive(PrimitiveType pt, uint32 start,  uint32 count)
     {
-        assert(m_indexBuffer && "Please bind the index buffer first!");
+        CCAssert(m_indexBuffer, "Please bind the index buffer first!");
+        CCAssert(m_indexBuffer->getIndexType() != IndexType::IndexError, "Please set the IndexType first!");
         
         GLenum type = indexType2Sys(m_indexBuffer->getIndexType());
         glDrawRangeElements(primitiveType2Sys(pt), start, start + count, count, type, nullptr);

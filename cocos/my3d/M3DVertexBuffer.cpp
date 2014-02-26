@@ -8,6 +8,7 @@
 
 #include "M3DVertexBuffer.h"
 #include "M3DRenderDevice.h"
+#include "mytool/testtool.h"
 
 namespace my3d
 {
@@ -19,8 +20,12 @@ namespace my3d
             case BufferUsage::Dynamic:
                 return GL_DYNAMIC_DRAW;
                 
-            default:
+            case BufferUsage::Static:
                 return GL_STATIC_DRAW;
+                
+            default:
+                DO_ASSERT(0, "Invalid BufferUsage");
+                return 0;
         };
     }
 
@@ -35,8 +40,8 @@ namespace my3d
                 return GL_ELEMENT_ARRAY_BUFFER;
                 
             default:
-                assert("unsupported buffer type!");
-                return -1;
+                DO_ASSERT(0, "Invalid BufferType");
+                return 0;
         };
     }
     
@@ -54,7 +59,7 @@ namespace my3d
                 return GL_UNSIGNED_INT;
                 
             default:
-                assert("unsupported index type!");
+                DO_ASSERT(0, "Invalid IndexType");
                 return 0;
         };
     }
@@ -94,7 +99,7 @@ namespace my3d
 
     void BufferBase::fill(size_t offset, size_t size, void *data)
     {
-        assert(offset + size <= m_size && "BufferBase::fill - invalid offset and size!");
+        DO_ASSERT(offset + size <= m_size, "BufferBase::fill - invalid offset and size!");
         
         bind();
         glBufferSubData(bufferType2GL(m_type), offset, size, data);
@@ -144,9 +149,9 @@ namespace my3d
 
     //////////////////////////////////////////////////////////////////////
 
-    IndexBuffer::IndexBuffer(BufferUsage usage, size_t size, void *data)
+    IndexBuffer::IndexBuffer(BufferUsage usage, IndexType type, size_t size, void *data)
     : BufferBase(BufferType::Index, usage)
-    , m_indexType(IndexType::Index16)
+    , m_indexType(type)
     {
         resize(size, data);
     }

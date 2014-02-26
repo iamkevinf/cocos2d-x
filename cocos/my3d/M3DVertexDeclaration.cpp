@@ -8,7 +8,7 @@
 
 #include "M3DVertexDeclaration.h"
 #include "M3DEffect.h"
-
+#include "M3DVertex.h"
 
 namespace my3d
 {
@@ -144,6 +144,67 @@ namespace my3d
         {
             pEffect->bindAttribute(i, vertexUsage2Attr(m_elements[i].usage));
         }
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    VertexDeclMgr::VertexDeclMgr()
+    {
+        
+    }
+    
+    VertexDeclMgr::~VertexDeclMgr()
+    {
+        
+    }
+    
+    void VertexDeclMgr::init()
+    {
+        VertexDeclarationPtr decl;
+        
+        decl = new VertexDeclaration();
+        decl->addElement(VertexUsage::POSITION, 3);
+        add(VertexXYZ::getType(), decl);
+        
+        decl = new VertexDeclaration();
+        decl->addElement(VertexUsage::POSITION, 3);
+        decl->addElement(VertexUsage::COLOR, 4);
+        add(VertexXYZColor::getType(), decl);
+        
+        decl = new VertexDeclaration();
+        decl->addElement(VertexUsage::POSITION, 3);
+        decl->addElement(VertexUsage::NORMAL, 3);
+        add(VertexXYZN::getType(), decl);
+        
+        decl = new VertexDeclaration();
+        decl->addElement(VertexUsage::POSITION, 3);
+        decl->addElement(VertexUsage::TEXCOORD0, 2);
+        add(VertexXYZUV::getType(), decl);
+        
+        decl = new VertexDeclaration();
+        decl->addElement(VertexUsage::POSITION, 3);
+        decl->addElement(VertexUsage::NORMAL, 3);
+        decl->addElement(VertexUsage::TEXCOORD0, 2);
+        add(VertexXYZNUV::getType(), decl);
+    }
+    
+    void VertexDeclMgr::add(const std::string & name, VertexDeclarationPtr decl)
+    {
+        auto it = m_decls.find(name);
+        if (it != m_decls.end())
+        {
+            CCLOGERROR("the vertex declaration '%s' has been exist!", name.c_str());
+            assert(0);
+            return;
+        }
+        m_decls.insert(std::make_pair(name, decl));
+    }
+    
+    VertexDeclarationPtr VertexDeclMgr::get(const std::string & name)
+    {
+        auto it = m_decls.find(name);
+        if(it != m_decls.end()) return it->second;
+        
+        return nullptr;
     }
 
 }

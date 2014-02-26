@@ -1,6 +1,7 @@
 ﻿#include "M3DInit.h"
 #include "M3DRenderDevice.h"
 #include "M3DEffectAutoConstImp.h"
+#include "M3DVertexDeclaration.h"
 
 namespace my3d
 {
@@ -28,6 +29,8 @@ namespace my3d
         REG_EFFECT_CONST_FACTORY(EffectConstType::SpotLight, effectApplySpotLight);
 
 #undef REG_EFFECT_CONST_FACTORY
+        
+        VertexDeclMgr::instance()->init();
 
         return true;
     }

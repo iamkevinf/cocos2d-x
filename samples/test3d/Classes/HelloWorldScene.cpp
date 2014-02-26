@@ -11,8 +11,6 @@ USING_NS_CC;
 namespace
 {
     TestEGL::UserData g_userData;
-    
-    const int numIndices = 6 * 2 * 3;
 }
 
 //#define TEST_EGL
@@ -26,6 +24,7 @@ class Test3DNode : public C3DNode
     my3d::TexturePtr    m_texture;
     
     my3d::MeshPtr m_mesh;
+    my3d::MeshPtr m_ground;
     
 public:
     
@@ -59,7 +58,7 @@ public:
         const float size = 2.8f;
         
         const int numVertices = 8;
-        BBVertex vertices[numVertices];
+        my3d::VertexXYZColor vertices[numVertices];
         
         vertices[0].position.set(-size, -size, size);
         vertices[0].color.set(0.0f, 0.0f, 1.0f, 1.0f);
@@ -80,13 +79,10 @@ public:
         }
         
         m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-                                                numVertices * sizeof(BBVertex), &vertices[0]);
+            numVertices * sizeof(my3d::VertexXYZColor), &vertices[0]);
         
         m_effect = my3d::EffectMgr::instance()->get("effect/test1.shader");
-        
-        m_vertexDecl = new my3d::VertexDeclaration();
-        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
-        m_vertexDecl->addElement(my3d::VertexUsage::COLOR, 4);
+        m_vertexDecl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZColor::getType());
         
         return true;
     }
@@ -96,7 +92,7 @@ public:
         const float size = 2.8f;
         
         const int numVertices = 8;
-        VertexPositionUV vertices[numVertices];
+        my3d::VertexXYZUV vertices[numVertices];
         
         vertices[0].position.set(-size, -size, size);
         vertices[0].uv.set(0.0f, 1.0f);
@@ -122,12 +118,9 @@ public:
         vertices[7].uv.set(0, 1);
         
         m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-                                                numVertices * sizeof(BBVertex), &vertices[0]);
+             numVertices * sizeof(my3d::VertexXYZUV), &vertices[0]);
         
-        m_vertexDecl = new my3d::VertexDeclaration();
-        m_vertexDecl->addElement(my3d::VertexUsage::POSITION, 3);
-        m_vertexDecl->addElement(my3d::VertexUsage::TEXCOORD0, 2);
-
+        m_vertexDecl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZUV::getType());
         m_effect = my3d::EffectMgr::instance()->get("effect/test2.shader");
         m_texture = my3d::TextureMgr::instance()->get("HelloWorld.png");
         
@@ -142,7 +135,8 @@ public:
         initVertexBuffer_2();
 #endif
         
-        unsigned short indices[numIndices] = {
+        const int numIndices = 6 * 2 * 3;
+        my3d::uint16 indices[numIndices] = {
             0, 2, 1,  0, 3, 2, //front
             3, 6, 2,  3, 7, 6, //right
             7, 5, 6,  7, 4, 5, //back
@@ -152,24 +146,96 @@ public:
         };
         
         m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
-            numIndices * sizeof(unsigned short), &indices[0]);
+            my3d::IndexType::Index16, numIndices * sizeof(my3d::uint16), &indices[0]);
 
-        m_mesh = new my3d::Mesh();
-        m_mesh->setVertexBuffer(m_vertexBuffer);
-        m_mesh->setVertexDecl(m_vertexDecl);
-        m_mesh->setIndexBuffer(m_indexBuffer);
-        
         my3d::SubMeshPtr subMesh = new my3d::SubMesh();
         subMesh->setPrimitive(my3d::PrimitiveType::TriangleList, 0, numIndices);
         subMesh->setEffect(m_effect);
         subMesh->setTexture(m_texture);
+        
+        m_mesh = new my3d::Mesh();
+        m_mesh->setVertexBuffer(m_vertexBuffer);
+        m_mesh->setVertexDecl(m_vertexDecl);
+        m_mesh->setIndexBuffer(m_indexBuffer);
         m_mesh->addSubMeshes(subMesh);
         
 #ifdef TEST_EGL
         TestEGL::Init(&g_userData);
 #endif
         
+        initGround();
+        
         return true;
+    }
+    
+    void initGround()
+    {
+        const int nRows = 10;
+        const int nCols = 8;
+        
+        const int nRowVertices = nRows + 1;
+        const int nColVertices = nCols + 1;
+        
+        const int nVertices = nRowVertices * nColVertices;
+        
+        const int nFaces = nRows * nCols * 2;
+        const int nIndices = nFaces * 3;
+        
+        const float gridWidth = 4.0f;
+        const float gridHeight = 4.0f;
+        const float halfWidth = nCols * gridWidth * 0.5f;
+        const float halfHeight = nRows * gridHeight * 0.5f;
+        const float y = -4.0f;
+        
+        my3d::VertexXYZUV vertices[nVertices];
+        for (int r = 0; r < nRowVertices; ++r)
+        {
+            for(int c = 0; c < nColVertices; ++c)
+            {
+                int i = r * nColVertices + c;
+                vertices[i].position.set(c * gridWidth - halfWidth, y, r * gridHeight - halfHeight);
+                vertices[i].uv.set(c, r);
+            }
+        }
+        
+        my3d::VertexBufferPtr vb = new my3d::VertexBuffer(
+              my3d::BufferUsage::Static, nVertices * sizeof(my3d::VertexXYZUV), vertices );
+        
+        my3d::uint16 indices[nIndices];
+        my3d::uint16 *p = indices;
+        for(int r = 0; r < nRows; ++r)
+        {
+            for(int c = 0; c < nCols; ++c)
+            {
+                int i = r * nColVertices + c;
+                p[0] = i;
+                p[1] = i + nColVertices;
+                p[2] = i + 1;
+                
+                p[3] = p[2];
+                p[4] = p[1];
+                p[5] = p[4] + 1;
+                
+                p += 6;
+            }
+        }
+        
+        my3d::IndexBufferPtr ib = new my3d::IndexBuffer(my3d::BufferUsage::Static,
+             my3d::IndexType::Index16, sizeof(my3d::uint16) * nIndices, indices);
+        
+        my3d::SubMeshPtr sub = new my3d::SubMesh();
+        sub->setEffect(my3d::EffectMgr::instance()->get("effect/test2.shader"));
+        sub->setTexture(my3d::TextureMgr::instance()->get("HelloWorld.png"));
+        sub->setPrimitive(my3d::PrimitiveType::TriangleList, 0, nIndices);
+        
+        my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZUV::getType());
+        
+        m_ground = new my3d::Mesh();
+        m_ground->setVertexBuffer(vb);
+        m_ground->setVertexDecl(decl);
+        m_ground->setIndexBuffer(ib);
+        m_ground->addSubMeshes(sub);
+        
     }
     
     virtual void draw() override
@@ -205,10 +271,11 @@ public:
             m_vertexBuffer->unbind();
         }
 #else
-      if(m_mesh)
-      {
+        if(m_mesh)
+        {
           m_mesh->draw();
-      }
+        }
+        
 #endif
         
         
@@ -219,6 +286,11 @@ public:
 #endif
 
         my3d::renderDev()->popWorld();
+        
+        if(m_ground)
+        {
+            m_ground->draw();
+        }
     }
 
 };
@@ -311,7 +383,8 @@ bool HelloWorld::init()
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
-    pCamera->setPosition(0, 0, 12.0f);
+    pCamera->setPosition(0, 4.0, 20.0f);
+    pCamera->rotateX(-3.14f / 8);
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);

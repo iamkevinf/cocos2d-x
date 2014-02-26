@@ -4,6 +4,7 @@
 #include "M3DColor.h"
 #include "M3DMaterial.h"
 
+#include "M3DVertex.h"
 #include "M3DVertexBuffer.h"
 #include "M3DVertexDeclaration.h"
 

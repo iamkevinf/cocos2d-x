@@ -37,9 +37,6 @@ namespace my3d
         Mesh();
         ~Mesh();
         
-        void setVertices(void *data, size_t size);
-        void setIndices(void *data, size_t size);
-        
         void draw();
         
         void setVertexBuffer(VertexBufferPtr vertex);

@@ -42,6 +42,8 @@
 		5803170B18BC970F00E43DA2 /* M3DMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 5803170918BC970F00E43DA2 /* M3DMesh.h */; };
 		5803170E18BC99D300E43DA2 /* M3DTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5803170C18BC99D300E43DA2 /* M3DTexture.cpp */; };
 		5803170F18BC99D300E43DA2 /* M3DTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 5803170D18BC99D300E43DA2 /* M3DTexture.h */; };
+		5813674018BD901E007B418B /* M3DVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5813673E18BD901E007B418B /* M3DVertex.cpp */; };
+		5813674118BD901E007B418B /* M3DVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 5813673F18BD901E007B418B /* M3DVertex.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -206,6 +208,8 @@
 		5803170918BC970F00E43DA2 /* M3DMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DMesh.h; sourceTree = "<group>"; };
 		5803170C18BC99D300E43DA2 /* M3DTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DTexture.cpp; sourceTree = "<group>"; };
 		5803170D18BC99D300E43DA2 /* M3DTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DTexture.h; sourceTree = "<group>"; };
+		5813673E18BD901E007B418B /* M3DVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DVertex.cpp; sourceTree = "<group>"; };
+		5813673F18BD901E007B418B /* M3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DVertex.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 				580316E618BC91B100E43DA2 /* M3DVertexDeclaration.cpp */,
 				580316E718BC91B100E43DA2 /* M3DVertexDeclaration.h */,
 				580316E818BC91B100E43DA2 /* my3d.h */,
+				5813673E18BD901E007B418B /* M3DVertex.cpp */,
+				5813673F18BD901E007B418B /* M3DVertex.h */,
 			);
 			name = my3d;
 			path = ../cocos/my3d;
@@ -641,6 +647,7 @@
 				5803170418BC91B100E43DA2 /* M3DVertexBuffer.h in Headers */,
 				580316F218BC91B100E43DA2 /* M3DEffectConstant.h in Headers */,
 				58CCD0A718ADFE8F00BCEB08 /* C3DResourcePool.h in Headers */,
+				5813674118BD901E007B418B /* M3DVertex.h in Headers */,
 				583D7DF018B4728E00CFC1BD /* Vector3.h in Headers */,
 				58CCD0CE18ADFE8F00BCEB08 /* Vertex.h in Headers */,
 				58CCD07718ADFE8F00BCEB08 /* C3DAnimationCurve.h in Headers */,
@@ -842,6 +849,7 @@
 				58CCD09218ADFE8F00BCEB08 /* C3DPass.cpp in Sources */,
 				58CCD09018ADFE8F00BCEB08 /* C3DOBB.cpp in Sources */,
 				58CCD06A18ADFE8F00BCEB08 /* BundleData.cpp in Sources */,
+				5813674018BD901E007B418B /* M3DVertex.cpp in Sources */,
 				58CCD0A218ADFE8F00BCEB08 /* C3DResourceLoader.cpp in Sources */,
 				58CCD0BE18ADFE8F00BCEB08 /* C3DVertexFormat.cpp in Sources */,
 				583D7DEF18B4728E00CFC1BD /* Vector3.cpp in Sources */,

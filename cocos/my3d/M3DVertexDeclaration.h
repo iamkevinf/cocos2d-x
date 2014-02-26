@@ -10,6 +10,7 @@
 #define __cocos3d_libs__VertexDeclaration__
 
 #include "M3DBase.h"
+#include "mytool/singleton.h"
 
 namespace my3d
 {
@@ -95,6 +96,22 @@ namespace my3d
     };
     
     typedef SmartPtr<VertexDeclaration> VertexDeclarationPtr;
+    
+    class VertexDeclMgr : public Singleton<VertexDeclMgr>
+    {
+    public:
+        VertexDeclMgr();
+        ~VertexDeclMgr();
+        
+        void init();
+        
+        void add(const std::string & name, VertexDeclarationPtr decl);
+        
+        VertexDeclarationPtr get(const std::string & name);
+        
+    private:
+        std::map<std::string, VertexDeclarationPtr> m_decls;
+    };
 
 }//end namespace my3d
 
