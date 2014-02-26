@@ -37,6 +37,8 @@ namespace my3d
         Mesh();
         ~Mesh();
         
+        bool load(const std::string & resouce);
+        
         void draw();
         
         void setVertexBuffer(VertexBufferPtr vertex);
@@ -46,6 +48,7 @@ namespace my3d
         void addSubMeshes(SubMeshPtr subMesh);
         
     private:
+        std::string         m_resouce;
         VertexDeclarationPtr m_vertexDecl;
         VertexBufferPtr      m_vertexBuffer;
         IndexBufferPtr       m_indexBuffer;

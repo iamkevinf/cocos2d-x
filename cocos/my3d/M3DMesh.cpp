@@ -1,6 +1,7 @@
 #include "M3DMesh.h"
 #include "M3DRenderDevice.h"
 #include "M3DEffectConstant.h"
+#include "M3DMeshMgr.h"
 
 namespace my3d
 {
@@ -62,7 +63,14 @@ namespace my3d
     
     Mesh::~Mesh()
     {
+        MeshMgr::instance()->del(this);
+    }
+    
+    bool Mesh::load(const std::string & resouce)
+    {
+        m_resouce = resouce;
         
+        return false;
     }
     
     

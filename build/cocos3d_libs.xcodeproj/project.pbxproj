@@ -44,6 +44,8 @@
 		5803170F18BC99D300E43DA2 /* M3DTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 5803170D18BC99D300E43DA2 /* M3DTexture.h */; };
 		5813674018BD901E007B418B /* M3DVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5813673E18BD901E007B418B /* M3DVertex.cpp */; };
 		5813674118BD901E007B418B /* M3DVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 5813673F18BD901E007B418B /* M3DVertex.h */; };
+		5813674418BDC7E2007B418B /* M3DMeshMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5813674218BDC7E2007B418B /* M3DMeshMgr.cpp */; };
+		5813674518BDC7E2007B418B /* M3DMeshMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 5813674318BDC7E2007B418B /* M3DMeshMgr.h */; };
 		583D7DC918B4728E00CFC1BD /* CocosMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7D9118B4728E00CFC1BD /* CocosMath.h */; };
 		583D7DE518B4728E00CFC1BD /* MathUtilty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */; };
 		583D7DE618B4728E00CFC1BD /* MathUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 583D7DB718B4728E00CFC1BD /* MathUtilty.h */; };
@@ -210,6 +212,8 @@
 		5803170D18BC99D300E43DA2 /* M3DTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DTexture.h; sourceTree = "<group>"; };
 		5813673E18BD901E007B418B /* M3DVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DVertex.cpp; sourceTree = "<group>"; };
 		5813673F18BD901E007B418B /* M3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DVertex.h; sourceTree = "<group>"; };
+		5813674218BDC7E2007B418B /* M3DMeshMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DMeshMgr.cpp; sourceTree = "<group>"; };
+		5813674318BDC7E2007B418B /* M3DMeshMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DMeshMgr.h; sourceTree = "<group>"; };
 		583D7D9118B4728E00CFC1BD /* CocosMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosMath.h; sourceTree = "<group>"; };
 		583D7DB618B4728E00CFC1BD /* MathUtilty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtilty.cpp; sourceTree = "<group>"; };
 		583D7DB718B4728E00CFC1BD /* MathUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtilty.h; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 				580316DB18BC91B100E43DA2 /* M3DMaterial.h */,
 				5803170818BC970F00E43DA2 /* M3DMesh.cpp */,
 				5803170918BC970F00E43DA2 /* M3DMesh.h */,
+				5813674218BDC7E2007B418B /* M3DMeshMgr.cpp */,
+				5813674318BDC7E2007B418B /* M3DMeshMgr.h */,
 				580316DC18BC91B100E43DA2 /* M3DRenderDevice.cpp */,
 				580316DD18BC91B100E43DA2 /* M3DRenderDevice.h */,
 				580316DE18BC91B100E43DA2 /* M3DRenderState.cpp */,
@@ -388,13 +394,13 @@
 				5803170D18BC99D300E43DA2 /* M3DTexture.h */,
 				580316E218BC91B100E43DA2 /* M3DTextureMgr.cpp */,
 				580316E318BC91B100E43DA2 /* M3DTextureMgr.h */,
+				5813673E18BD901E007B418B /* M3DVertex.cpp */,
+				5813673F18BD901E007B418B /* M3DVertex.h */,
 				580316E418BC91B100E43DA2 /* M3DVertexBuffer.cpp */,
 				580316E518BC91B100E43DA2 /* M3DVertexBuffer.h */,
 				580316E618BC91B100E43DA2 /* M3DVertexDeclaration.cpp */,
 				580316E718BC91B100E43DA2 /* M3DVertexDeclaration.h */,
 				580316E818BC91B100E43DA2 /* my3d.h */,
-				5813673E18BD901E007B418B /* M3DVertex.cpp */,
-				5813673F18BD901E007B418B /* M3DVertex.h */,
 			);
 			name = my3d;
 			path = ../cocos/my3d;
@@ -701,6 +707,7 @@
 				58CCD0A318ADFE8F00BCEB08 /* C3DResourceLoader.h in Headers */,
 				58CCD0BF18ADFE8F00BCEB08 /* C3DVertexFormat.h in Headers */,
 				58CCD07918ADFE8F00BCEB08 /* C3DBone.h in Headers */,
+				5813674518BDC7E2007B418B /* M3DMeshMgr.h in Headers */,
 				58CCD07518ADFE8F00BCEB08 /* C3DAnimationClip.h in Headers */,
 				58CCD0CD18ADFE8F00BCEB08 /* StringTool.h in Headers */,
 				58CCD08718ADFE8F00BCEB08 /* C3DMesh.h in Headers */,
@@ -822,6 +829,7 @@
 				58CCD0B818ADFE8F00BCEB08 /* C3DTechnique.cpp in Sources */,
 				58CCD0A618ADFE8F00BCEB08 /* C3DResourcePool.cpp in Sources */,
 				58CCD0AC18ADFE8F00BCEB08 /* C3DSkeleton.cpp in Sources */,
+				5813674418BDC7E2007B418B /* M3DMeshMgr.cpp in Sources */,
 				58CCD09C18ADFE8F00BCEB08 /* C3DRenderState.cpp in Sources */,
 				58CCD08218ADFE8F00BCEB08 /* C3DMaterial.cpp in Sources */,
 				58CCD09A18ADFE8F00BCEB08 /* C3DRenderNode.cpp in Sources */,

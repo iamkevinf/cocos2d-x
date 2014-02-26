@@ -33,7 +33,6 @@ public:
     */
     virtual void applicationWillEnterForeground();
     
-    void upateInstanceCounter(float time);
 };
 
 #endif // _APP_DELEGATE_H_

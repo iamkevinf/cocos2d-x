@@ -42,11 +42,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     return true;
 }
 
-void AppDelegate::upateInstanceCounter(float time)
-{
-    
-}
-
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
