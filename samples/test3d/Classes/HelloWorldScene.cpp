@@ -182,7 +182,7 @@ public:
         const int nIndices = nFaces * 3;
         
         const float gridWidth = 4.0f;
-        const float gridHeight = 4.0f;
+        const float gridHeight = 3.0f;
         const float halfWidth = nCols * gridWidth * 0.5f;
         const float halfHeight = nRows * gridHeight * 0.5f;
         const float y = -4.0f;
@@ -240,6 +240,11 @@ public:
     
     virtual void draw() override
     {
+        if(m_ground)
+        {
+            m_ground->draw();
+        }
+        
         this->rotateY(0.01f);
 
         my3d::renderDev()->pushWorld(this->getWorldMatrix());
@@ -287,10 +292,6 @@ public:
 
         my3d::renderDev()->popWorld();
         
-        if(m_ground)
-        {
-            m_ground->draw();
-        }
     }
 
 };

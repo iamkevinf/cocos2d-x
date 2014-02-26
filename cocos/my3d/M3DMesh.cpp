@@ -41,6 +41,9 @@ namespace my3d
         {
             if(m_texture)
             {
+                m_texture->setFilterMode(cocos2d::Texture_Filter_LINEAR, cocos2d::Texture_Filter_LINEAR);
+                m_texture->setWrapMode(cocos2d::Texture_Wrap_REPEAT, cocos2d::Texture_Wrap_REPEAT);
+                
                 EffectConstant *pConst = m_effect->getConstant(EffectConstType::Texture);
                 if(pConst) pConst->bindValue(m_texture.get());
             }
