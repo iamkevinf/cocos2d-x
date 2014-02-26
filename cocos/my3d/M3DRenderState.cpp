@@ -1,5 +1,4 @@
 ﻿#include "M3DRenderState.h"
-#include "mytool/testtool.h"
 
 namespace my3d
 {
@@ -84,7 +83,7 @@ namespace my3d
                 return GL_FRONT_AND_BACK;
 
             default:
-                DO_ASSERT(0, "Invalid CullFace!");
+                CCAssert(0, "Invalid CullFace!");
                 return 0;
         }
     }
@@ -115,7 +114,7 @@ namespace my3d
                 return GL_ALWAYS;
 
             default:
-                DO_ASSERT(0, "Invalid CompareFun!");
+                CCAssert(0, "Invalid CompareFun!");
                 return 0;
         }
     }
@@ -149,7 +148,7 @@ namespace my3d
                 return GL_INVERT;
 
             default:
-                DO_ASSERT(0, "Invalid StencilOp");
+                CCAssert(0, "Invalid StencilOp");
                 return 0;
         }
     }
@@ -165,7 +164,7 @@ namespace my3d
                 return GL_TEXTURE_CUBE_MAP;
             
             default:
-                DO_ASSERT(0, "Invalid TextureTarget");
+                CCAssert(0, "Invalid TextureTarget");
                 return 0;
         };
     }
@@ -187,12 +186,12 @@ namespace my3d
                 return GL_TEXTURE_WRAP_R;
             
             default:
-                DO_ASSERT(0, "Invalid TextureParam");
+                CCAssert(0, "Invalid TextureParam");
                 return 0;
         };
     }
     
-    GLint textureFilter2Sys(TextureFilter tex)
+    GLenum textureFilter2Sys(TextureFilter tex)
     {
         switch (tex)
         {
@@ -215,7 +214,7 @@ namespace my3d
                 return GL_LINEAR_MIPMAP_LINEAR;
             
             default:
-                DO_ASSERT(0, "Invalid TextureFilter");
+                CCAssert(0, "Invalid TextureFilter");
                 return 0;
         }
     }
@@ -246,8 +245,27 @@ namespace my3d
                 return GL_TRIANGLE_FAN;
                 
             default:
-                DO_ASSERT(0, "Invalid PrimitiveType");
+                CCAssert(0, "Invalid PrimitiveType");
                 return 0;
         };
+    }
+    
+    GLenum textureWrap2Sys(TextureWrap tex)
+    {
+        switch(tex)
+        {
+            case TextureWrap::Repeat:
+                return GL_REPEAT;
+                
+            case TextureWrap::Mirror:
+                return GL_MIRRORED_REPEAT;
+                
+            case TextureWrap::Clamp:
+                return GL_CLAMP_TO_EDGE;
+                
+            default:
+                CCAssert(0, "Invalid TextureWrap");
+                return 0;
+        }
     }
 }

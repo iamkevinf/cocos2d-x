@@ -2,24 +2,50 @@
 #define H_M3D_MATERIAL_H
 
 #include "M3DColor.h"
+#include "M3DTexture.h"
+#include "M3DEffect.h"
 
 namespace my3d
 {
-
-    class Material
+    
+    struct MaterialColor
     {
-    public:
-        Material();
-        Material(Color ambient, Color diffuse, Color specular, Color emissive);
-        ~Material();
-
-        void set(Color ambient, Color diffuse, Color specular, Color emissive);
-
         Color ambient;
         Color diffuse;
         Color specular;
         Color emissive;
     };
+
+    class Material : public cocos2d::ISmartObject
+    {
+    public:
+        Material();
+        ~Material();
+        
+        bool load(const std::string & resouce);
+        
+        bool begin();
+        void end();
+        
+        const std::string & getResouce() const { return m_resouce; }
+        void setEffect(EffectPtr eff){ m_effect = eff; }
+        
+        void setMaterialColor(const MaterialColor & color){ m_mtlColor = color; }
+
+        void setTextureStage(int i, const TextureStage & stage);
+        void addTextureStage(const TextureStage & stage);
+        void clearTextureStage();
+        
+    private:
+        std::string m_resouce;
+        MaterialColor m_mtlColor;
+        
+        EffectPtr m_effect;
+        
+        std::vector<TextureStage> m_texStage;
+    };
+    
+    typedef SmartPtr<Material> MaterialPtr;
 
 }//end namespace my3d
 

@@ -3,9 +3,7 @@
 
 #include "M3DVertexBuffer.h"
 #include "M3DVertexDeclaration.h"
-#include "M3DTexture.h"
-#include "M3DEffect.h"
-#include "M3DRenderState.h"
+#include "M3DMaterial.h"
 
 namespace my3d
 {
@@ -17,16 +15,15 @@ namespace my3d
         
         void draw();
         
-        void setTexture(TexturePtr tex);
-        void setEffect(EffectPtr eff);
+        void setMaterial(MaterialPtr mtl);
         void setPrimitive(PrimitiveType pt, uint32 start, uint32 count);
         
     private:
         uint32          m_indexStart;
         uint32          m_indexCount;
+        
         PrimitiveType   m_primitiveType;
-        TexturePtr      m_texture;
-        EffectPtr       m_effect;
+        MaterialPtr     m_material;
     };
     typedef SmartPtr<SubMesh> SubMeshPtr;
     

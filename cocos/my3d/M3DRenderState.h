@@ -138,6 +138,13 @@ namespace my3d
         LinearMipmapLinear,
     };
     
+    enum class TextureWrap
+    {
+        Repeat,
+        Mirror,
+        Clamp,
+    };
+    
     enum class PrimitiveType
     {
         PointList,
@@ -156,7 +163,8 @@ namespace my3d
     GLenum stencilOp2Sys(StencilOp op);
     GLenum textureTarget2Sys(TextureTarget tex);
     GLenum textureParam2Sys(TextureParam tex);
-    GLint textureFilter2Sys(TextureFilter tex);
+    GLenum textureFilter2Sys(TextureFilter tex);
+    GLenum textureWrap2Sys(TextureWrap tex);
     GLenum primitiveType2Sys(PrimitiveType type);
 
 

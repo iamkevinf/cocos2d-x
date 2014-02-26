@@ -48,6 +48,7 @@ namespace my3d
         
         void setTextureActive(GLenum tex);
         void setTextureFilter(TextureTarget target, TextureParam param, TextureFilter filter);
+        void setTextureWrap(TextureTarget target, TextureParam param, TextureWrap wrap);
 
         void drawPrimitive(PrimitiveType pt, uint32 start, uint32 count);
         void drawIndexedPrimitive(PrimitiveType pt, uint32 start, uint32 count);

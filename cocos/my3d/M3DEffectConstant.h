@@ -10,17 +10,13 @@
 #define __cocos3d_libs__EffectConstant__
 
 #include "M3DBase.h"
-
-namespace cocos2d
-{
-    class C3DTexture;
-    class C3DSampler;
-    class C3DSamplerCube;
-}
+#include "M3DTexture.h"
 
 namespace my3d
 {
     class Effect;
+    class Color;
+    class MaterialColor;
 
     namespace EffectConstType
     {
@@ -34,7 +30,15 @@ namespace my3d
         const std::string DirLight = "u_dirLight";
         const std::string SpotLight = "u_spotLight";
         const std::string Texture = "u_texture";
-        const std::string Sampler = "u_sampler";
+        const std::string Texture0 = "u_texture0";
+        const std::string Texture1 = "u_texture1";
+        const std::string Texture2 = "u_texture2";
+        const std::string Texture3 = "u_texture3";
+        const std::string Texture4 = "u_texture4";
+        const std::string Texture5 = "u_texture5";
+        const std::string Texture6 = "u_texture6";
+        const std::string Texture7 = "u_texture7";
+        const std::string Material = "u_material";
     }
     
     /**
@@ -92,9 +96,11 @@ namespace my3d
         
         void bindValue(const cocos2d::Vector4* values, unsigned int count = 1);
         
-        void bindValue(const cocos2d::C3DSampler* sampler);
+        void bindValue(const Color & color);
         
-        void bindValue(const cocos2d::C3DTexture* texture);
+        void bindValue(const MaterialColor & color);
+        
+        void bindValue(const TexturePtr texture);
         
     private:
         
@@ -111,7 +117,7 @@ namespace my3d
         std::string m_name;
         GLint       m_location;
         GLenum      m_type;
-        unsigned int m_index;
+        uint32      m_index;
         Effect*     m_pEffect;
     };
 

@@ -183,6 +183,15 @@ namespace my3d
                         textureFilter2Sys(filter)
                         );
     }
+    
+    void RenderDevice::setTextureWrap(TextureTarget target, TextureParam param, TextureWrap wrap)
+    {
+        glTexParameteri(
+                        textureTarget2Sys(target),
+                        textureParam2Sys(param),
+                        textureWrap2Sys(wrap)
+                        );
+    }
 
     void RenderDevice::setShadeMode()
     {

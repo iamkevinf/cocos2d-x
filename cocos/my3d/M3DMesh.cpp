@@ -17,14 +17,9 @@ namespace my3d
         
     }
     
-    void SubMesh::setTexture(TexturePtr tex)
+    void SubMesh::setMaterial(MaterialPtr mtl)
     {
-        m_texture = tex;
-    }
-    
-    void SubMesh::setEffect(EffectPtr eff)
-    {
-        m_effect = eff;
+        m_material = mtl;
     }
     
     void SubMesh::setPrimitive(PrimitiveType pt, uint32 start, uint32 count)
@@ -38,19 +33,10 @@ namespace my3d
     {
         if(m_indexCount == 0) return;
         
-        if (m_effect && m_effect->begin())
+        if (m_material && m_material->begin())
         {
-            if(m_texture)
-            {
-                m_texture->setFilterMode(cocos2d::Texture_Filter_LINEAR, cocos2d::Texture_Filter_LINEAR);
-                m_texture->setWrapMode(cocos2d::Texture_Wrap_REPEAT, cocos2d::Texture_Wrap_REPEAT);
-                
-                EffectConstant *pConst = m_effect->getConstant(EffectConstType::Texture);
-                if(pConst) pConst->bindValue(m_texture.get());
-            }
-            
             renderDev()->drawIndexedPrimitive(m_primitiveType, m_indexStart, m_indexCount);
-            m_effect->end();
+            m_material->end();
         }
     }
     

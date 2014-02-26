@@ -135,6 +135,8 @@ public:
         initVertexBuffer_2();
 #endif
         
+        //create index buffer
+        
         const int numIndices = 6 * 2 * 3;
         my3d::uint16 indices[numIndices] = {
             0, 2, 1,  0, 3, 2, //front
@@ -148,10 +150,26 @@ public:
         m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
             my3d::IndexType::Index16, numIndices * sizeof(my3d::uint16), &indices[0]);
 
+        //create material
+        
+        my3d::MaterialPtr mtl = new my3d::Material();
+        mtl->setEffect(m_effect);
+        
+        my3d::TextureStage stage;
+        stage.setTexture(m_texture);
+        stage.setUWrap(my3d::TextureWrap::Repeat);
+        stage.setVWrap(my3d::TextureWrap::Repeat);
+        stage.setMinFilter(my3d::TextureFilter::Linear);
+        stage.setMagFilter(my3d::TextureFilter::Linear);
+        mtl->addTextureStage(stage);
+        
+        //create a sub mesh
+        
         my3d::SubMeshPtr subMesh = new my3d::SubMesh();
         subMesh->setPrimitive(my3d::PrimitiveType::TriangleList, 0, numIndices);
-        subMesh->setEffect(m_effect);
-        subMesh->setTexture(m_texture);
+        subMesh->setMaterial(mtl);
+        
+        //create mesh
         
         m_mesh = new my3d::Mesh();
         m_mesh->setVertexBuffer(m_vertexBuffer);
@@ -187,6 +205,8 @@ public:
         const float halfHeight = nRows * gridHeight * 0.5f;
         const float y = -4.0f;
         
+        //create vertex buffer
+        
         my3d::VertexXYZUV vertices[nVertices];
         for (int r = 0; r < nRowVertices; ++r)
         {
@@ -200,6 +220,8 @@ public:
         
         my3d::VertexBufferPtr vb = new my3d::VertexBuffer(
               my3d::BufferUsage::Static, nVertices * sizeof(my3d::VertexXYZUV), vertices );
+        
+        //create index buffer
         
         my3d::uint16 indices[nIndices];
         my3d::uint16 *p = indices;
@@ -223,12 +245,30 @@ public:
         my3d::IndexBufferPtr ib = new my3d::IndexBuffer(my3d::BufferUsage::Static,
              my3d::IndexType::Index16, sizeof(my3d::uint16) * nIndices, indices);
         
+        //create material
+        
+        my3d::MaterialPtr mtl = new my3d::Material();
+        mtl->setEffect(my3d::EffectMgr::instance()->get("effect/test2.shader"));
+        
+        my3d::TextureStage stage;
+        stage.setTexture(my3d::TextureMgr::instance()->get("HelloWorld.png"));
+        stage.setUWrap(my3d::TextureWrap::Repeat);
+        stage.setVWrap(my3d::TextureWrap::Mirror);
+        stage.setMinFilter(my3d::TextureFilter::Linear);
+        stage.setMagFilter(my3d::TextureFilter::Linear);
+        mtl->addTextureStage(stage);
+        
+        //create a sub mesh
+        
         my3d::SubMeshPtr sub = new my3d::SubMesh();
-        sub->setEffect(my3d::EffectMgr::instance()->get("effect/test2.shader"));
-        sub->setTexture(my3d::TextureMgr::instance()->get("HelloWorld.png"));
+        sub->setMaterial(mtl);
         sub->setPrimitive(my3d::PrimitiveType::TriangleList, 0, nIndices);
         
+        //create vertex declaration
+        
         my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZUV::getType());
+        
+        //create the ground mesh
         
         m_ground = new my3d::Mesh();
         m_ground->setVertexBuffer(vb);

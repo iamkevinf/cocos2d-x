@@ -15,6 +15,8 @@
 
 #include "M3DTexture.h"
 #include "M3DTextureMgr.h"
+
+#include "M3DMaterial.h"
 #include "M3DMesh.h"
 
 #include "M3DInit.h"

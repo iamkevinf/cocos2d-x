@@ -7,9 +7,7 @@
 //
 
 #include "M3DEffectConstant.h"
-#include "../3d/C3DTexture.h"
-#include "../3d/C3DSampler.h"
-#include "../3d/C3DRenderState.h"
+#include "M3DMaterial.h"
 
 using namespace cocos2d;
 
@@ -105,26 +103,24 @@ namespace my3d
         glUniform4fv(m_location, count, (GLfloat*)values);
     }
     
-    void EffectConstant::bindValue(const C3DSampler* sampler)
+    void EffectConstant::bindValue(const Color & color)
     {
-        assert(m_type == GL_SAMPLER_2D);
-        
-        C3DRenderState::activeTexture(GL_TEXTURE0 + m_index);
-        
-        // Bind the sampler - this binds the texture and applies sampler state
-        const_cast<C3DSampler*>(sampler)->bind();
-        
-        glUniform1i(m_location, m_index);
+        glUniform4f(m_location, color.r, color.g, color.b, color.a);
     }
     
-    void EffectConstant::bindValue(const C3DTexture* texture)
+    void EffectConstant::bindValue(const MaterialColor & color)
+    {
+        glUniform4fv(m_location, 4, (GLfloat*)&color);
+    }
+    
+    void EffectConstant::bindValue(TexturePtr texture)
     {
         assert(m_type == GL_SAMPLER_2D);
         
-        C3DRenderState::activeTexture(GL_TEXTURE0 + m_index);
+        GL_ASSERT(glActiveTexture(GL_TEXTURE0 + m_index));
         
         //binds the texture
-        glBindTexture(GL_TEXTURE_2D, texture->getHandle());
+        glBindTexture(GL_TEXTURE_2D, texture? texture->getHandle() : 0);
         
         glUniform1i(m_location, m_index);
     }
