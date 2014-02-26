@@ -54,6 +54,14 @@ namespace my3d
     const my3d::Color ColorRed(1.0f, 0.0f, 0.0f, 1.0f);
     const my3d::Color ColorGreen(0.0f, 1.0f, 0.0f, 1.0f);
     const my3d::Color ColorBlue(0.0f, 0.0f, 1.0f, 1.0f);
+    
+    struct MaterialColor
+    {
+        Color ambient;
+        Color diffuse;
+        Color specular;
+        Color emissive;
+    };
 
 }//end namespace my3d
 

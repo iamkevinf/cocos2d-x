@@ -7,14 +7,6 @@
 
 namespace my3d
 {
-    
-    struct MaterialColor
-    {
-        Color ambient;
-        Color diffuse;
-        Color specular;
-        Color emissive;
-    };
 
     class Material : public cocos2d::ISmartObject
     {

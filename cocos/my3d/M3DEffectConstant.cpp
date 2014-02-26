@@ -7,7 +7,7 @@
 //
 
 #include "M3DEffectConstant.h"
-#include "M3DMaterial.h"
+#include "M3DColor.h"
 
 using namespace cocos2d;
 
