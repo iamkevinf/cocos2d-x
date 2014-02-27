@@ -33,11 +33,11 @@ bool TestGroundDrawNode::initTest3D()
     const int nFaces = nRows * nCols * 2;
     const int nIndices = nFaces * 3;
     
-    const float gridWidth = 4.0f;
-    const float gridHeight = 3.0f;
+    const float gridWidth = 1.0f;
+    const float gridHeight = 1.0f;
     const float halfWidth = nCols * gridWidth * 0.5f;
     const float halfHeight = nRows * gridHeight * 0.5f;
-    const float y = -4.0f;
+    const float y = -2.0f;
     
     //create vertex buffer
     

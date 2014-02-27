@@ -73,7 +73,7 @@ bool TestTextureDrawNode::initTest3D()
     m_effect = my3d::EffectMgr::instance()->get("effect/test2.shader");
     m_texture = my3d::TextureMgr::instance()->get("HelloWorld.png");
     
-    return false;
+    return true;
 }
 
 void TestTextureDrawNode::draw()

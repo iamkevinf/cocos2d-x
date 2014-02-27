@@ -93,8 +93,8 @@ bool TestMeshDrawNode::initTest3D()
     
     m_mesh = new my3d::Mesh();
     m_mesh->setVertexBuffer(vb);
-    m_mesh->setVertexDecl(ib);
-    m_mesh->setIndexBuffer(decl);
+    m_mesh->setVertexDecl(decl);
+    m_mesh->setIndexBuffer(ib);
     m_mesh->addSubMeshes(subMesh);
     
     return true;
@@ -102,7 +102,7 @@ bool TestMeshDrawNode::initTest3D()
 
 void TestMeshDrawNode::draw()
 {
-    this->rotateX(0.01);
+    this->rotateY(0.01);
     
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     

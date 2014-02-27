@@ -68,6 +68,10 @@
 		58110C0818BEE57200864C8E /* TestGroundDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C0518BEE57200864C8E /* TestGroundDraw.cpp */; };
 		58110C0B18BEE88C00864C8E /* TestBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C0918BEE88C00864C8E /* TestBase.cpp */; };
 		58110C0C18BEE88C00864C8E /* TestBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C0918BEE88C00864C8E /* TestBase.cpp */; };
+		58110C0E18BEF2EF00864C8E /* gui in Resources */ = {isa = PBXBuildFile; fileRef = 58110C0D18BEF2EF00864C8E /* gui */; };
+		58110C0F18BEF2EF00864C8E /* gui in Resources */ = {isa = PBXBuildFile; fileRef = 58110C0D18BEF2EF00864C8E /* gui */; };
+		58110C1218BEF3B100864C8E /* TestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1018BEF3B100864C8E /* TestController.cpp */; };
+		58110C1318BEF3B100864C8E /* TestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1018BEF3B100864C8E /* TestController.cpp */; };
 		582C41E018B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		582C41E118B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		582C41E418B759C600B890A3 /* TestEGLDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41E218B759C600B890A3 /* TestEGLDraw.cpp */; };
@@ -333,6 +337,9 @@
 		58110C0618BEE57200864C8E /* TestGroundDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestGroundDraw.h; path = ../Classes/TestGroundDraw.h; sourceTree = "<group>"; };
 		58110C0918BEE88C00864C8E /* TestBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestBase.cpp; path = ../Classes/TestBase.cpp; sourceTree = "<group>"; };
 		58110C0A18BEE88C00864C8E /* TestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBase.h; path = ../Classes/TestBase.h; sourceTree = "<group>"; };
+		58110C0D18BEF2EF00864C8E /* gui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gui; sourceTree = "<group>"; };
+		58110C1018BEF3B100864C8E /* TestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestController.cpp; path = ../Classes/TestController.cpp; sourceTree = "<group>"; };
+		58110C1118BEF3B100864C8E /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestController.h; path = ../Classes/TestController.h; sourceTree = "<group>"; };
 		582C41DF18B74EA600B890A3 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
 		582C41E218B759C600B890A3 /* TestEGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestEGLDraw.cpp; path = ../Classes/TestEGLDraw.cpp; sourceTree = "<group>"; };
 		582C41E318B759C600B890A3 /* TestEGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestEGLDraw.h; path = ../Classes/TestEGLDraw.h; sourceTree = "<group>"; };
@@ -436,6 +443,8 @@
 				58110C0618BEE57200864C8E /* TestGroundDraw.h */,
 				58110C0918BEE88C00864C8E /* TestBase.cpp */,
 				58110C0A18BEE88C00864C8E /* TestBase.h */,
+				58110C1018BEF3B100864C8E /* TestController.cpp */,
+				58110C1118BEF3B100864C8E /* TestController.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -564,6 +573,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				58110C0D18BEF2EF00864C8E /* gui */,
 				582C41DF18B74EA600B890A3 /* effect */,
 				583D7DF718B474A500CFC1BD /* config */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
@@ -793,6 +803,7 @@
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				58110C0E18BEF2EF00864C8E /* gui in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -807,6 +818,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58110C0F18BEF2EF00864C8E /* gui in Resources */,
 				583D7DF918B474A600CFC1BD /* config in Resources */,
 				582C41E118B74EA600B890A3 /* effect in Resources */,
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
@@ -834,6 +846,7 @@
 				58110C0B18BEE88C00864C8E /* TestBase.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				5869FE3618BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */,
+				58110C1218BEF3B100864C8E /* TestController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +855,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58110C0818BEE57200864C8E /* TestGroundDraw.cpp in Sources */,
+				58110C1318BEF3B100864C8E /* TestController.cpp in Sources */,
 				5869FE3718BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */,
 				582C41E518B759C600B890A3 /* TestEGLDraw.cpp in Sources */,
 				58110BFE18BEE30300864C8E /* TestMeshDraw.cpp in Sources */,

@@ -1,126 +1,7 @@
 #include "HelloWorldScene.h"
-#include "cocos3d.h"
-#include "my3d/my3d.h"
-
-#include "TestEGLDraw.h"
-#include "TestSimpleDraw.h"
-#include "TestTextureDraw.h"
-#include "TestMeshDraw.h"
-#include "TestGroundDraw.h"
-
 
 
 USING_NS_CC;
-
-
-//#define TEST_EGL
-
-typedef TestBaseNode* (*CreateTestFun)();
-
-class Test3DNode : public TestBaseNode
-{
-    
-    std::vector<std::pair<std::string, CreateTestFun>> m_testFactory;
-    int m_curTestIndex;
-    TestBaseNode * m_curTestNode;
-    
-    
-    void addTestFactoryMethod(const std::string & desc, CreateTestFun method)
-    {
-        m_testFactory.push_back(std::make_pair(desc, method));
-    }
-    
-    TestBaseNode * createTestNode(int index)
-    {
-        return (m_testFactory[index].second)();
-    }
-    
-    
-public:
-    
-    Test3DNode()
-    : m_curTestNode(nullptr)
-    , m_curTestIndex(0)
-    {
-        
-    }
-    
-    ~Test3DNode()
-    {
-    }
-    
-    CREATE_TEST_3D_NODE(Test3DNode);
-    
-    bool initTest3D()
-    {
-        m_testFactory.clear();
-        
-        addTestFactoryMethod("opengl es", CreateTestFun(TestEGLDrawNode::create));
-        addTestFactoryMethod("simple cube", CreateTestFun(TestSimpleDrawNode::create));
-        addTestFactoryMethod("texture cube", CreateTestFun(TestTextureDrawNode::create));
-        addTestFactoryMethod("mesh", CreateTestFun(TestMeshDrawNode::create));
-        addTestFactoryMethod("ground", CreateTestFun(TestGroundDrawNode::create));
-        addTestFactoryMethod("complex scene", CreateTestFun(TestGroundDrawNode::create));
-        
-        restartTest();
-        
-        return true;
-    }
-    
-    virtual void draw() override
-    {
-        my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
-        my3d::renderDev()->setCullFace(my3d::CullFace::Back);
-        my3d::renderDev()->pushWorld(this->getWorldMatrix());
-
-        TestBaseNode::draw();
-      
-        my3d::renderDev()->popWorld();
-    }
-    
-    void goNextTest()
-    {
-        ++m_curTestIndex;
-        m_curTestIndex %= m_testFactory.size();
-        
-        restartTest();
-    }
-    
-    void goPrevTest()
-    {
-        --m_curTestIndex;
-        if(m_curTestIndex < 0)
-            m_curTestIndex = m_testFactory.size() - 1;
-        
-        restartTest();
-    }
-    
-    void restartTest()
-    {
-        if(m_curTestNode)
-            this->removeChild(m_curTestNode);
-        
-        m_curTestNode = createTestNode(m_curTestIndex);
-        this->addChild(m_curTestNode);
-    }
-    
-    const size_t getNumTotalTest() const
-    {
-        return m_testFactory.size();
-    }
-    
-    const std::string & getTestDesc(int index) const
-    {
-        return m_testFactory[index].first;
-    }
-    
-    const std::string & getCurTestDesc() const
-    {
-        return m_testFactory[m_curTestIndex].first;
-    }
-    
-};
-
 
 Scene* HelloWorld::createScene()
 {
@@ -138,6 +19,7 @@ Scene* HelloWorld::createScene()
 }
 
 HelloWorld::HelloWorld()
+: m_pTestController(nullptr)
 {
     
 }
@@ -173,8 +55,21 @@ bool HelloWorld::init()
 	closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
 
+    auto prevItem = MenuItemImage::create("gui/b1.png", "gui/b2.png", CC_CALLBACK_1(HelloWorld::menuPrevTestCallback, this));
+    auto restartItem = MenuItemImage::create("gui/r1.png", "gui/r2.png", CC_CALLBACK_1(HelloWorld::menuRestartTestCallback, this));
+    auto nextItem = MenuItemImage::create("gui/f1.png", "gui/f2.png", CC_CALLBACK_1(HelloWorld::menuNextTestCallback, this));
+    
+    int start = 150;
+    prevItem->setPosition(start, prevItem->getContentSize().height);
+    start += prevItem->getContentSize().width;
+    
+    restartItem->setPosition(start, restartItem->getContentSize().height);
+    start += restartItem->getContentSize().width + 30;
+    
+    nextItem->setPosition(start, nextItem->getContentSize().height);
+    
     // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
+    auto menu = Menu::create(closeItem, prevItem, restartItem, nextItem, NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
 
@@ -184,32 +79,21 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = LabelTTF::create("Hello World", "Arial", 24);
+    m_pTitle = LabelTTF::create("Hello World", "Arial", 24);
     
     // position the label on the center of the screen
-    label->setPosition(Point(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+    m_pTitle->setPosition(Point(origin.x + visibleSize.width/2,
+                            origin.y + visibleSize.height - m_pTitle->getContentSize().height));
 
     // add the label as a child to this layer
-    this->addChild(label, 1);
-
-#if 0
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-#endif
+    this->addChild(m_pTitle, 1);
     
-#if 1
+
     C3DLayer * pLayer = C3DLayer::create();
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
-    pCamera->setPosition(0, 4.0, 20.0f);
+    pCamera->setPosition(0, 4.0, 10.0f);
     pCamera->rotateX(-3.14f / 8);
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
@@ -218,10 +102,10 @@ bool HelloWorld::init()
     my3d::renderDev()->setView(pCamera->getViewMatrix());
     my3d::renderDev()->setProjection(pCamera->getProjectionMatrix());
     
-    Test3DNode * pNode = Test3DNode::create();
-    pScene->addChild(pNode);
+    m_pTestController = TestController::create();
+    pScene->addChild(m_pTestController);
     
-#endif
+    m_pTitle->setString(m_pTestController->getCurTestDesc());
     
     return true;
 }
@@ -236,10 +120,23 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 #endif
 }
 
-void HelloWorld::draw()
+void HelloWorld::menuPrevTestCallback(Object *pSender)
 {
-    
-    Layer::draw();
+    m_pTestController->goPrevTest();
+    m_pTitle->setString(m_pTestController->getCurTestDesc());
 }
+
+void HelloWorld::menuNextTestCallback(Object *pSender)
+{
+    m_pTestController->goNextTest();
+    m_pTitle->setString(m_pTestController->getCurTestDesc());
+}
+
+void HelloWorld::menuRestartTestCallback(Object *pSender)
+{
+    m_pTestController->restartTest();
+    m_pTitle->setString(m_pTestController->getCurTestDesc());
+}
+
 
 //////////////////////////////////////////////////////////
