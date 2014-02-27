@@ -93,7 +93,7 @@ bool HelloWorld::init()
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
-    pCamera->setPosition(0, 4.0, 10.0f);
+    pCamera->setPosition(0, 2.0, 6.0f);
     pCamera->rotateX(-3.14f / 8);
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);

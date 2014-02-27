@@ -58,9 +58,9 @@ public:
     
     template<typename U>
     SmartPtr(const SmartPtr<U> & o)
+    : m_ptr(nullptr)
     {
-        m_ptr = dynamic_cast<pointer>(o.get());
-        if(m_ptr != NULL) m_ptr->retain();
+        *this = o;
     }
     
     ~SmartPtr()
@@ -113,6 +113,28 @@ public:
         return *this;
     }
     
+    template<typename U>
+    const this_type & operator = (U *p)
+    {
+        if(m_ptr != p)
+        {
+            if(m_ptr != NULL) m_ptr->release();
+            if(p != nullptr)
+            {
+                m_ptr = dynamic_cast<pointer>(p);
+                CCAssert(m_ptr, "SmartPtr::operator= - Invalid type cast!");
+                
+                m_ptr->retain();
+                CHECK_SMART_OBJECT(m_ptr);
+            }
+            else
+            {
+                m_ptr = nullptr;
+            }
+        }
+        return *this;
+    }
+    
     const this_type & operator = (const this_type & o)
     {
         return *this = o.m_ptr;
@@ -121,7 +143,7 @@ public:
     template<typename U>
     const this_type & operator = (const SmartPtr<U> & o)
     {
-        return *this = dynamic_cast<pointer>(o.get());
+        return *this = o.get();
     }
     
 private:
