@@ -9,7 +9,7 @@
 #include "TestSimpleDraw.h"
 
 
-SimpleDrawDNode::SimpleDrawDNode()
+TestSimpleDrawNode::TestSimpleDrawNode()
 : m_vertexBuffer(nullptr)
 , m_vertexDecl(nullptr)
 , m_indexBuffer(nullptr)
@@ -17,30 +17,16 @@ SimpleDrawDNode::SimpleDrawDNode()
     
 }
     
-SimpleDrawDNode::~SimpleDrawDNode()
+TestSimpleDrawNode::~TestSimpleDrawNode()
 {
 }
 
-/*static*/ SimpleDrawDNode * SimpleDrawDNode::create()
-{
-    SimpleDrawDNode * p = new SimpleDrawDNode();
-    if(!p->initTest3D())
-    {
-        delete p;
-        return nullptr;
-    }
-    
-    p->autorelease();
-    return p;
-}
 
-
-    
-bool SimpleDrawDNode::initTest3D()
+bool TestSimpleDrawNode::initTest3D()
 {
     //create vertex buffer
     
-    const float size = 2.8f;
+    const float size = 1.0f;
     
     const int numVertices = 8;
     my3d::VertexXYZColor vertices[numVertices];
@@ -92,18 +78,18 @@ bool SimpleDrawDNode::initTest3D()
     return true;
 }
 
-void SimpleDrawDNode::draw()
+void TestSimpleDrawNode::draw()
 {
     this->rotateY(0.01f);
     
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     
-    C3DNode::draw();
+    TestBaseNode::draw();
     
     my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
     my3d::renderDev()->setCullFace(my3d::CullFace::Back);
     
-    if(m_vertexBuffer)
+    if(m_vertexBuffer && m_indexBuffer && m_vertexDecl)
     {
         m_vertexBuffer->bind();
         m_indexBuffer->bind();

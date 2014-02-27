@@ -9,11 +9,10 @@
 #ifndef __test3d__TestSimpleDraw__
 #define __test3d__TestSimpleDraw__
 
-#include "cocos3d.h"
-#include "my3d/my3d.h"
+#include "TestBase.h"
 
 //渲染一个立方体
-class SimpleDrawDNode : public cocos2d::C3DNode
+class TestSimpleDrawNode : public TestBaseNode
 {
     my3d::VertexBufferPtr   m_vertexBuffer;
     my3d::IndexBufferPtr    m_indexBuffer;
@@ -23,13 +22,12 @@ class SimpleDrawDNode : public cocos2d::C3DNode
 
 public:
     
-    SimpleDrawDNode();
-    ~SimpleDrawDNode();
+    TestSimpleDrawNode();
+    ~TestSimpleDrawNode();
     
-    static SimpleDrawDNode * create();
+    CREATE_TEST_3D_NODE(TestSimpleDrawNode);
     
-    bool initTest3D();
-    
+    virtual bool initTest3D() override;
     virtual void draw() override;
     
 };
