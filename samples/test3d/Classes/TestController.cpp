@@ -13,6 +13,7 @@
 #include "TestTextureDraw.h"
 #include "TestMeshDraw.h"
 #include "TestGroundDraw.h"
+#include "TestLightDraw.h"
 
 
 TestController::TestController()
@@ -36,9 +37,12 @@ bool TestController::initTest3D()
     addTestFactoryMethod("texture cube", CreateTestFun(TestTextureDrawNode::create));
     addTestFactoryMethod("mesh", CreateTestFun(TestMeshDrawNode::create));
     addTestFactoryMethod("ground", CreateTestFun(TestGroundDrawNode::create));
-    addTestFactoryMethod("complex scene", CreateTestFun(TestGroundDrawNode::create));
+    addTestFactoryMethod("lighting", CreateTestFun(TestLightDrawNode::create));
+    
+    m_curTestIndex = 5;
     
     restartTest();
+    
     
     return true;
 }

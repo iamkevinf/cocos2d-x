@@ -72,6 +72,8 @@
 		58110C0F18BEF2EF00864C8E /* gui in Resources */ = {isa = PBXBuildFile; fileRef = 58110C0D18BEF2EF00864C8E /* gui */; };
 		58110C1218BEF3B100864C8E /* TestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1018BEF3B100864C8E /* TestController.cpp */; };
 		58110C1318BEF3B100864C8E /* TestController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1018BEF3B100864C8E /* TestController.cpp */; };
+		58110C1C18BF1C0D00864C8E /* TestLightDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1A18BF1C0D00864C8E /* TestLightDraw.cpp */; };
+		58110C1D18BF1C0D00864C8E /* TestLightDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1A18BF1C0D00864C8E /* TestLightDraw.cpp */; };
 		582C41E018B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		582C41E118B74EA600B890A3 /* effect in Resources */ = {isa = PBXBuildFile; fileRef = 582C41DF18B74EA600B890A3 /* effect */; };
 		582C41E418B759C600B890A3 /* TestEGLDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 582C41E218B759C600B890A3 /* TestEGLDraw.cpp */; };
@@ -340,6 +342,8 @@
 		58110C0D18BEF2EF00864C8E /* gui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gui; sourceTree = "<group>"; };
 		58110C1018BEF3B100864C8E /* TestController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestController.cpp; path = ../Classes/TestController.cpp; sourceTree = "<group>"; };
 		58110C1118BEF3B100864C8E /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestController.h; path = ../Classes/TestController.h; sourceTree = "<group>"; };
+		58110C1A18BF1C0D00864C8E /* TestLightDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestLightDraw.cpp; sourceTree = "<group>"; };
+		58110C1B18BF1C0D00864C8E /* TestLightDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLightDraw.h; sourceTree = "<group>"; };
 		582C41DF18B74EA600B890A3 /* effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = effect; sourceTree = "<group>"; };
 		582C41E218B759C600B890A3 /* TestEGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestEGLDraw.cpp; path = ../Classes/TestEGLDraw.cpp; sourceTree = "<group>"; };
 		582C41E318B759C600B890A3 /* TestEGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestEGLDraw.h; path = ../Classes/TestEGLDraw.h; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 				58110C0A18BEE88C00864C8E /* TestBase.h */,
 				58110C1018BEF3B100864C8E /* TestController.cpp */,
 				58110C1118BEF3B100864C8E /* TestController.h */,
+				58110C1A18BF1C0D00864C8E /* TestLightDraw.cpp */,
+				58110C1B18BF1C0D00864C8E /* TestLightDraw.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -839,6 +845,7 @@
 				58110BFD18BEE30300864C8E /* TestMeshDraw.cpp in Sources */,
 				582C41E418B759C600B890A3 /* TestEGLDraw.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				58110C1C18BF1C0D00864C8E /* TestLightDraw.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				5869FE4018BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
@@ -864,6 +871,7 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				58110C0C18BEE88C00864C8E /* TestBase.cpp in Sources */,
 				5869FE4118BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */,
+				58110C1D18BF1C0D00864C8E /* TestLightDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -127,6 +127,8 @@ namespace my3d
             {
                 m_error.resize(result);
                 glGetShaderInfoLog(m_shader, result, nullptr, &m_error[0]);
+                
+                CCLOGERROR("compile shader file '%s' failed: %s", m_resouce.c_str(), m_error.c_str());
             }
         }
         

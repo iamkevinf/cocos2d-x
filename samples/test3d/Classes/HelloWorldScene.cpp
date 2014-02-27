@@ -102,6 +102,19 @@ bool HelloWorld::init()
     my3d::renderDev()->setView(pCamera->getViewMatrix());
     my3d::renderDev()->setProjection(pCamera->getProjectionMatrix());
     
+    my3d::LightContainerPtr light = new my3d::LightContainer();
+    light->setAmbientColor(my3d::ColorBlue);
+    
+    my3d::DirLightPtr dlight = new my3d::DirLight();
+    dlight->setColor(my3d::ColorGreen);
+    cocos2d::Vector3 dir(1, 1, 1);
+    dir.normalize();
+    dlight->setDirection(dir);
+    light->addDirLight(dlight);
+    
+    my3d::renderDev()->setLightContainer(light);
+
+    
     m_pTestController = TestController::create();
     pScene->addChild(m_pTestController);
     

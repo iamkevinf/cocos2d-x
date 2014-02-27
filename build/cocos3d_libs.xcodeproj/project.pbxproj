@@ -42,6 +42,9 @@
 		5803170B18BC970F00E43DA2 /* M3DMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 5803170918BC970F00E43DA2 /* M3DMesh.h */; };
 		5803170E18BC99D300E43DA2 /* M3DTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5803170C18BC99D300E43DA2 /* M3DTexture.cpp */; };
 		5803170F18BC99D300E43DA2 /* M3DTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 5803170D18BC99D300E43DA2 /* M3DTexture.h */; };
+		58110C1618BF10F600864C8E /* M3DLightContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58110C1418BF10F600864C8E /* M3DLightContainer.cpp */; };
+		58110C1718BF10F600864C8E /* M3DLightContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 58110C1518BF10F600864C8E /* M3DLightContainer.h */; };
+		58110C1918BF164E00864C8E /* M3DPreDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 58110C1818BF164E00864C8E /* M3DPreDef.h */; };
 		5813674018BD901E007B418B /* M3DVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5813673E18BD901E007B418B /* M3DVertex.cpp */; };
 		5813674118BD901E007B418B /* M3DVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 5813673F18BD901E007B418B /* M3DVertex.h */; };
 		5813674418BDC7E2007B418B /* M3DMeshMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5813674218BDC7E2007B418B /* M3DMeshMgr.cpp */; };
@@ -210,6 +213,9 @@
 		5803170918BC970F00E43DA2 /* M3DMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DMesh.h; sourceTree = "<group>"; };
 		5803170C18BC99D300E43DA2 /* M3DTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DTexture.cpp; sourceTree = "<group>"; };
 		5803170D18BC99D300E43DA2 /* M3DTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DTexture.h; sourceTree = "<group>"; };
+		58110C1418BF10F600864C8E /* M3DLightContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DLightContainer.cpp; sourceTree = "<group>"; };
+		58110C1518BF10F600864C8E /* M3DLightContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DLightContainer.h; sourceTree = "<group>"; };
+		58110C1818BF164E00864C8E /* M3DPreDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DPreDef.h; sourceTree = "<group>"; };
 		5813673E18BD901E007B418B /* M3DVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DVertex.cpp; sourceTree = "<group>"; };
 		5813673F18BD901E007B418B /* M3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3DVertex.h; sourceTree = "<group>"; };
 		5813674218BDC7E2007B418B /* M3DMeshMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = M3DMeshMgr.cpp; sourceTree = "<group>"; };
@@ -376,6 +382,8 @@
 				580316D518BC91B100E43DA2 /* M3DEffectMgr.h */,
 				580316D618BC91B100E43DA2 /* M3DInit.cpp */,
 				580316D718BC91B100E43DA2 /* M3DInit.h */,
+				58110C1418BF10F600864C8E /* M3DLightContainer.cpp */,
+				58110C1518BF10F600864C8E /* M3DLightContainer.h */,
 				580316D818BC91B100E43DA2 /* M3DLightDir.cpp */,
 				580316D918BC91B100E43DA2 /* M3DLightDir.h */,
 				580316DA18BC91B100E43DA2 /* M3DMaterial.cpp */,
@@ -401,6 +409,7 @@
 				580316E618BC91B100E43DA2 /* M3DVertexDeclaration.cpp */,
 				580316E718BC91B100E43DA2 /* M3DVertexDeclaration.h */,
 				580316E818BC91B100E43DA2 /* my3d.h */,
+				58110C1818BF164E00864C8E /* M3DPreDef.h */,
 			);
 			name = my3d;
 			path = ../cocos/my3d;
@@ -690,12 +699,14 @@
 				58CCD08F18ADFE8F00BCEB08 /* C3DNode.h in Headers */,
 				58CCD09918ADFE8F00BCEB08 /* C3DRenderBlock.h in Headers */,
 				580316EB18BC91B100E43DA2 /* M3DColor.h in Headers */,
+				58110C1718BF10F600864C8E /* M3DLightContainer.h in Headers */,
 				58CCD0C918ADFE8F00BCEB08 /* MeshPart.h in Headers */,
 				58CCD0C718ADFE8F00BCEB08 /* MaterialParameter.h in Headers */,
 				580316F018BC91B100E43DA2 /* M3DEffectAutoConstImp.h in Headers */,
 				58CCD09518ADFE8F00BCEB08 /* C3DPlane.h in Headers */,
 				58CCD06D18ADFE8F00BCEB08 /* C3DAABB.h in Headers */,
 				58CCD0AF18ADFE8F00BCEB08 /* C3DSkinlessModel.h in Headers */,
+				58110C1918BF164E00864C8E /* M3DPreDef.h in Headers */,
 				58CCD08118ADFE8F00BCEB08 /* C3DLayer.h in Headers */,
 				583D7DEA18B4728E00CFC1BD /* neonmatriximpl.h in Headers */,
 				58CCD07318ADFE8F00BCEB08 /* C3DAnimationChannel.h in Headers */,
@@ -812,6 +823,7 @@
 				58CCD08A18ADFE8F00BCEB08 /* C3DModel.cpp in Sources */,
 				58CCD08E18ADFE8F00BCEB08 /* C3DNode.cpp in Sources */,
 				580316F918BC91B100E43DA2 /* M3DMaterial.cpp in Sources */,
+				58110C1618BF10F600864C8E /* M3DLightContainer.cpp in Sources */,
 				5803170518BC91B100E43DA2 /* M3DVertexDeclaration.cpp in Sources */,
 				58CCD09418ADFE8F00BCEB08 /* C3DPlane.cpp in Sources */,
 				58CCD0B418ADFE8F00BCEB08 /* C3DSpriteManager.cpp in Sources */,

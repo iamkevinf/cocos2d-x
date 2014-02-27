@@ -1,5 +1,6 @@
 ﻿#include "M3DEffectAutoConstImp.h"
 #include "M3DRenderDevice.h"
+#include "M3DEffect.h"
 
 namespace my3d
 {
@@ -39,6 +40,12 @@ namespace my3d
 
     void effectApplyAmbient(EffectConstant *pConst)
     {
+        Color color;
+        
+        LightContainerPtr lights =  renderDev()->getLightContainer();
+        if(lights) color = lights->getAmbientColor();
+        
+        pConst->bindValue(color);
     }
 
     void effectApplyOmitLight(EffectConstant *pConst)
@@ -48,7 +55,30 @@ namespace my3d
 
     void effectApplyDirLight(EffectConstant *pConst)
     {
-
+        LightContainerPtr lights =  renderDev()->getLightContainer();
+        if(!lights)
+        {
+            pConst->bindValue(false);
+            return;
+        }
+        
+        DirLightVector & dirLights = lights->getDirLights();
+        if(dirLights.size() > 0)
+        {
+            DirLightPtr p = dirLights.front();
+            
+            EffectConstant *pc = pConst->getEffect()->getConstant(EffectConstType::DirLightDir);
+            if(pc) pc->bindValue(p->getDirection());
+            
+            pc = pConst->getEffect()->getConstant(EffectConstType::DirLightColor);
+            if(pc) pc->bindValue(p->getColor());
+            
+            pConst->bindValue(true);
+        }
+        else
+        {
+            pConst->bindValue(false);
+        }
     }
 
     void effectApplySpotLight(EffectConstant *pConst)

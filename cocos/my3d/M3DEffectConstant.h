@@ -25,9 +25,11 @@ namespace my3d
         const std::string Proj = "u_matProj";
         const std::string ViewProj = "u_matViewProj";
         const std::string WorldViewProj = "u_matWorldViewProj";
-        const std::string AmbientColor = "u_ambientColor";
+        const std::string AmbientColor = "u_ambient";
         const std::string OmitLight = "u_omitLight";
         const std::string DirLight = "u_dirLight";
+        const std::string DirLightDir = "u_dirLightDir";
+        const std::string DirLightColor = "u_dirLightColor";
         const std::string SpotLight = "u_spotLight";
         const std::string Texture = "u_texture";
         const std::string Texture0 = "u_texture0";

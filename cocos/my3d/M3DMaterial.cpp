@@ -5,6 +5,7 @@
 namespace my3d
 {
     Material::Material()
+    : m_bLight(false)
     {
     }
 

@@ -2,7 +2,7 @@
 #define H_M3D_RENDER_DEVICE_H
 
 #include "M3DRenderState.h"
-#include "M3DMaterial.h"
+#include "M3DLightContainer.h"
 
 namespace my3d
 {
@@ -59,6 +59,9 @@ namespace my3d
         void setIndexBuffer(IndexBuffer *p);
         void unsetIndexBuffer(IndexBuffer *p);
         
+        void setLightContainer(LightContainerPtr container);
+        LightContainerPtr getLightContainer();
+        
     private:
         std::vector<cocos2d::Matrix> m_matWorlds;
         cocos2d::Matrix m_matView;
@@ -70,6 +73,8 @@ namespace my3d
         
         VertexBuffer    *m_vertexBuffer;
         IndexBuffer     *m_indexBuffer;
+        
+        LightContainerPtr m_lightContainer;
     };
 
 }//end namespace m3d

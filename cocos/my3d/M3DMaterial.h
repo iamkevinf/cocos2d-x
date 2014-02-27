@@ -28,10 +28,14 @@ namespace my3d
         void addTextureStage(const TextureStage & stage);
         void clearTextureStage();
         
+        void setLightEnable(bool enable){ m_bLight = enable; }
+        bool getLightEnable() const { return m_bLight;}
+        
     private:
         std::string m_resouce;
         MaterialColor m_mtlColor;
         
+        bool m_bLight;
         EffectPtr m_effect;
         
         std::vector<TextureStage> m_texStage;

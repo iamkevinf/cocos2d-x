@@ -231,5 +231,15 @@ namespace my3d
     {
         if(m_indexBuffer == p) m_indexBuffer = nullptr;
     }
+    
+    void RenderDevice::setLightContainer(LightContainerPtr container)
+    {
+        m_lightContainer = container;
+    }
+    
+    LightContainerPtr RenderDevice::getLightContainer()
+    {
+        return m_lightContainer;
+    }
 
 }//end namespace my3d
