@@ -1,4 +1,4 @@
-#ifndef H_M3D_TEXTURE_H
+﻿#ifndef H_M3D_TEXTURE_H
 #define H_M3D_TEXTURE_H
 
 #include "../3d/C3DTexture.h"

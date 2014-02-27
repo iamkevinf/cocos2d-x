@@ -1,4 +1,4 @@
-#ifndef H_M3D_MESH_H
+﻿#ifndef H_M3D_MESH_H
 #define H_M3D_MESH_H
 
 #include "M3DVertexBuffer.h"

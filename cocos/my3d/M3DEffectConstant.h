@@ -16,7 +16,7 @@ namespace my3d
 {
     class Effect;
     class Color;
-    class MaterialColor;
+    struct MaterialColor;
 
     namespace EffectConstType
     {

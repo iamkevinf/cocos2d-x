@@ -1,4 +1,4 @@
-//
+﻿//
 //  TestMeshDraw.cpp
 //  test3d
 //
@@ -102,7 +102,7 @@ bool TestMeshDrawNode::initTest3D()
 
 void TestMeshDrawNode::draw()
 {
-    this->rotateY(0.01);
+    this->rotateY(0.01f);
     
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     

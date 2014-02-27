@@ -1,24 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="my3d\Effect.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
-    <ClCompile Include="my3d\EffectConstant.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
-    <ClCompile Include="my3d\EffectMgr.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
-    <ClCompile Include="my3d\Shader.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
-    <ClCompile Include="my3d\VertexBuffer.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
-    <ClCompile Include="my3d\VertexDeclaration.cpp">
-      <Filter>my3d</Filter>
-    </ClCompile>
     <ClCompile Include="BundleData.cpp">
       <Filter>model</Filter>
     </ClCompile>
@@ -199,54 +181,63 @@
     <ClCompile Include="C3DSkeleton.cpp">
       <Filter>model\bone</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DRenderDevice.cpp">
+    <ClCompile Include="..\my3d\M3DColor.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DInit.cpp">
+    <ClCompile Include="..\my3d\M3DEffect.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\EffectAutoConstImp.cpp">
+    <ClCompile Include="..\my3d\M3DEffectAutoConstImp.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DRenderState.cpp">
+    <ClCompile Include="..\my3d\M3DEffectConstant.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DColor.cpp">
+    <ClCompile Include="..\my3d\M3DEffectMgr.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DLightDir.cpp">
+    <ClCompile Include="..\my3d\M3DInit.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DMaterial.cpp">
+    <ClCompile Include="..\my3d\M3DLightDir.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
-    <ClCompile Include="my3d\M3DTextureMgr.cpp">
+    <ClCompile Include="..\my3d\M3DMaterial.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DMesh.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DMeshMgr.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DRenderDevice.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DRenderState.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DShader.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DTexture.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DTextureMgr.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DVertex.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DVertexBuffer.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\my3d\M3DVertexDeclaration.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cocos3d.h" />
-    <ClInclude Include="my3d\Effect.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\EffectConstant.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\EffectMgr.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\Shader.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\VertexBuffer.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\VertexDeclaration.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
-    <ClInclude Include="my3d\my3d.h">
-      <Filter>my3d</Filter>
-    </ClInclude>
     <ClInclude Include="Base.h">
       <Filter>base</Filter>
     </ClInclude>
@@ -442,34 +433,67 @@
     <ClInclude Include="C3DSkeleton.h">
       <Filter>model\bone</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DRenderDevice.h">
+    <ClInclude Include="..\my3d\M3DBase.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DConfig.h">
+    <ClInclude Include="..\my3d\M3DColor.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DInit.h">
+    <ClInclude Include="..\my3d\M3DConfig.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DBase.h">
+    <ClInclude Include="..\my3d\M3DEffect.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\EffectAutoConstImp.h">
+    <ClInclude Include="..\my3d\M3DEffectAutoConstImp.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DRenderState.h">
+    <ClInclude Include="..\my3d\M3DEffectConstant.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DColor.h">
+    <ClInclude Include="..\my3d\M3DEffectMgr.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DLightDir.h">
+    <ClInclude Include="..\my3d\M3DInit.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DMaterial.h">
+    <ClInclude Include="..\my3d\M3DLightDir.h">
       <Filter>my3d</Filter>
     </ClInclude>
-    <ClInclude Include="my3d\M3DTextureMgr.h">
+    <ClInclude Include="..\my3d\M3DMaterial.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DMesh.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DMeshMgr.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DRenderDevice.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DRenderState.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DShader.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DTexture.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DTextureMgr.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DVertex.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DVertexBuffer.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DVertexDeclaration.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\my3d.h">
       <Filter>my3d</Filter>
     </ClInclude>
   </ItemGroup>
