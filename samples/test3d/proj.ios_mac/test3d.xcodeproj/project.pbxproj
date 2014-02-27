@@ -70,6 +70,10 @@
 		583D7DF818B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
 		583D7DF918B474A600CFC1BD /* config in Resources */ = {isa = PBXBuildFile; fileRef = 583D7DF718B474A500CFC1BD /* config */; };
 		585927FA18B34EBC004E4BA3 /* libcocos3d_libs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585927F718B34E8D004E4BA3 /* libcocos3d_libs.a */; };
+		5869FE3618BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */; };
+		5869FE3718BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */; };
+		5869FE4018BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */; };
+		5869FE4118BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -322,6 +326,10 @@
 		582C41E318B759C600B890A3 /* TestEGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestEGL.h; path = ../Classes/TestEGL.h; sourceTree = "<group>"; };
 		583D7DF718B474A500CFC1BD /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
 		585927EC18B34E8C004E4BA3 /* cocos3d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos3d_libs.xcodeproj; path = ../../../build/cocos3d_libs.xcodeproj; sourceTree = "<group>"; };
+		5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSimpleDraw.cpp; path = ../Classes/TestSimpleDraw.cpp; sourceTree = "<group>"; };
+		5869FE3518BEDAF000D8F51B /* TestSimpleDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSimpleDraw.h; path = ../Classes/TestSimpleDraw.h; sourceTree = "<group>"; };
+		5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestTextureDraw.cpp; path = ../Classes/TestTextureDraw.cpp; sourceTree = "<group>"; };
+		5869FE3F18BEDF8500D8F51B /* TestTextureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestTextureDraw.h; path = ../Classes/TestTextureDraw.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -406,6 +414,10 @@
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
 				582C41E218B759C600B890A3 /* TestEGL.cpp */,
 				582C41E318B759C600B890A3 /* TestEGL.h */,
+				5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */,
+				5869FE3518BEDAF000D8F51B /* TestSimpleDraw.h */,
+				5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */,
+				5869FE3F18BEDF8500D8F51B /* TestTextureDraw.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -796,9 +808,11 @@
 				582C41E418B759C600B890A3 /* TestEGL.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				5869FE4018BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
+				5869FE3618BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,10 +820,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5869FE3718BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */,
 				582C41E518B759C600B890A3 /* TestEGL.cpp in Sources */,
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				5869FE4118BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

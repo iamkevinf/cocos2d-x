@@ -1,7 +1,5 @@
 #include "HelloWorldScene.h"
 #include "cocos3d.h"
-#include "Vertex.h"
-
 #include "my3d/my3d.h"
 
 #include "TestEGL.h"
