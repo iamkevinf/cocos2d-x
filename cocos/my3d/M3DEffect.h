@@ -47,6 +47,10 @@ namespace my3d
         
         bool loadEffect(cocos2d::ElementNode * pNode);
         void parseConstants();
+        void parseAttributes();
+        
+        void applyAutoConst();
+        void applyAttributes();
         
     private:
         std::string m_resouce;
@@ -54,6 +58,7 @@ namespace my3d
         SmartPtr<Shader> m_vertexShader;
         SmartPtr<Shader> m_pixelShader;
         std::map<std::string, EffectConstant*> m_constants;
+        std::map<std::string, GLint> m_attributes;
         std::vector<std::pair<EffectAutoConstant*, EffectConstant*>> m_autoConsts;
 
         static Effect * s_pActiveEffect;

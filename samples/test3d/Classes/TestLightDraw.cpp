@@ -54,12 +54,10 @@ bool TestLightDrawNode::initTest3D()
     
     for(int i = 0; i<numVertices; ++i)
     {
-        //vertices[i].normal = vertices[i].position;
-        //vertices[i].normal.normalize();
-        vertices[i].normal.set(0, 0, 0);
+        vertices[i].normal = vertices[i].position;
+        //vertices[i].normal.set(-1, -1, -1);
+        vertices[i].normal.normalize();
     }
-    
-    //vertices[1].normal.set(0, 1, 0);
     
     my3d::VertexBufferPtr vb = new my3d::VertexBufferEx<VertexType>(
         my3d::BufferUsage::Static, numVertices, vertices);
@@ -116,7 +114,7 @@ bool TestLightDrawNode::initTest3D()
 
 void TestLightDrawNode::draw()
 {
-    //this->rotateY(0.01f);
+    this->rotateY(0.01f);
     
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     

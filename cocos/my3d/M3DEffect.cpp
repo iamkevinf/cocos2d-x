@@ -131,6 +131,7 @@ namespace my3d
             return false;
         }
         
+        parseAttributes();
         parseConstants();
         
         return true;
@@ -197,21 +198,17 @@ namespace my3d
         
         if(m_program == 0) return false;
         
-        if(VertexDeclaration::s_pActiveDecl == nullptr)
+        if(VertexDeclaration::getActiveDecl() == nullptr)
         {
-            assert(0 && "Effect::begin - failed! please set vertex declaration first.");
+            CCAssert(0, "Effect::begin - failed! please set vertex declaration first.");
             return false;
         }
         
         glUseProgram(m_program);
         s_pActiveEffect = this;
         
-        VertexDeclaration::s_pActiveDecl->bindEffectAttr(this);
-
-        for (auto it : m_autoConsts)
-        {
-            it.first->apply(it.second);
-        }
+        applyAttributes();
+        applyAutoConst();
 
         return true;
     }
@@ -222,6 +219,69 @@ namespace my3d
         
         s_pActiveEffect = nullptr;
         glUseProgram(0);
+    }
+    
+    void Effect::applyAutoConst()
+    {
+        for (auto it : m_autoConsts)
+        {
+            it.first->apply(it.second);
+        }
+    }
+    
+    void Effect::applyAttributes()
+    {
+        VertexDeclaration *decl = VertexDeclaration::getActiveDecl();
+        
+        GLsizei vertexSize = GLsizei(decl->getVertexSize());
+        unsigned int offset = 0;
+        for(size_t i = 0; i < decl->getNumElement(); ++i)
+        {
+            const VertexElement & e = decl->getElement(i);
+            
+            const std::string & attrName = vertexUsage2Attr(e.usage);
+            auto it = m_attributes.find(attrName);
+            if(it == m_attributes.end())
+            {
+                CCLOGERROR("The effect attribute '%s' was not found!", attrName.c_str());
+                assert(0);
+                continue;
+            }
+            
+            GL_ASSERT( glVertexAttribPointer(it->second, e.nComponent, GL_FLOAT, GL_FALSE,
+                vertexSize, (GLvoid*)offset) );
+            GL_ASSERT( glEnableVertexAttribArray(it->second) );
+            offset += e.size();
+        }
+    }
+    
+    void Effect::parseAttributes()
+    {
+        GLint activeAttributes;
+        GL_ASSERT( glGetProgramiv(m_program, GL_ACTIVE_ATTRIBUTES, &activeAttributes) );
+        if (activeAttributes <= 0) return;
+        
+        int length;
+        GL_ASSERT( glGetProgramiv(m_program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &length) );
+        if (length <= 0) return;
+        
+        GLchar* attribName = new GLchar[length + 1];
+        GLint attribSize;
+        GLenum attribType;
+        GLint attribLocation;
+        for (int i = 0; i < activeAttributes; ++i)
+        {
+            // Query attribute info.
+            GL_ASSERT( glGetActiveAttrib(m_program, i, length, nullptr, &attribSize, &attribType, attribName) );
+            attribName[length] = '\0';
+            
+            // Query the pre-assigned attribute location.
+            GL_ASSERT( attribLocation = glGetAttribLocation(m_program, attribName) );
+            
+            // Assign the vertex attribute mapping for the effect.
+            m_attributes[attribName] = attribLocation;
+        }
+        SAFE_DELETE_ARRAY(attribName);
     }
     
 }//end namespace my3d

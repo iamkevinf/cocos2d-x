@@ -21,21 +21,21 @@ namespace my3d
      */
     enum class VertexUsage
     {
-        POSITION = 1,
-        NORMAL = 2,
-        COLOR = 3,
-        TANGENT = 4,
-        BINORMAL = 5,
-        BLENDWEIGHTS = 6,
-        BLENDINDICES = 7,
-        TEXCOORD0 = 8,
-        TEXCOORD1 = 9,
-        TEXCOORD2 = 10,
-        TEXCOORD3 = 11,
-        TEXCOORD4 = 12,
-        TEXCOORD5 = 13,
-        TEXCOORD6 = 14,
-        TEXCOORD7 = 15
+        POSITION,
+        NORMAL,
+        COLOR,
+        TANGENT,
+        BINORMAL,
+        BLENDWEIGHTS,
+        BLENDINDICES,
+        TEXCOORD0,
+        TEXCOORD1,
+        TEXCOORD2,
+        TEXCOORD3,
+        TEXCOORD4,
+        TEXCOORD5,
+        TEXCOORD6,
+        TEXCOORD7
     };
     
     
@@ -77,22 +77,20 @@ namespace my3d
         
         void addElement(const VertexElement & e);
         void addElement(VertexUsage usage, int nComponent);
-        const VertexElement & getElement(int i) const;
+        const VertexElement & getElement(size_t i) const;
+        size_t getNumElement() const;
         size_t getVertexSize() const;
         
         void bind();
         void unbind();
         
+        static VertexDeclaration * getActiveDecl(){ return s_pActiveDecl; }
     private:
-        
-        void bindEffectAttr(Effect * pEffect);
-        
         
         size_t m_vertexSize;
         std::vector<VertexElement> m_elements;
         
         static VertexDeclaration * s_pActiveDecl;
-        friend class Effect;
     };
     
     typedef SmartPtr<VertexDeclaration> VertexDeclarationPtr;

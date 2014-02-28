@@ -98,9 +98,14 @@ namespace my3d
         m_vertexSize += m_elements.back().size();
     }
     
-    const VertexElement & VertexDeclaration::getElement(int i) const
+    const VertexElement & VertexDeclaration::getElement(size_t i) const
     {
         return m_elements[i];
+    }
+    
+    size_t VertexDeclaration::getNumElement() const
+    {
+        return m_elements.size();
     }
     
     size_t VertexDeclaration::getVertexSize() const
@@ -111,39 +116,12 @@ namespace my3d
     void VertexDeclaration::bind()
     {
         s_pActiveDecl = this;
-        
-        unsigned int offset = 0;
-        for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
-        {
-            VertexElement & e = m_elements[i];
-            
-            GL_ASSERT( glEnableVertexAttribArray(i) );
-            GL_ASSERT( glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE,
-                                  GLsizei(m_vertexSize), reinterpret_cast<GLvoid*>(offset)) );
-            
-            offset += e.size();
-        }
     }
     
     void VertexDeclaration::unbind()
     {
         assert(s_pActiveDecl == this && "VertexDeclaration::unbind - invalid operation!");
         s_pActiveDecl = nullptr;
-        
-        for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
-        {
-            GL_ASSERT( glDisableVertexAttribArray(i) );
-        }
-    }
-    
-    void VertexDeclaration::bindEffectAttr(Effect * pEffect)
-    {
-        assert (pEffect != nullptr);
-        
-        for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
-        {
-            pEffect->bindAttribute(i, vertexUsage2Attr(m_elements[i].usage));
-        }
     }
     
     //////////////////////////////////////////////////////////////////////////
