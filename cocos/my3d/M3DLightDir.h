@@ -8,6 +8,13 @@
 namespace my3d
 {
 
+    struct DirLightInfo
+    {
+        Vector4 direction;
+        Color   color;
+        Vector3 halfVector;
+    };
+
     class DirLight : public cocos2d::ISmartObject
     {
     public:
@@ -20,9 +27,9 @@ namespace my3d
         void setDirection(const cocos2d::Vector3 & dir){ m_direction = dir; }
         const cocos2d::Vector3 & getDirection() const { return m_direction; }
 
-        void getEffectData(cocos2d::Vector4 data[2]);
+        void getEffectData(DirLightInfo & info);
     private:
-        cocos2d::Vector3 m_direction;
+        Vector3 m_direction;
         Color   m_color;
     };
     

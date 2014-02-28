@@ -19,4 +19,13 @@
 #define MATH_TOLERANCE              2e-37f
 #define MATH_EPSILON                0.000001f
 
+namespace my3d
+{
+    using cocos2d::Vector2;
+    using cocos2d::Vector3;
+    using cocos2d::Vector4;
+    using cocos2d::Matrix;
+    using cocos2d::Quaternion;
+}
+
 #endif //H_M3D_BASE_H

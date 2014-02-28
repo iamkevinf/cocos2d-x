@@ -28,8 +28,6 @@ namespace my3d
         const std::string AmbientColor = "u_ambient";
         const std::string OmitLight = "u_omitLight";
         const std::string DirLight = "u_dirLight";
-        const std::string DirLightDir = "u_dirLightDir";
-        const std::string DirLightColor = "u_dirLightColor";
         const std::string SpotLight = "u_spotLight";
         const std::string Texture = "u_texture";
         const std::string Texture0 = "u_texture0";
@@ -108,7 +106,7 @@ namespace my3d
         
     private:
         
-        EffectConstant();
+        EffectConstant(const std::string & name);
         ~EffectConstant();
         
         std::string m_name;

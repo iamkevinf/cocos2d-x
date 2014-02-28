@@ -55,30 +55,38 @@ namespace my3d
 
     void effectApplyDirLight(EffectConstant *pConst)
     {
+        bool lightEnable = false;
+        DirLightInfo info;
+        
         LightContainerPtr lights =  renderDev()->getLightContainer();
-        if(!lights)
+        if(lights)
         {
-            pConst->bindValue(false);
-            return;
+            DirLightVector & dirLights = lights->getDirLights();
+            if(dirLights.size() > 0)
+            {
+                lightEnable = true;
+                dirLights.front()->getEffectData(info);
+                info.halfVector.set(1, 0, 1);
+                info.halfVector.normalize();
+                
+                EffectConstant *pc = nullptr;
+                
+                pc = pConst->getChild("color");
+                assert(pc);
+                pc->bindValue(info.color);
+                
+                pc = pConst->getChild("halfVector");
+                assert(pc);
+                pc->bindValue(info.halfVector);
+            }
         }
         
-        DirLightVector & dirLights = lights->getDirLights();
-        if(dirLights.size() > 0)
-        {
-            DirLightPtr p = dirLights.front();
-            
-            EffectConstant *pc = pConst->getEffect()->getConstant(EffectConstType::DirLightDir);
-            if(pc) pc->bindValue(p->getDirection());
-            
-            pc = pConst->getEffect()->getConstant(EffectConstType::DirLightColor);
-            if(pc) pc->bindValue(p->getColor());
-            
-            pConst->bindValue(true);
-        }
-        else
-        {
-            pConst->bindValue(false);
-        }
+        info.direction.w = lightEnable ? 1.0f : -1.0f; //-1 means disable
+        
+        EffectConstant *pc = pConst->getChild("direction");
+        assert(pc);
+        pc->bindValue(info.direction);
+        
     }
 
     void effectApplySpotLight(EffectConstant *pConst)

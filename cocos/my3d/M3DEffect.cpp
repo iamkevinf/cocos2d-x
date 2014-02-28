@@ -38,7 +38,7 @@ namespace my3d
             return;
         }
         
-        m_pConstRoot = new EffectConstant();
+        m_pConstRoot = new EffectConstant("root");
         
         if(!loadEffect(doc))
         {
@@ -164,18 +164,20 @@ namespace my3d
             
             EffectConstant* uniform = m_pConstRoot->getChildren(uniformName, true);
             uniform->m_pEffect = this;
-            uniform->m_name = uniformName;
             uniform->m_location = location;
             uniform->m_type = type;
             if (type == GL_SAMPLER_2D || type == GL_SAMPLER_CUBE)
                 uniform->m_index = samplerIndex++;
             else
                 uniform->m_index = 0;
-            
-            EffectAutoConstant *pAutoConst = EffectAutoConstant::get(uniformName);
+        }
+        
+        for(auto it : m_pConstRoot->m_children)
+        {
+            EffectAutoConstant *pAutoConst = EffectAutoConstant::get(it.first);
             if (pAutoConst)
             {
-                m_autoConsts.push_back(std::make_pair(pAutoConst, uniform));
+                m_autoConsts.push_back(std::make_pair(pAutoConst, it.second));
             }
         }
     }

@@ -14,11 +14,12 @@ using namespace cocos2d;
 namespace my3d
 {
     
-    EffectConstant::EffectConstant()
+    EffectConstant::EffectConstant(const std::string & name)
         : m_location(-1)
         , m_type(0)
         , m_index(0)
         , m_pEffect(nullptr)
+        , m_name(name)
     {
     }
     
@@ -52,7 +53,7 @@ namespace my3d
         
         if(createIfMiss)
         {
-            EffectConstant *p = new EffectConstant();
+            EffectConstant *p = new EffectConstant(name);
             m_children.insert(std::make_pair(name, p));
             return p;
         }
