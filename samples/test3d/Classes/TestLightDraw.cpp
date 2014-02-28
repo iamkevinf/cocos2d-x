@@ -22,10 +22,12 @@ bool TestLightDrawNode::initTest3D()
 {
     //create vertex buffer
     
+    typedef my3d::VertexXYZNUV VertexType;
+    
     const float size = 1.0f;
     
     const int numVertices = 8;
-    my3d::VertexXYZNUV vertices[numVertices];
+    VertexType vertices[numVertices];
     
     vertices[0].position.set(-size, -size, size);
     vertices[0].uv.set(0.0f, 1.0f);
@@ -41,7 +43,7 @@ bool TestLightDrawNode::initTest3D()
     
     for (int i = 0; i < 4; ++i)
     {
-        vertices[i + 4] = vertices[i];
+        vertices[i + 4].position = vertices[i].position;
         vertices[i + 4].position.z = -size;
     }
     
@@ -52,13 +54,17 @@ bool TestLightDrawNode::initTest3D()
     
     for(int i = 0; i<numVertices; ++i)
     {
-        vertices[i].position.normalize(&vertices[i].normal);
+        //vertices[i].normal = vertices[i].position;
+        //vertices[i].normal.normalize();
+        vertices[i].normal.set(0, 0, 0);
     }
     
-    my3d::VertexBufferPtr vb = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-          numVertices * sizeof(my3d::VertexXYZNUV), &vertices[0]);
+    //vertices[1].normal.set(0, 1, 0);
     
-    my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZNUV::getType());
+    my3d::VertexBufferPtr vb = new my3d::VertexBufferEx<VertexType>(
+        my3d::BufferUsage::Static, numVertices, vertices);
+    
+    my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(VertexType::getType());
     
     //create index buffer
     
@@ -72,8 +78,8 @@ bool TestLightDrawNode::initTest3D()
         4, 3, 0,  4, 7, 3, //bottom
     };
     
-    my3d::IndexBufferPtr ib = new my3d::IndexBuffer(my3d::BufferUsage::Static,
-        my3d::IndexType::Index16, numIndices * sizeof(my3d::uint16), &indices[0]);
+    my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(
+        my3d::BufferUsage::Static, numIndices, indices);
     
     //create material
     
@@ -110,7 +116,7 @@ bool TestLightDrawNode::initTest3D()
 
 void TestLightDrawNode::draw()
 {
-    this->rotateY(0.01f);
+    //this->rotateY(0.01f);
     
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     

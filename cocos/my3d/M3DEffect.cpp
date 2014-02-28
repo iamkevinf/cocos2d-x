@@ -14,6 +14,8 @@
 
 #include "../3d/ElementNode.h"
 
+const std::string OPENGL_ES_DEFINE = "#define OPENGL_ES";
+
 namespace my3d
 {
     /*static*/ Effect * Effect::s_pActiveEffect = nullptr;
@@ -86,6 +88,7 @@ namespace my3d
             pshFile = path + pshFile;
         }
         
+        defines = OPENGL_ES_DEFINE + defines;
         ShaderPtr vshPtr = new Shader(ShaderType::Vertex, vshFile, defines);
         if(!vshPtr->compile())
         {
@@ -177,7 +180,7 @@ namespace my3d
     
     void Effect::bindAttribute(cocos2d::VertexAttribute index, const std::string & name)
     {
-        glBindAttribLocation(m_program, index, name.c_str());
+        GL_ASSERT(glBindAttribLocation(m_program, index, name.c_str()));
     }
     
     EffectConstant * Effect::getConstant(const std::string & name)

@@ -103,11 +103,11 @@ bool HelloWorld::init()
     my3d::renderDev()->setProjection(pCamera->getProjectionMatrix());
     
     my3d::LightContainerPtr light = new my3d::LightContainer();
-    light->setAmbientColor(my3d::ColorBlue);
+    light->setAmbientColor(my3d::Color(0.3f, 0.3f, 0.3f, 1.0f));
     
     my3d::DirLightPtr dlight = new my3d::DirLight();
-    dlight->setColor(my3d::ColorGreen);
-    cocos2d::Vector3 dir(1, 1, 1);
+    dlight->setColor(my3d::Color(0.7f, 0.7f, 0.7f, 1.0f));
+    cocos2d::Vector3 dir(1, 1, 0);
     dir.normalize();
     dlight->setDirection(dir);
     light->addDirLight(dlight);

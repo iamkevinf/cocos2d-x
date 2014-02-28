@@ -117,9 +117,9 @@ namespace my3d
         {
             VertexElement & e = m_elements[i];
             
-            glEnableVertexAttribArray(i);
-            glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE,
-                                  GLsizei(m_vertexSize), reinterpret_cast<GLvoid*>(offset));
+            GL_ASSERT( glEnableVertexAttribArray(i) );
+            GL_ASSERT( glVertexAttribPointer(i, e.nComponent, GL_FLOAT, GL_FALSE,
+                                  GLsizei(m_vertexSize), reinterpret_cast<GLvoid*>(offset)) );
             
             offset += e.size();
         }
@@ -132,7 +132,7 @@ namespace my3d
         
         for(GLuint i = 0; i < (GLuint)m_elements.size(); ++i)
         {
-            glDisableVertexAttribArray(i);
+            GL_ASSERT( glDisableVertexAttribArray(i) );
         }
     }
     

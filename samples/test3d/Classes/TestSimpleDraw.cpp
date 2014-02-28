@@ -49,8 +49,8 @@ bool TestSimpleDrawNode::initTest3D()
         vertices[i + 4].position.z = -size;
     }
     
-    m_vertexBuffer = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-         numVertices * sizeof(my3d::VertexXYZColor), &vertices[0]);
+    m_vertexBuffer = new my3d::VertexBufferEx<my3d::VertexXYZColor>(
+        my3d::BufferUsage::Static, numVertices, &vertices[0]);
     
     //create index buffer
     
@@ -64,8 +64,8 @@ bool TestSimpleDrawNode::initTest3D()
         4, 3, 0,  4, 7, 3, //bottom
     };
     
-    m_indexBuffer = new my3d::IndexBuffer(my3d::BufferUsage::Static,
-         my3d::IndexType::Index8, nIndices * sizeof(my3d::uint8), indices);
+    m_indexBuffer = new my3d::IndexBufferEx<my3d::uint8>(
+         my3d::BufferUsage::Static, nIndices, indices);
     m_nIndices = nIndices;
     
     //shader

@@ -35,6 +35,7 @@ namespace my3d
     };
     
     GLenum indexType2Sys(IndexType type);
+    IndexType size2IndexType(size_t n);
 
     class BufferBase : public cocos2d::ISmartObject
     {
@@ -48,14 +49,14 @@ namespace my3d
         
         bool isValid() const;
         
-        void resize(size_t size, void *data = nullptr);
-        void fill(size_t offset, size_t size, void *data);
+        void resize(size_t stride, size_t nCount, void *data = nullptr);
+        void fill(size_t stride, size_t iStart, size_t nCount, void *data);
         
         virtual void bind() = 0;
         virtual void unbind() = 0;
         
     private:
-        
+
         bool init();
         void destroy();
         
@@ -65,35 +66,82 @@ namespace my3d
         size_t m_size;
         GLuint m_vb;
     };
-
+    
     //顶点缓冲区
     class VertexBuffer : public BufferBase
     {
     public:
         
-        VertexBuffer(BufferUsage usage, size_t size, void *data=nullptr);
+        VertexBuffer(BufferUsage usage, size_t stride, size_t nVertex, void *data=nullptr);
         ~VertexBuffer();
         
         virtual void bind();
         virtual void unbind();
     };
+    
+    
+    template<typename TVertex>
+    class VertexBufferEx : public VertexBuffer
+    {
+    public:
+        
+        VertexBufferEx(BufferUsage usage, size_t nVertex, TVertex *data=nullptr)
+        : VertexBuffer(usage, sizeof(TVertex), nVertex, data)
+        {
+            
+        }
+        
+        void resizeBuffer(size_t nVertex, TVertex *data = nullptr)
+        {
+            resize(nVertex * sizeof(TVertex), data);
+        }
+        
+        void fillBuffer(size_t iStart, size_t nVertex, TVertex *data)
+        {
+            file(iStart * sizeof(TVertex), nVertex * sizeof(TVertex), data);
+        }
+        
+    };
+    
 
     //索引缓冲区
     class IndexBuffer : public BufferBase
     {
-        IndexType m_indexType;
     public:
-        
-        IndexBuffer(BufferUsage usage, IndexType type, size_t size, void *data=nullptr);
+        IndexBuffer(BufferUsage usage, size_t stride, size_t nCount, void *data=nullptr);
         ~IndexBuffer();
         
-        
-        
-        void setIndexType(IndexType type);
+        virtual void setIndexType(IndexType type);
         IndexType getIndexType();
         
         virtual void bind();
         virtual void unbind();
+        
+    private:
+        IndexType m_indexType;
+    };
+    
+    template<typename TIndex>
+    class IndexBufferEx : public IndexBuffer
+    {
+    public:
+        
+        IndexBufferEx(BufferUsage usage, size_t nIndex, TIndex *data=nullptr)
+        : IndexBuffer(usage, sizeof(TIndex), nIndex, data)
+        {
+        }
+        
+        void setIndexType(IndexType type){}
+        
+        void resizeBuffer(size_t nIndex, TIndex *data = nullptr)
+        {
+            resize(sizeof(TIndex), nIndex, data);
+        }
+        
+        void fillBuffer(size_t iStart, size_t nIndex, TIndex *data)
+        {
+            file(sizeof(TIndex), iStart, nIndex, data);
+        }
     };
     
     typedef SmartPtr<VertexBuffer>  VertexBufferPtr;

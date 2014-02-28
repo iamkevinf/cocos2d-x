@@ -63,6 +63,18 @@ namespace my3d
                 return 0;
         };
     }
+    
+    IndexType size2IndexType(size_t n)
+    {
+        if(n <= sizeof(uint8))
+            return IndexType::Index8;
+        
+        else if(n <= sizeof(uint16))
+            return IndexType::Index16;
+        
+        else
+            return IndexType::Index32;
+    }
 
     //////////////////////////////////////////////////////////////////////
 
@@ -85,31 +97,31 @@ namespace my3d
         return m_vb != 0;
     }
 
-    void BufferBase::resize(size_t size, void *data)
+    void BufferBase::resize(size_t stride, size_t nCount, void *data)
     {
         if(isValid())
         {
-            bind();
-            glBufferData(bufferType2GL(m_type), size, data, bufferUsage2GL(m_usage));
-            unbind();
+            m_size = stride * nCount;
             
-            m_size = size;
+            bind();
+            GL_ASSERT( glBufferData(bufferType2GL(m_type), m_size, data, bufferUsage2GL(m_usage)) );
+            unbind();
         }
     }
 
-    void BufferBase::fill(size_t offset, size_t size, void *data)
+    void BufferBase::fill(size_t stride, size_t iStart, size_t nCount, void *data)
     {
-        DO_ASSERT(offset + size <= m_size, "BufferBase::fill - invalid offset and size!");
+        CCAssert((iStart + nCount) * stride <= m_size, "BufferBase::fill - invalid offset and size!");
         
         bind();
-        glBufferSubData(bufferType2GL(m_type), offset, size, data);
+        GL_ASSERT( glBufferSubData(bufferType2GL(m_type), iStart * stride, nCount * stride, data) );
         unbind();
     }
 
 
     bool BufferBase::init()
     {
-        glGenBuffers(1, &m_vb);
+        GL_ASSERT( glGenBuffers(1, &m_vb) );
         return m_vb != 0;
     }
 
@@ -117,17 +129,17 @@ namespace my3d
     {
         if(isValid())
         {
-            glDeleteBuffers(1, &m_vb);
+            GL_ASSERT( glDeleteBuffers(1, &m_vb) );
             m_vb = 0;
         }
     }
 
     //////////////////////////////////////////////////////////////////////
 
-    VertexBuffer::VertexBuffer(BufferUsage usage, size_t size, void *data)
+    VertexBuffer::VertexBuffer(BufferUsage usage, size_t stride, size_t nVertex, void *data)
     : BufferBase(BufferType::Vertex, usage)
     {
-        resize(size, data);
+        resize(stride, nVertex, data);
     }
 
     VertexBuffer::~VertexBuffer()
@@ -137,7 +149,7 @@ namespace my3d
     
     void VertexBuffer::bind()
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_vb);
+        GL_ASSERT( glBindBuffer(GL_ARRAY_BUFFER, m_vb) );
         
         renderDev()->setVertexBuffer(this);
     }
@@ -149,11 +161,11 @@ namespace my3d
 
     //////////////////////////////////////////////////////////////////////
 
-    IndexBuffer::IndexBuffer(BufferUsage usage, IndexType type, size_t size, void *data)
+    IndexBuffer::IndexBuffer(BufferUsage usage, size_t stride, size_t nCount, void *data)
     : BufferBase(BufferType::Index, usage)
-    , m_indexType(type)
+    , m_indexType(size2IndexType(stride))
     {
-        resize(size, data);
+        resize(stride, nCount, data);
     }
 
     IndexBuffer::~IndexBuffer()
@@ -173,7 +185,7 @@ namespace my3d
     
     void IndexBuffer::bind()
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vb);
+        GL_ASSERT( glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vb) );
         
         renderDev()->setIndexBuffer(this);
     }

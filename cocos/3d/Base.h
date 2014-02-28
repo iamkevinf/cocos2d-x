@@ -68,12 +68,12 @@ extern void printError(const char* format, ...);
 // System Errors
 #define LOG_ERROR(x) \
     { \
-        printError(x); \
+        cocos2d::printError(x); \
         assert(#x == 0); \
     }
 #define LOG_ERROR_VARG(x, ...) \
     { \
-        printError(x, __VA_ARGS__); \
+        cocos2d::printError(x, __VA_ARGS__); \
         assert(#x == 0); \
     }
 
@@ -81,8 +81,8 @@ extern void printError(const char* format, ...);
 #ifdef WARN
 #undef WARN
 #endif
-#define WARN(x) printError(x)
-#define WARN_VARG(x, ...) printError(x, __VA_ARGS__)
+#define WARN(x) cocos2d::printError(x)
+#define WARN_VARG(x, ...) cocos2d::printError(x, __VA_ARGS__)
 #endif
 
 
@@ -268,7 +268,7 @@ extern GLenum __gl_error_code;
 #define assert(expression) do { \
     if (!(expression)) \
     { \
-        printError("Assertion \'" #expression "\' failed."); \
+        cocos2d::printError("Assertion \'" #expression "\' failed."); \
         __debugbreak(); \
     } } while (0)
 

@@ -50,8 +50,8 @@ bool TestMeshDrawNode::initTest3D()
     vertices[6].uv.set(0, 0);
     vertices[7].uv.set(0, 1);
     
-    my3d::VertexBufferPtr vb = new my3d::VertexBuffer(my3d::BufferUsage::Static,
-          numVertices * sizeof(my3d::VertexXYZUV), &vertices[0]);
+    my3d::VertexBufferPtr vb = new my3d::VertexBufferEx<my3d::VertexXYZUV>(
+          my3d::BufferUsage::Static, numVertices, &vertices[0]);
     
     my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZUV::getType());
     
@@ -67,8 +67,8 @@ bool TestMeshDrawNode::initTest3D()
         4, 3, 0,  4, 7, 3, //bottom
     };
     
-    my3d::IndexBufferPtr ib = new my3d::IndexBuffer(my3d::BufferUsage::Static,
-          my3d::IndexType::Index16, numIndices * sizeof(my3d::uint16), &indices[0]);
+    my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(
+          my3d::BufferUsage::Static, numIndices, &indices[0]);
     
     //create material
     

@@ -52,8 +52,8 @@ bool TestGroundDrawNode::initTest3D()
         }
     }
     
-    my3d::VertexBufferPtr vb = new my3d::VertexBuffer(
-        my3d::BufferUsage::Static, nVertices * sizeof(my3d::VertexXYZUV), vertices );
+    my3d::VertexBufferPtr vb = new my3d::VertexBufferEx<my3d::VertexXYZUV>(
+        my3d::BufferUsage::Static, nVertices, vertices );
     
     //create index buffer
     
@@ -76,8 +76,8 @@ bool TestGroundDrawNode::initTest3D()
         }
     }
     
-    my3d::IndexBufferPtr ib = new my3d::IndexBuffer(my3d::BufferUsage::Static,
-        my3d::IndexType::Index16, sizeof(my3d::uint16) * nIndices, indices);
+    my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(
+        my3d::BufferUsage::Static, nIndices, indices);
     
     //create material
     
