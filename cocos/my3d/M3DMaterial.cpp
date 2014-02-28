@@ -45,10 +45,7 @@ namespace my3d
         }
         
         pConst = m_effect->getConstant(EffectConstType::Material);
-        if(pConst)
-        {
-            pConst->bindValue(m_mtlColor);
-        }
+        if(pConst) pConst->bindValue(m_mtlColor);
         
         return true;
     }

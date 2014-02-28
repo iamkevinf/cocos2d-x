@@ -94,6 +94,7 @@ bool TestLightDrawNode::initTest3D()
     
     my3d::MaterialColor color;
     color.ambient.set(0.5f, 0.5f, 0.5f, 1.0f);
+    color.diffuse.set(0.8f, 0.8f, 0.8f, 1.0f);
     mtl->setMaterialColor(color);
     
     //create a sub mesh

@@ -24,7 +24,10 @@ namespace my3d
     
     EffectConstant::~EffectConstant()
     {
-        // hidden
+        for(auto it : m_children)
+        {
+            delete it.second;
+        }
     }
     
     Effect* EffectConstant::getEffect() const
@@ -40,6 +43,37 @@ namespace my3d
     const GLenum EffectConstant::getType() const
     {
         return m_type;
+    }
+    
+    EffectConstant *EffectConstant::getChild(const std::string & name, bool createIfMiss)
+    {
+        auto it = m_children.find(name);
+        if(it != m_children.end()) return it->second;
+        
+        if(createIfMiss)
+        {
+            EffectConstant *p = new EffectConstant();
+            m_children.insert(std::make_pair(name, p));
+            return p;
+        }
+        
+        return nullptr;
+    }
+    
+    EffectConstant *EffectConstant::getChildren(const std::string & name, bool createIfMiss)
+    {
+        CCAssert(!name.empty(), "EffectConstant::getChild");
+        
+        size_t pos = name.find('.');
+        if(pos == name.npos)
+        {
+            return getChild(name, createIfMiss);
+        }
+        
+        EffectConstant *pChild = getChild(name.substr(0, pos), createIfMiss);
+        if(!pChild) return nullptr;
+        
+        return pChild->getChildren(name.substr(pos+1), createIfMiss);
     }
     
     
@@ -105,12 +139,28 @@ namespace my3d
     
     void EffectConstant::bindValue(const Color & color)
     {
-        glUniform4f(m_location, color.r, color.g, color.b, color.a);
+        GL_ASSERT( glUniform4f(m_location, color.r, color.g, color.b, color.a) );
     }
     
     void EffectConstant::bindValue(const MaterialColor & color)
     {
-        glUniform4fv(m_location, 4, (GLfloat*)&color);
+        //GL_ASSERT( glUniform4fv(m_location, 4, (GLfloat*)&color) );
+        
+        EffectConstant *pConst = getChild("ambient");
+        assert(pConst);
+        pConst->bindValue(color.ambient);
+        
+        pConst = getChild("diffuse");
+        assert(pConst);
+        pConst->bindValue(color.diffuse);
+        
+        pConst = getChild("specular");
+        assert(pConst);
+        pConst->bindValue(color.specular);
+        
+        pConst = getChild("emissive");
+        assert(pConst);
+        pConst->bindValue(color.emissive);
     }
     
     void EffectConstant::bindValue(TexturePtr texture)

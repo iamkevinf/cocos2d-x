@@ -57,7 +57,7 @@ namespace my3d
         cocos2d::ProgramHandle m_program;
         SmartPtr<Shader> m_vertexShader;
         SmartPtr<Shader> m_pixelShader;
-        std::map<std::string, EffectConstant*> m_constants;
+        EffectConstant *m_pConstRoot;
         std::map<std::string, GLint> m_attributes;
         std::vector<std::pair<EffectAutoConstant*, EffectConstant*>> m_autoConsts;
 

@@ -73,6 +73,8 @@ namespace my3d
          */
         Effect* getEffect() const;
         
+        EffectConstant *getChild(const std::string & name, bool createIfMiss=false);
+        EffectConstant *getChildren(const std::string & name, bool createIfMiss=false);
         
         void bindValue(float value);
         
@@ -106,14 +108,7 @@ namespace my3d
         
     private:
         
-        /**
-         * Constructor.
-         */
         EffectConstant();
-        
-        /**
-         * Destructor.
-         */
         ~EffectConstant();
         
         std::string m_name;
@@ -121,6 +116,7 @@ namespace my3d
         GLenum      m_type;
         uint32      m_index;
         Effect*     m_pEffect;
+        std::map<std::string, EffectConstant*> m_children;
     };
 
     class EffectAutoConstant

@@ -29,6 +29,7 @@ namespace my3d
     Effect::Effect(const std::string & resouce)
     : m_program(0)
     , m_resouce(resouce)
+    , m_pConstRoot(nullptr)
     {
         cocos2d::ElementNode* doc = cocos2d::ElementNode::create(resouce.c_str());
         if (!doc)
@@ -36,6 +37,8 @@ namespace my3d
             CCLOGERROR("loading effect: Could not load file: %s", resouce.c_str());
             return;
         }
+        
+        m_pConstRoot = new EffectConstant();
         
         if(!loadEffect(doc))
         {
@@ -52,9 +55,9 @@ namespace my3d
             s_pActiveEffect = nullptr;
         }
         
-        for(auto it : m_constants)
+        if(m_pConstRoot != nullptr)
         {
-            delete it.second;
+            delete m_pConstRoot;
         }
         
         if(m_program != 0)
@@ -159,7 +162,7 @@ namespace my3d
             
             GLint location = glGetUniformLocation(m_program, uniformName);
             
-            EffectConstant* uniform = new EffectConstant();
+            EffectConstant* uniform = m_pConstRoot->getChildren(uniformName, true);
             uniform->m_pEffect = this;
             uniform->m_name = uniformName;
             uniform->m_location = location;
@@ -168,8 +171,6 @@ namespace my3d
                 uniform->m_index = samplerIndex++;
             else
                 uniform->m_index = 0;
-            
-            this->m_constants[uniformName] = uniform;
             
             EffectAutoConstant *pAutoConst = EffectAutoConstant::get(uniformName);
             if (pAutoConst)
@@ -186,10 +187,7 @@ namespace my3d
     
     EffectConstant * Effect::getConstant(const std::string & name)
     {
-        auto it = m_constants.find(name);
-        if(it != m_constants.end()) return it->second;
-        
-        return nullptr;
+        return m_pConstRoot->getChildren(name);
     }
     
     bool Effect::begin()

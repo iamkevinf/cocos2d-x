@@ -8,26 +8,37 @@ varying vec2 v_texCoord0;
 
 uniform mat4 		u_matWorld;
 uniform mat4		u_matViewProj;
+uniform vec4        u_halfDir;
 uniform vec4		u_ambient;
 uniform bool        u_dirLight;
 uniform vec3        u_dirLightDir;
 uniform vec4        u_dirLightColor;
+
+struct Material {
+    vec4 ambient;
+    vec4 diffuse;
+    vec4 specular;
+    vec4 emissive;
+};
+uniform Material u_material;
 
 vec4 computeDirLight(vec3 normal)
 {
 	vec4 color;
 	float factor;
     factor = max(0.0, dot(u_dirLightDir, normal));
-	color = u_dirLightColor * factor;
+	color = u_dirLightColor * u_material.diffuse * factor;
 	
 	return color;
 }
 
 vec4 computeAllLight(vec3 position, vec3 normal)
 {
-	vec4 color = u_ambient;
-	
+	vec4 color = u_material.emissive;
+    
+    color += u_ambient * u_material.ambient;
 	color += computeDirLight(normal);
+    
     color.w = 1.0;
 	return color;
 }
