@@ -85,9 +85,9 @@ bool TestGroundDrawNode::initTest3D()
     mtl->setEffect(my3d::EffectMgr::instance()->get("effect/test2.shader"));
     
     my3d::TextureStage stage;
-    stage.setTexture(my3d::TextureMgr::instance()->get("HelloWorld.png"));
+    stage.setTexture(my3d::TextureMgr::instance()->get("gui/stone.png"));
     stage.setUWrap(my3d::TextureWrap::Repeat);
-    stage.setVWrap(my3d::TextureWrap::Mirror);
+    stage.setVWrap(my3d::TextureWrap::Repeat);
     stage.setMinFilter(my3d::TextureFilter::Linear);
     stage.setMagFilter(my3d::TextureFilter::Linear);
     mtl->addTextureStage(stage);

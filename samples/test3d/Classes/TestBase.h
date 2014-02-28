@@ -21,6 +21,7 @@ static CLASS * create()             \
         delete p;                   \
         return nullptr;             \
     }                               \
+    p->autorelease();               \
     return p;                       \
 }
 
