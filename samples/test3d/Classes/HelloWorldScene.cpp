@@ -106,7 +106,7 @@ bool HelloWorld::init()
     light->setAmbientColor(my3d::Color(0.3f, 0.3f, 0.3f, 1.0f));
     
     my3d::DirLightPtr dlight = new my3d::DirLight();
-    dlight->setColor(my3d::Color(0.7f, 0.7f, 0.7f, 1.0f));
+    dlight->setColor(my3d::Color(1.0f, 1.0f, 1.0f, 1.0f));
     cocos2d::Vector3 dir(1, 1, 0);
     dir.normalize();
     dlight->setDirection(dir);
