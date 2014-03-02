@@ -235,6 +235,9 @@
     <ClCompile Include="..\my3d\M3DVertexDeclaration.cpp">
       <Filter>my3d</Filter>
     </ClCompile>
+    <ClCompile Include="..\my3d\M3DLightContainer.cpp">
+      <Filter>my3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cocos3d.h" />
@@ -494,6 +497,12 @@
       <Filter>my3d</Filter>
     </ClInclude>
     <ClInclude Include="..\my3d\my3d.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DLightContainer.h">
+      <Filter>my3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\my3d\M3DPreDef.h">
       <Filter>my3d</Filter>
     </ClInclude>
   </ItemGroup>

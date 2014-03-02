@@ -24,6 +24,7 @@
     <ClCompile Include="..\my3d\M3DEffectConstant.cpp" />
     <ClCompile Include="..\my3d\M3DEffectMgr.cpp" />
     <ClCompile Include="..\my3d\M3DInit.cpp" />
+    <ClCompile Include="..\my3d\M3DLightContainer.cpp" />
     <ClCompile Include="..\my3d\M3DLightDir.cpp" />
     <ClCompile Include="..\my3d\M3DMaterial.cpp" />
     <ClCompile Include="..\my3d\M3DMesh.cpp" />
@@ -107,10 +108,12 @@
     <ClInclude Include="..\my3d\M3DEffectConstant.h" />
     <ClInclude Include="..\my3d\M3DEffectMgr.h" />
     <ClInclude Include="..\my3d\M3DInit.h" />
+    <ClInclude Include="..\my3d\M3DLightContainer.h" />
     <ClInclude Include="..\my3d\M3DLightDir.h" />
     <ClInclude Include="..\my3d\M3DMaterial.h" />
     <ClInclude Include="..\my3d\M3DMesh.h" />
     <ClInclude Include="..\my3d\M3DMeshMgr.h" />
+    <ClInclude Include="..\my3d\M3DPreDef.h" />
     <ClInclude Include="..\my3d\M3DRenderDevice.h" />
     <ClInclude Include="..\my3d\M3DRenderState.h" />
     <ClInclude Include="..\my3d\M3DShader.h" />

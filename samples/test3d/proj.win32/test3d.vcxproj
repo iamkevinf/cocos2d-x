@@ -141,6 +141,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\TestController.cpp" />
     <ClCompile Include="..\Classes\TestEGLDraw.cpp" />
     <ClCompile Include="..\Classes\TestGroundDraw.cpp" />
+    <ClCompile Include="..\Classes\TestLightDraw.cpp" />
     <ClCompile Include="..\Classes\TestMeshDraw.cpp" />
     <ClCompile Include="..\Classes\TestSimpleDraw.cpp" />
     <ClCompile Include="..\Classes\TestTextureDraw.cpp" />
@@ -153,6 +154,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\TestController.h" />
     <ClInclude Include="..\Classes\TestEGLDraw.h" />
     <ClInclude Include="..\Classes\TestGroundDraw.h" />
+    <ClInclude Include="..\Classes\TestLightDraw.h" />
     <ClInclude Include="..\Classes\TestMeshDraw.h" />
     <ClInclude Include="..\Classes\TestSimpleDraw.h" />
     <ClInclude Include="..\Classes\TestTextureDraw.h" />
