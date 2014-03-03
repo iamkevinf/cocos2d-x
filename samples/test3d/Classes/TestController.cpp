@@ -14,6 +14,7 @@
 #include "TestMeshDraw.h"
 #include "TestGroundDraw.h"
 #include "TestLightDraw.h"
+#include "TestMeshFromFile.h"
 
 
 TestController::TestController()
@@ -38,11 +39,11 @@ bool TestController::initTest3D()
     addTestFactoryMethod("mesh", CreateTestFun(TestMeshDrawNode::create));
     addTestFactoryMethod("ground", CreateTestFun(TestGroundDrawNode::create));
     addTestFactoryMethod("lighting", CreateTestFun(TestLightDrawNode::create));
+    addTestFactoryMethod("mesh auto generate", CreateTestFun(TestMeshFileNode::create));
     
-    m_curTestIndex = 5;
+    m_curTestIndex = 6;
     
     restartTest();
-    
     
     return true;
 }

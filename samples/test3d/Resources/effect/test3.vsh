@@ -35,7 +35,7 @@ vec4 computeDirLight(vec3 normal)
     factor = max(0.0, dot(u_dirLight.direction.xyz, normal));
 	color = u_dirLight.color * u_material.diffuse * factor;
     
-    factor = max(0.0, dot(u_dirLight.halfVector, normal));
+    factor = dot(u_dirLight.halfVector, normal);
     if(factor > 0.0)
     {
         color += pow(factor, 0.5) * u_dirLight.color * u_material.specular;
