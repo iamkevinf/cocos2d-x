@@ -35,6 +35,7 @@ namespace my3d
     };
     
     GLenum indexType2Sys(IndexType type);
+    size_t indexType2Size(IndexType type);
     IndexType size2IndexType(size_t n);
 
     class BufferBase : public cocos2d::ISmartObject

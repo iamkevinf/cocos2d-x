@@ -8,7 +8,6 @@
 
 #include "M3DVertexBuffer.h"
 #include "M3DRenderDevice.h"
-#include "mytool/testtool.h"
 
 namespace my3d
 {
@@ -24,7 +23,7 @@ namespace my3d
                 return GL_STATIC_DRAW;
                 
             default:
-                DO_ASSERT(0, "Invalid BufferUsage");
+                CCAssert(0, "Invalid BufferUsage");
                 return 0;
         };
     }
@@ -40,7 +39,7 @@ namespace my3d
                 return GL_ELEMENT_ARRAY_BUFFER;
                 
             default:
-                DO_ASSERT(0, "Invalid BufferType");
+                CCAssert(0, "Invalid BufferType");
                 return 0;
         };
     }
@@ -59,9 +58,28 @@ namespace my3d
                 return GL_UNSIGNED_INT;
                 
             default:
-                DO_ASSERT(0, "Invalid IndexType");
+                CCAssert(0, "Invalid IndexType");
                 return 0;
         };
+    }
+    
+    size_t indexType2Size(IndexType type)
+    {
+        switch(type)
+        {
+            case IndexType::Index8:
+                return sizeof(uint8);
+            
+            case IndexType::Index16:
+                return sizeof(uint16);
+            
+            case IndexType::Index32:
+                return sizeof(uint32);
+            
+            default:
+                CCAssert(0, "Invalid IndexType");
+            return 0;
+        }
     }
     
     IndexType size2IndexType(size_t n)

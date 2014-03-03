@@ -105,7 +105,7 @@ void TestMeshFileNode::generateGround(int nRows, int nCols, int *rawData)
 #else
     my3d::SubMeshPtr mesh = new my3d::SubMesh();
     mesh->setMaterial(m_materials[0]);
-    mesh->setPrimitive(my3d::PrimitiveType::TriangleList, 0, nIndices);
+    mesh->setPrimitive(my3d::PrimitiveType::TriangleList, 36, 18);
     m_ground->addSubMeshes(mesh);
     my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(my3d::BufferUsage::Static, nIndices, &indices[0]);
 #endif
@@ -166,8 +166,7 @@ void TestMeshFileNode::generatePrimitive(int nRows, int nCols, const int *rawDat
     for (int i = 0; i < nGrid; ++i)
     {
         int iMateral = rawData[i];
-        //if(iMateral == 0)
-            group[iMateral].push_back(i);
+        group[iMateral].push_back(i);
     }
 }
 
@@ -208,7 +207,7 @@ bool TestMeshFileNode::loadMaterial()
         
         my3d::MaterialColor color;
         color.ambient.set(0.5f, 0.5f, 0.5f, 1.0f);
-        color.diffuse.set(0.8f, 0.8f, 0.8f, 1.0f);
+        color.diffuse.set(1.0f, 1.8f, 1.0f, 1.0f);
         color.specular.set(0.8f, 0.8f, 0.8f, 1.0f);
         mtl->setMaterialColor(color);
         
@@ -228,8 +227,8 @@ bool TestMeshFileNode::loadMaterial()
         mtl->addTextureStage(stage);
         
         my3d::MaterialColor color;
-        color.ambient.set(0.5f, 0.5f, 0.5f, 1.0f);
-        color.diffuse.set(0.8f, 0.8f, 0.8f, 1.0f);
+        color.ambient.set(0.0f, 0.0f, 0.0f, 1.0f);
+        color.diffuse.set(1.0f, 1.2f, 1.2f, 1.2f);
         color.specular.set(0.8f, 0.8f, 0.8f, 1.0f);
         mtl->setMaterialColor(color);
         

@@ -208,8 +208,10 @@ namespace my3d
         CCAssert(m_indexBuffer, "Please bind the index buffer first!");
         CCAssert(m_indexBuffer->getIndexType() != IndexType::IndexError, "Please set the IndexType first!");
         
-        GLenum type = indexType2Sys(m_indexBuffer->getIndexType());
-        glDrawRangeElements(primitiveType2Sys(pt), start, start + count, count, type, nullptr);
+        IndexType itype = m_indexBuffer->getIndexType();
+        size_t isize = indexType2Size(itype);
+        GLenum type = indexType2Sys(itype);
+        GL_ASSERT( glDrawElements(primitiveType2Sys(pt), count, type, (GLvoid*)(start*isize)) );
     }
     
     void RenderDevice::setVertexBuffer(VertexBuffer *p)
