@@ -26,7 +26,7 @@ public:
     
     bool loadMaterial();
     
-    void generateGround(int nRows, int nCols, int *rawData);
+    void generateGround(int nRows, int nCols, const int *rawData);
     
     void generatePrimitive(int nRows, int nCols, const int *rawData, std::map<int, std::vector<int>> & group);
     void generateVertices(int nRows, int nCols, my3d::VertexXYZNUV * pVertices);

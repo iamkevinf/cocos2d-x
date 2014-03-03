@@ -38,6 +38,10 @@ bool TestMeshFileNode::initTest3D()
     
     generateGround(nRows, nCols, &rawData[0]);
     
+    std::vector<int> wall1 = {
+        
+    };
+    
     return true;
 }
 
@@ -51,7 +55,7 @@ void TestMeshFileNode::draw()
     my3d::renderDev()->popWorld();
 }
 
-void TestMeshFileNode::generateGround(int nRows, int nCols, int *rawData)
+void TestMeshFileNode::generateGround(int nRows, int nCols, const int *rawData)
 {
     std::map<int, std::vector<int>> primitiveGroup;//material index -> grid index
     generatePrimitive(nRows, nCols, rawData, primitiveGroup);
@@ -71,7 +75,6 @@ void TestMeshFileNode::generateGround(int nRows, int nCols, int *rawData)
     std::vector<my3d::uint16> indices(nIndices);
     generateIndices(nRows, nCols, &indices[0]);
     
-#if 1
     std::vector<my3d::uint16> dstIndices;
     dstIndices.reserve(nIndices);
     
@@ -101,15 +104,6 @@ void TestMeshFileNode::generateGround(int nRows, int nCols, int *rawData)
     }
     
     my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(my3d::BufferUsage::Static, dstIndices.size(), &dstIndices[0]);
-    
-#else
-    my3d::SubMeshPtr mesh = new my3d::SubMesh();
-    mesh->setMaterial(m_materials[0]);
-    mesh->setPrimitive(my3d::PrimitiveType::TriangleList, 36, 18);
-    m_ground->addSubMeshes(mesh);
-    my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(my3d::BufferUsage::Static, nIndices, &indices[0]);
-#endif
-
     m_ground->setIndexBuffer(ib);
 }
 
