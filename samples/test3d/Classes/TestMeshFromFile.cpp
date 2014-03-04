@@ -55,10 +55,10 @@ void WallMap::reset(int nRows, int nCols)
             |1 i 2|
             ---3---
             */
-            m_walls[pWall[GridUp]].grid[WallDown] = index;//0的下边
-            m_walls[pWall[GridLeft]].grid[WallRight] = index;//1的右边
-            m_walls[pWall[GridRight]].grid[WallLeft] = index;//2的左边
-            m_walls[pWall[GridDown]].grid[WallUp] = index;//3的上边
+            m_walls[pWall[GridUp]].grid[WallOutside] = index;//0的下边
+            m_walls[pWall[GridLeft]].grid[WallOutside] = index;//1的右边
+            m_walls[pWall[GridRight]].grid[WallInside] = index;//2的左边
+            m_walls[pWall[GridDown]].grid[WallInside] = index;//3的上边
         }
     }
     
@@ -91,6 +91,8 @@ Wall::Wall()
 , m_gridSize(1.0f)
 , m_y(0.0f)
 , m_wallHeight(2.0f)
+, m_wallThick(0.2f)
+, m_wallThickHalf(0.1f)
 {
     
 }
@@ -107,8 +109,22 @@ void Wall::init(int nRows, int nCols, const int * pWalls, int n)
     setData(pWalls, n);
 }
 
-void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
+void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
 {
+    generateVertexA(vertices, faces, WallMap::WallOutside);
+    generateVertexA(vertices, faces, WallMap::WallInside);
+    
+    generateVertexB(vertices, faces, WallMap::WallOutside);
+    generateVertexB(vertices, faces, WallMap::WallInside);
+}
+
+void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side)
+{
+    float delta = m_wallThickHalf;
+    if (side == WallMap::WallOutside)
+    {
+        delta = -delta;
+    }
     
     for(int r = 0; r < m_nRows; ++r)
     {
@@ -129,7 +145,7 @@ void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
             */
             
             const WallCell & w = m_walls[iWall];
-            IndexPool & pool = faces[w.material[WallMap::WallDown]];
+            IndexPool & pool = faces[w.material[side]];
             my3d::uint16 index;
             
             if(repeat == 0)
@@ -139,11 +155,11 @@ void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
                 my3d::VertexXYZNUV vert;
                 vert.normal.set(0, 0, 1);
                 
-                vert.position.set(c * m_gridSize, m_y + m_wallHeight, r * m_gridSize);
+                vert.position.set(c * m_gridSize, m_y + m_wallHeight, r * m_gridSize + delta);
                 vert.uv.set(0, 0);
                 vertices.push_back(vert);
                 
-                vert.position.set(c * m_gridSize, m_y, r * m_gridSize);
+                vert.position.set(c * m_gridSize, m_y, r * m_gridSize + delta);
                 vert.uv.set(0, 1);
                 vertices.push_back(vert);
             }
@@ -157,11 +173,11 @@ void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
             my3d::VertexXYZNUV vert;
             vert.normal.set(0, 0, 1);
             
-            vert.position.set((c + 1) * m_gridSize, m_y + m_wallHeight, r * m_gridSize);
+            vert.position.set((c + 1) * m_gridSize, m_y + m_wallHeight, r * m_gridSize + delta);
             vert.uv.set(repeat, 0);
             vertices.push_back(vert);
             
-            vert.position.set((c + 1) * m_gridSize, m_y, r * m_gridSize);
+            vert.position.set((c + 1) * m_gridSize, m_y, r * m_gridSize + delta);
             vert.uv.set(repeat, 1);
             vertices.push_back(vert);
             
@@ -176,12 +192,84 @@ void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
         }
     }
     
-    
 }
-void Wall::generateVertexB(VertexPool & vertices, FaceMap & faces)
+
+void Wall::generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side)
 {
+    float delta = m_wallThickHalf;
+    if (side == WallMap::WallOutside)
+    {
+        delta = -delta;
+    }
     
+    for(int c = 0; c < m_nCols; ++c)
+    {
+        int repeat = 0;
+        
+        for(int r = m_nRows - 1; r >= 0; --r)
+        {
+            int iGrid = r * m_nCols + c;
+            int iWall = m_wallMap.grid2wall(iGrid, WallMap::GridLeft);
+            if(!hasWall(iWall))
+            {
+                repeat = 0;
+                continue;
+            }
+            
+            /* vertex order
+             0 2
+             1 3
+             */
+            
+            const WallCell & w = m_walls[iWall];
+            IndexPool & pool = faces[w.material[side]];
+            my3d::uint16 index;
+            
+            if(repeat == 0)
+            {
+                index = (my3d::uint16)vertices.size();
+                
+                my3d::VertexXYZNUV vert;
+                vert.normal.set(0, 0, 1);
+                
+                vert.position.set(c * m_gridSize + delta, m_y + m_wallHeight, (r + 1) * m_gridSize);
+                vert.uv.set(0, 0);
+                vertices.push_back(vert);
+                
+                vert.position.set(c * m_gridSize + delta, m_y, (r + 1) * m_gridSize);
+                vert.uv.set(0, 1);
+                vertices.push_back(vert);
+            }
+            else//可以与前一面墙公用两个顶点
+            {
+                index = (my3d::uint16)vertices.size() - 2;
+            }
+            
+            ++repeat;
+            
+            my3d::VertexXYZNUV vert;
+            vert.normal.set(0, 0, 1);
+            
+            vert.position.set(c * m_gridSize + delta, m_y + m_wallHeight, r * m_gridSize);
+            vert.uv.set(repeat, 0);
+            vertices.push_back(vert);
+            
+            vert.position.set(c * m_gridSize + delta, m_y, r * m_gridSize);
+            vert.uv.set(repeat, 1);
+            vertices.push_back(vert);
+            
+            //两个三角形的6个索引
+            pool.push_back(index);
+            pool.push_back(index+1);
+            pool.push_back(index+2);
+            pool.push_back(index+2);
+            pool.push_back(index+1);
+            pool.push_back(index+3);
+            
+        }
+    }
 }
+
 void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
 {
     
@@ -261,6 +349,10 @@ bool TestMeshFileNode::initTest3D()
         4, 0, 0,
         11, 0, 2,
         12, 0, 2,
+        5, 0, 0,
+        16, 0, 0,
+        6, 1, 1,
+        17, 1, 1,
     };
     generateWall(nRows, nCols, &wall[0], wall.size() / 3);
     
@@ -465,7 +557,7 @@ void TestMeshFileNode::generateWall(int nRows, int nCols, const int * pWalls, in
     
     Wall::VertexPool vertices;
     Wall::FaceMap faces;
-    m_wallData->generateVertexA(vertices, faces);
+    m_wallData->generateVertex(vertices, faces);
     
     m_wallMesh = new my3d::Mesh();
     

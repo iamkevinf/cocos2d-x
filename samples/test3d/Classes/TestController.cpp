@@ -52,11 +52,15 @@ void TestController::draw()
 {
     my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
     my3d::renderDev()->setCullFace(my3d::CullFace::Back);
+    my3d::renderDev()->setRenderState(my3d::RenderState::DepthTest, true);
+    
     my3d::renderDev()->pushWorld(this->getWorldMatrix());
     
     TestBaseNode::draw();
     
     my3d::renderDev()->popWorld();
+    
+    my3d::renderDev()->setRenderState(my3d::RenderState::DepthTest, false);
 }
 
 void TestController::addTestFactoryMethod(const std::string & desc, CreateTestFun method)

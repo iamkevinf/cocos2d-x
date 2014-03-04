@@ -17,12 +17,11 @@ public:
     WallMap();
     ~WallMap();
     
+    //墙的面。左侧和上侧视为外部，右侧和下侧视为内部
     enum WallSide
     {
-        WallUp = 0,
-        WallLeft = 0,
-        WallRight = 1,
-        WallDown = 1,
+        WallOutside = 0,
+        WallInside = 1,
     };
     
     enum GridSize
@@ -79,8 +78,10 @@ public:
     //pWalls：3个整数为一组（墙索引，材质1，材质2）
     void init(int nRows, int nCols, const int * pWalls, int n);
     
-    void generateVertexA(VertexPool & vertices, FaceMap & faces);
-    void generateVertexB(VertexPool & vertices, FaceMap & faces);
+    void generateVertex(VertexPool & vertices, FaceMap & faces);
+    
+    void generateVertexA(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
+    void generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
     void generateVertexC(VertexPool & vertices, FaceMap & faces);
     
     bool hasWall(int iWall) const;
@@ -97,6 +98,8 @@ private:
     float m_gridSize;
     float m_y;
     float m_wallHeight;
+    float m_wallThick;
+    float m_wallThickHalf;
 };
 typedef SmartPtr<Wall> WallPtr;
 

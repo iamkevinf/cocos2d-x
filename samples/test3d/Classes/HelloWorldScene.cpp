@@ -39,6 +39,8 @@ bool HelloWorld::init()
         return false;
     }
     
+    if(!init3D()) return false;
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
@@ -88,17 +90,24 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(m_pTitle, 1);
     
+    m_pTitle->setString(m_pTestController->getCurTestDesc());
+    
+    return true;
+}
 
+bool HelloWorld::init3D()
+{
     C3DLayer * pLayer = C3DLayer::create();
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
     pCamera->setPosition(0, 2.0, 6.0f);
     pCamera->rotateX(-3.14f / 8);
+    
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
-
+    
     my3d::renderDev()->setCamera(pCamera);
     my3d::renderDev()->updateCamera();
     
@@ -113,12 +122,10 @@ bool HelloWorld::init()
     light->addDirLight(dlight);
     
     my3d::renderDev()->setLightContainer(light);
-
+    
     
     m_pTestController = TestController::create();
     pScene->addChild(m_pTestController);
-    
-    m_pTitle->setString(m_pTestController->getCurTestDesc());
     
     return true;
 }
