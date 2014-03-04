@@ -21,8 +21,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto eglView = EGLView::getInstance();
     
-    InstanceCounter::getInstance()->beginSchedule();
-
     director->setOpenGLView(eglView);
 	
     // turn on display FPS
