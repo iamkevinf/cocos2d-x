@@ -8,6 +8,222 @@
 
 #include "TestMeshFromFile.h"
 
+WallMap::WallMap()
+: m_nRows(0)
+, m_nCols(0)
+{
+    
+}
+
+WallMap::~WallMap()
+{
+    
+}
+
+
+void WallMap::reset(int nRows, int nCols)
+{
+    m_nRows = nRows;
+    m_nCols = nCols;
+    
+    m_grids.resize(nRows * nCols);
+    m_walls.resize(2 * nRows * nCols + nRows + nCols);
+    
+    int iWall = 0;
+    for (auto it : m_walls)
+    {
+        it.index = iWall;
+        it.grid[0] = it.grid[1] = -1;
+    }
+    
+    for(int r = 0; r < m_nRows; ++r)
+    {
+        for(int c = 0; c < m_nCols; ++c)
+        {
+            int index = r * m_nCols + c;
+            m_grids[index].index = index;
+            
+            int *pWall = m_grids[index].wall;
+            
+            pWall[GridUp] = 2 *r * m_nCols + r + c;
+            pWall[GridLeft] = pWall[GridUp] + m_nCols;
+            pWall[GridRight] = pWall[GridLeft] + 1;
+            pWall[GridDown] = pWall[GridRight] + m_nCols;
+            
+            /*左&上为0，右&下为1
+            ---0---
+            |1 i 2|
+            ---3---
+            */
+            m_walls[pWall[GridUp]].grid[WallDown] = index;//0的下边
+            m_walls[pWall[GridLeft]].grid[WallRight] = index;//1的右边
+            m_walls[pWall[GridRight]].grid[WallLeft] = index;//2的左边
+            m_walls[pWall[GridDown]].grid[WallUp] = index;//3的上边
+        }
+    }
+    
+}
+
+int WallMap::wall2grid(int iWall, int i) const
+{
+    return m_walls[iWall].grid[i];
+}
+
+int WallMap::grid2wall(int iGrid, int i) const
+{
+    return m_grids[iGrid].wall[i];
+}
+
+const WallMap::Grid & WallMap::getGrid(int iGrid) const
+{
+    return m_grids[iGrid];
+}
+
+const WallMap::Wall & WallMap::getWall(int iWall) const
+{
+    return m_walls[iWall];
+}
+
+//////////////////////////////////////////////////////////////
+Wall::Wall()
+: m_nRows(0)
+, m_nCols(0)
+, m_gridSize(1.0f)
+, m_y(0.0f)
+, m_wallHeight(2.0f)
+{
+    
+}
+
+Wall::~Wall()
+{
+    
+}
+
+//pWalls：3个整数为一组（墙索引，材质1，材质2）
+void Wall::init(int nRows, int nCols, const int * pWalls, int n)
+{
+    built(nRows, nCols);
+    setData(pWalls, n);
+}
+
+void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces)
+{
+    
+    for(int r = 0; r < m_nRows; ++r)
+    {
+        int repeat = 0;
+        for(int c = 0; c < m_nCols; ++c)
+        {
+            int iGrid = r * m_nCols + c;
+            int iWall = m_wallMap.grid2wall(iGrid, WallMap::GridUp);
+            if(!hasWall(iWall))
+            {
+                repeat = 0;
+                continue;
+            }
+            
+            /* vertex order
+            0 2
+            1 3
+            */
+            
+            const WallCell & w = m_walls[iWall];
+            IndexPool & pool = faces[w.material[WallMap::WallDown]];
+            my3d::uint16 index;
+            
+            if(repeat == 0)
+            {
+                index = (my3d::uint16)vertices.size();
+                
+                my3d::VertexXYZNUV vert;
+                vert.normal.set(0, 0, 1);
+                
+                vert.position.set(c * m_gridSize, m_y + m_wallHeight, r * m_gridSize);
+                vert.uv.set(0, 0);
+                vertices.push_back(vert);
+                
+                vert.position.set(c * m_gridSize, m_y, r * m_gridSize);
+                vert.uv.set(0, 1);
+                vertices.push_back(vert);
+            }
+            else//可以与前一面墙公用两个顶点
+            {
+                index = (my3d::uint16)vertices.size() - 2;
+            }
+            
+            ++repeat;
+            
+            my3d::VertexXYZNUV vert;
+            vert.normal.set(0, 0, 1);
+            
+            vert.position.set((c + 1) * m_gridSize, m_y + m_wallHeight, r * m_gridSize);
+            vert.uv.set(repeat, 0);
+            vertices.push_back(vert);
+            
+            vert.position.set((c + 1) * m_gridSize, m_y, r * m_gridSize);
+            vert.uv.set(repeat, 1);
+            vertices.push_back(vert);
+            
+            //两个三角形的6个索引
+            pool.push_back(index);
+            pool.push_back(index+1);
+            pool.push_back(index+2);
+            pool.push_back(index+2);
+            pool.push_back(index+1);
+            pool.push_back(index+3);
+            
+        }
+    }
+    
+    
+}
+void Wall::generateVertexB(VertexPool & vertices, FaceMap & faces)
+{
+    
+}
+void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
+{
+    
+}
+
+
+bool Wall::hasWall(int iWall) const
+{
+    if(iWall < 0 || iWall >= m_wallMarks.size()) return false;
+    
+    return m_wallMarks[iWall];
+}
+
+void Wall::built(int nRows, int nCols)
+{
+    m_nRows = nRows;
+    m_nCols = nCols;
+    m_wallMap.reset(nRows, nCols);
+    m_wallMarks.resize(2 * nRows * nCols + nRows + nCols);
+    for (auto it = m_wallMarks.begin(); it != m_wallMarks.end(); ++it)
+    {
+        (*it) = false;
+    }
+    
+}
+
+void Wall::setData(const int *pWalls, int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        WallCell cell;
+        cell.index = pWalls[i * 3];
+        cell.material[0] = pWalls[i * 3 + 1];
+        cell.material[1] = pWalls[i * 3 + 2];
+        
+        m_walls.insert(std::make_pair(cell.index, cell));
+        m_wallMarks[cell.index] = true;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+
 TestMeshFileNode::TestMeshFileNode()
 : m_nRows(0)
 , m_nCols(0)
@@ -22,7 +238,7 @@ TestMeshFileNode::~TestMeshFileNode()
 bool TestMeshFileNode::initTest3D()
 {
     int nRows = 4;
-    int nCols = 6;
+    int nCols = 5;
     
     if (!loadMaterial())
     {
@@ -30,17 +246,28 @@ bool TestMeshFileNode::initTest3D()
     }
     
     std::vector<int> rawData = {
-      0, 0, 0, 0, 0, 0,
-      0, 1, 1, 1, 1, 0,
-      1, 2, 2, 2, 2, 1,
-      0, 1, 1, 1, 1, 0,
+      0, 0, 0, 0, 0,
+      0, 1, 1, 1, 1,
+      1, 2, 2, 2, 2,
+      0, 1, 1, 1, 1,
     };
     
     generateGround(nRows, nCols, &rawData[0]);
     
-    std::vector<int> wall1 = {
-        
+    std::vector<int> wall = {
+        0, 0, 0,
+        1, 0, 0,
+        2, 0, 0,
+        4, 0, 0,
+        11, 0, 2,
+        12, 0, 2,
     };
+    generateWall(nRows, nCols, &wall[0], wall.size() / 3);
+    
+    
+    cocos2d::C3DScene *pScene = cocos2d::C3DLayer::getMainLayer()->get3DScene();
+    pScene->getActiveCamera()->setPosition(3, 4.0f, 8.0f);
+    my3d::renderDev()->updateCamera();
     
     return true;
 }
@@ -51,6 +278,7 @@ void TestMeshFileNode::draw()
     
     TestBaseNode::draw();
     if(m_ground) m_ground->draw();
+    if(m_wallMesh) m_wallMesh->draw();
     
     my3d::renderDev()->popWorld();
 }
@@ -68,8 +296,6 @@ void TestMeshFileNode::generateGround(int nRows, int nCols, const int *rawData)
     my3d::VertexDeclarationPtr decl = my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZNUV::getType());
     
     m_ground = new my3d::Mesh();
-    m_ground->setVertexBuffer(vb);
-    m_ground->setVertexDecl(decl);
     
     const size_t nIndices = nRows * nCols * 2 * 3;
     std::vector<my3d::uint16> indices(nIndices);
@@ -105,6 +331,8 @@ void TestMeshFileNode::generateGround(int nRows, int nCols, const int *rawData)
     
     my3d::IndexBufferPtr ib = new my3d::IndexBufferEx<my3d::uint16>(my3d::BufferUsage::Static, dstIndices.size(), &dstIndices[0]);
     m_ground->setIndexBuffer(ib);
+    m_ground->setVertexBuffer(vb);
+    m_ground->setVertexDecl(decl);
 }
 
 void TestMeshFileNode::generateVertices(int nRows, int nCols, my3d::VertexXYZNUV * pVertices)
@@ -114,16 +342,14 @@ void TestMeshFileNode::generateVertices(int nRows, int nCols, my3d::VertexXYZNUV
     
     const float gridWidth = 1.0f;
     const float gridHeight = 1.0f;
-    const float halfWidth = nCols * gridWidth * 0.5f;
-    const float halfHeight = nRows * gridHeight * 0.5f;
-    const float y = -2.0f;
+    const float y = 0.0f;
     
     for (int r = 0; r < nRowVertices; ++r)
     {
         for(int c = 0; c < nColVertices; ++c)
         {
             int i = r * nColVertices + c;
-            pVertices[i].position.set(c * gridWidth - halfWidth, y, r * gridHeight - halfHeight);
+            pVertices[i].position.set(c * gridWidth, y, r * gridHeight);
             pVertices[i].normal.set(0, 1, 0);
             pVertices[i].uv.set(c, r);
         }
@@ -230,4 +456,43 @@ bool TestMeshFileNode::loadMaterial()
     }
     
     return true;
+}
+
+void TestMeshFileNode::generateWall(int nRows, int nCols, const int * pWalls, int n)
+{
+    m_wallData = new Wall();
+    m_wallData->init(nRows, nCols, pWalls, n);
+    
+    Wall::VertexPool vertices;
+    Wall::FaceMap faces;
+    m_wallData->generateVertexA(vertices, faces);
+    
+    m_wallMesh = new my3d::Mesh();
+    
+    //构造顶点的索引数据
+    Wall::IndexPool indices;
+    size_t start = 0;
+    for(auto it : faces)
+    {
+        size_t n = it.second.size();
+        if(n == 0) continue;
+        for(size_t i = 0; i<n; ++i)
+        {
+            indices.push_back(it.second[i]);
+        }
+        
+        my3d::SubMesh * pMesh = new my3d::SubMesh();
+        pMesh->setMaterial(m_materials[it.first]);
+        pMesh->setPrimitive(my3d::PrimitiveType::TriangleList, start, n);
+        m_wallMesh->addSubMeshes(pMesh);
+        
+        start += n;
+    }
+    
+    m_wallMesh->setVertexBuffer(
+        new my3d::VertexBufferEx<my3d::VertexXYZNUV>(my3d::BufferUsage::Static, vertices.size(), &vertices[0]));
+    m_wallMesh->setIndexBuffer(
+       new my3d::IndexBufferEx<my3d::uint16>(my3d::BufferUsage::Static, indices.size(), &indices[0]));
+    m_wallMesh->setVertexDecl(my3d::VertexDeclMgr::instance()->get(my3d::VertexXYZNUV::getType()));
+    
 }

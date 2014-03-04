@@ -99,8 +99,8 @@ bool HelloWorld::init()
     pScene->addNodeToRenderList(pCamera);
     pScene->setActiveCamera(0);
 
-    my3d::renderDev()->setView(pCamera->getViewMatrix());
-    my3d::renderDev()->setProjection(pCamera->getProjectionMatrix());
+    my3d::renderDev()->setCamera(pCamera);
+    my3d::renderDev()->updateCamera();
     
     my3d::LightContainerPtr light = new my3d::LightContainer();
     light->setAmbientColor(my3d::Color(0.3f, 0.3f, 0.3f, 1.0f));

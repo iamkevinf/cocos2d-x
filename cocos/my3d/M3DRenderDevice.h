@@ -4,6 +4,11 @@
 #include "M3DRenderState.h"
 #include "M3DLightContainer.h"
 
+namespace cocos2d
+{
+    class C3DCamera;
+}
+
 namespace my3d
 {
     class VertexBuffer;
@@ -62,6 +67,10 @@ namespace my3d
         void setLightContainer(LightContainerPtr container);
         LightContainerPtr getLightContainer();
         
+        void setCamera(cocos2d::C3DCamera *pCamera);
+        cocos2d::C3DCamera *getCamera();
+        void updateCamera();
+        
     private:
         std::vector<cocos2d::Matrix> m_matWorlds;
         cocos2d::Matrix m_matView;
@@ -73,6 +82,7 @@ namespace my3d
         
         VertexBuffer    *m_vertexBuffer;
         IndexBuffer     *m_indexBuffer;
+        cocos2d::C3DCamera * m_pCamera;
         
         LightContainerPtr m_lightContainer;
     };

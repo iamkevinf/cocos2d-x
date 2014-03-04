@@ -1,5 +1,6 @@
 ﻿#include "M3DRenderDevice.h"
 #include "M3DVertexBuffer.h"
+#include "3d/C3DCamera.h"
 
 namespace my3d
 {
@@ -12,6 +13,9 @@ namespace my3d
 
     RenderDevice::RenderDevice()
         : m_dirty(0)
+        , m_pCamera(nullptr)
+        , m_vertexBuffer(nullptr)
+        , m_indexBuffer(nullptr)
     {
         m_matWorlds.push_back(cocos2d::Matrix::identity());
         m_matInvView = m_matView = cocos2d::Matrix::identity();
@@ -242,6 +246,22 @@ namespace my3d
     LightContainerPtr RenderDevice::getLightContainer()
     {
         return m_lightContainer;
+    }
+    
+    void RenderDevice::setCamera(cocos2d::C3DCamera *pCamera)
+    {
+        m_pCamera = pCamera;
+    }
+    
+    cocos2d::C3DCamera *RenderDevice::getCamera()
+    {
+        return m_pCamera;
+    }
+    
+    void RenderDevice::updateCamera()
+    {
+        setView(m_pCamera->getViewMatrix());
+        setProjection(m_pCamera->getProjectionMatrix());
     }
 
 }//end namespace my3d
