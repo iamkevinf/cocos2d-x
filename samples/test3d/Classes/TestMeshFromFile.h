@@ -80,9 +80,13 @@ public:
     
     void generateVertex(VertexPool & vertices, FaceMap & faces);
     
+    //水平的墙
     void generateVertexA(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
+    //竖直的墙
     void generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
+    //墙顶部
     void generateVertexC(VertexPool & vertices, FaceMap & faces);
+    void generateVertexD(VertexPool & vertices, FaceMap & faces);
     
     bool hasWall(int iWall) const;
     
@@ -100,6 +104,7 @@ private:
     float m_wallHeight;
     float m_wallThick;
     float m_wallThickHalf;
+    int m_defaultMaterial;
 };
 typedef SmartPtr<Wall> WallPtr;
 

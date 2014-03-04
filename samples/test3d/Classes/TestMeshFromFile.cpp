@@ -93,6 +93,7 @@ Wall::Wall()
 , m_wallHeight(2.0f)
 , m_wallThick(0.2f)
 , m_wallThickHalf(0.1f)
+, m_defaultMaterial(0)
 {
     
 }
@@ -116,6 +117,9 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
     
     generateVertexB(vertices, faces, WallMap::WallOutside);
     generateVertexB(vertices, faces, WallMap::WallInside);
+    
+    generateVertexC(vertices, faces);
+    generateVertexD(vertices, faces);
 }
 
 void Wall::generateVertexA(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side)
@@ -271,6 +275,11 @@ void Wall::generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::Wall
 }
 
 void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
+{
+    
+}
+
+void Wall::generateVertexD(VertexPool & vertices, FaceMap & faces)
 {
     
 }
