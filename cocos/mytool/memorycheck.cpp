@@ -49,6 +49,12 @@ InstanceCounter::~InstanceCounter()
     CCLOG("InstanceCounter will exit soon.");
  
     dumpAll();
+    
+    for(ITypeProxy *p : m_objects)
+    {
+        delete p;
+    }
+    m_objects.clear();
 }
 
 void InstanceCounter::dumpAll()

@@ -83,6 +83,7 @@ public:
         auto it = m_objects.find(proxy);
         if(it != m_objects.end())
         {
+            delete (*it);
             m_objects.erase(it);
         }
     }
