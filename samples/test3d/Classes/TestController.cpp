@@ -50,7 +50,7 @@ bool TestController::initTest3D()
 
 void TestController::draw()
 {
-    my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, true);
+    my3d::renderDev()->setRenderState(my3d::RenderState::CullFace, false);
     my3d::renderDev()->setCullFace(my3d::CullFace::Back);
     my3d::renderDev()->setRenderState(my3d::RenderState::DepthTest, true);
     

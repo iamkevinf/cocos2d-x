@@ -8,6 +8,13 @@
 
 #include "TestMeshFromFile.h"
 
+const WallMap::GridSide g_invGridSide[] = {WallMap::GridDown, WallMap::GridRight, WallMap::GridLeft, WallMap::GridUp};
+
+/*static*/ int WallMap::getInvGridSide(int side)
+{
+    return g_invGridSide[side];
+}
+
 WallMap::WallMap()
 : m_nRows(0)
 , m_nCols(0)
@@ -30,38 +37,62 @@ void WallMap::reset(int nRows, int nCols)
     m_walls.resize(2 * nRows * nCols + nRows + nCols);
     
     int iWall = 0;
-    for (auto it : m_walls)
+    for (Wall & it : m_walls)
     {
         it.index = iWall;
         it.grid[0] = it.grid[1] = -1;
+        it.dir = -1;
     }
     
+    //处理墙和格子的映射关系
     for(int r = 0; r < m_nRows; ++r)
     {
         for(int c = 0; c < m_nCols; ++c)
         {
-            int index = r * m_nCols + c;
-            m_grids[index].index = index;
+            int iGrid = r * m_nCols + c;
+            m_grids[iGrid].index = iGrid;
             
-            int *pWall = m_grids[index].wall;
+            int *pWall = m_grids[iGrid].wall;
             
-            pWall[GridUp] = 2 *r * m_nCols + r + c;
-            pWall[GridLeft] = pWall[GridUp] + m_nCols;
-            pWall[GridRight] = pWall[GridLeft] + 1;
-            pWall[GridDown] = pWall[GridRight] + m_nCols;
+            int uWall = 2 *r * m_nCols + r + c;
+            int lWall = uWall + m_nCols;
+            int rWall = lWall + 1;
+            int dWall = rWall + m_nCols;
+            
+            pWall[GridUp] = uWall;
+            pWall[GridLeft] = lWall;
+            pWall[GridRight] = rWall;
+            pWall[GridDown] = dWall;
             
             /*左&上为0，右&下为1
             ---0---
             |1 i 2|
             ---3---
             */
-            m_walls[pWall[GridUp]].grid[WallOutside] = index;//0的下边
-            m_walls[pWall[GridLeft]].grid[WallOutside] = index;//1的右边
-            m_walls[pWall[GridRight]].grid[WallInside] = index;//2的左边
-            m_walls[pWall[GridDown]].grid[WallInside] = index;//3的上边
+            
+            int iVertex = r * (m_nCols + 1) + c;
+            
+            m_walls[uWall].grid[WallOutside] = iGrid;
+            m_walls[uWall].dir = 0;
+            m_walls[uWall].start = iVertex;
+            m_walls[uWall].end = m_walls[uWall].start + 1;
+            
+            m_walls[lWall].grid[WallOutside] = iGrid;
+            m_walls[lWall].dir = 1;
+            m_walls[lWall].start = iVertex;
+            m_walls[lWall].end = m_walls[lWall].start + (m_nCols + 1);
+            
+            m_walls[rWall].grid[WallInside] = iGrid;
+            m_walls[rWall].dir = 1;
+            m_walls[rWall].start = iVertex + 1;
+            m_walls[rWall].end = m_walls[rWall].start + (m_nCols + 1);
+            
+            m_walls[dWall].grid[WallInside] = iGrid;
+            m_walls[dWall].dir = 0;
+            m_walls[dWall].start = iVertex + (m_nCols + 1);
+            m_walls[dWall].end = m_walls[dWall].start + 1;
         }
     }
-    
 }
 
 int WallMap::wall2grid(int iWall, int i) const
@@ -91,11 +122,10 @@ Wall::Wall()
 , m_gridSize(1.0f)
 , m_y(0.0f)
 , m_wallHeight(2.0f)
-, m_wallThick(0.2f)
-, m_wallThickHalf(0.1f)
+, m_wallThick(0.1f)
 , m_defaultMaterial(0)
 {
-    
+    m_wallThickHalf = m_wallThick * 0.5f;
 }
 
 Wall::~Wall()
@@ -274,9 +304,330 @@ void Wall::generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::Wall
     }
 }
 
+struct WallVertex
+{
+    WallVertex()
+    {
+        vertex[0][0] = -1;
+        vertex[0][1] = -1;
+        vertex[1][0] = -1;
+        vertex[1][0] = -1;
+    }
+    
+    int vertex[2][2];//两个面，每个面有两个顶点
+};
+
+namespace EdgeDir
+{
+    const int Up    = 1 << 1;
+    const int Right = 1 << 2;
+    const int Down  = 1 << 3;
+    const int Left  = 1 << 4;
+}
+
+const my3d::uint32 EdgeShift = 16;
+const my3d::uint32 EdgeMark = 0xffff;
+
+int getEdgeDir(int start, int end)
+{
+    int delta = end - start;
+    if(delta > 1) return EdgeDir::Down;//下
+    if(delta == 1) return EdgeDir::Right;//右
+    if(delta == -1) return EdgeDir::Left;//左
+    return EdgeDir::Up;//上
+}
+
+int getEdgeMerge(int start, int end)
+{
+    return (start << EdgeShift) + end;
+}
+
 void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
 {
+    const int nColVertices = m_nCols + 1;
     
+    //一面墙的两个边
+    typedef std::multimap<int, int> WallEdgeMap;
+    WallEdgeMap wallEdge;
+    
+    //记录每个边的两个顶点。key是一个合成的数值：start << 16 + end
+    typedef std::pair<int, int> EdgeVertex;
+    std::map<my3d::uint32, EdgeVertex> edgeVertices;
+    
+    for (auto it: m_walls)
+    {
+        const WallMap::Wall & w = m_wallMap.getWall(it.first);
+        wallEdge.insert(std::pair<int, int>(w.start, w.end));
+        wallEdge.insert(std::pair<int, int>(w.end, w.start));
+        
+        edgeVertices[getEdgeMerge(w.start, w.end)] = EdgeVertex(-1, -1);
+        edgeVertices[getEdgeMerge(w.end, w.start)] = EdgeVertex(-1, -1);
+    }
+    
+#if 1
+    CCLOG("num wall:%lu, num edge: %lu", m_walls.size(), wallEdge.size());
+    for(auto it : wallEdge)
+    {
+        CCLOG("%d - %d", it.first, it.second);
+    }
+#endif
+
+    
+    //每个交叉点生成的顶点
+    std::map<int, std::vector<my3d::uint16>> nodeVertices;
+    
+    int iStart = -1;
+    int iEnd = -1;
+    int iLastVertex = -1;
+    while(!wallEdge.empty())
+    {
+        WallEdgeMap::iterator itEdge;
+        if(iEnd < 0)
+        {
+            itEdge = wallEdge.begin();
+            
+            iStart = itEdge->first;
+            iEnd = itEdge->second;
+            iLastVertex = -1;
+        }
+        else
+        {
+            auto equal = wallEdge.equal_range(iStart);
+            WallEdgeMap::iterator it = equal.first;
+            for(; it != equal.second; ++it)
+            {
+                if(it->first == iStart && it->second == iEnd)
+                    break;
+            }
+            
+            if(it == equal.second)//出错了，不应该执行到这里
+            {
+                iStart = -1;
+                iEnd = -1;
+                continue;
+            }
+            
+            itEdge = it;
+        }
+        
+        auto equal = wallEdge.equal_range(iEnd);
+        int existMask = 0;
+        for(auto it = equal.first; it != equal.second; ++it)
+        {
+            existMask |= getEdgeDir(it->first, it->second);
+        }
+        
+        EdgeVertex & eVertex = edgeVertices[getEdgeMerge(iStart, iEnd)];
+        if(iLastVertex >= 0)
+        {
+            eVertex.first = iLastVertex;
+            if(eVertex.second >= 0)//走完一圈了
+            {
+                wallEdge.erase(itEdge);
+                
+                CCLOG("%d->%d edge(%d, %d)", iStart, iEnd, eVertex.first, eVertex.second);
+                
+                iEnd = -1;
+                continue;
+            }
+        }
+        
+        int dir = getEdgeDir(iStart, iEnd);
+        int nextDir = -1;
+        
+        my3d::VertexXYZNUV v;
+        v.position.set((iEnd % nColVertices) * m_gridSize, m_y + m_wallHeight, (iEnd / nColVertices) * m_gridSize);
+        v.normal.set(0, 1, 0);
+        v.uv.set(0, 0);
+        
+        if(dir == EdgeDir::Down)//向下
+        {
+            v.position.x += m_wallThickHalf;
+            
+            if(existMask & EdgeDir::Right)
+            {
+                v.position.z -= m_wallThickHalf;
+                nextDir = EdgeDir::Right;
+            }
+            else if(existMask & EdgeDir::Down)
+            {
+                nextDir = EdgeDir::Down;
+            }
+            else if(existMask & EdgeDir::Left)
+            {
+                v.position.z += m_wallThickHalf;
+                nextDir = EdgeDir::Left;
+            }
+            else
+            {
+                nextDir = EdgeDir::Up;
+            }
+        }
+        else if(dir == EdgeDir::Up)//向上
+        {
+            v.position.x -= m_wallThickHalf;
+            
+            if(existMask & EdgeDir::Left)
+            {
+                v.position.z += m_wallThickHalf;
+                nextDir = EdgeDir::Left;
+            }
+            else if(existMask & EdgeDir::Up)
+            {
+                nextDir = EdgeDir::Up;
+            }
+            else if(existMask & EdgeDir::Right)
+            {
+                v.position.z -= m_wallThickHalf;
+                nextDir = EdgeDir::Right;
+            }
+            else
+            {
+                nextDir = EdgeDir::Down;
+            }
+        }
+        else if(dir == EdgeDir::Right)//向右
+        {
+            v.position.z -= m_wallThickHalf;
+            
+            if(existMask & EdgeDir::Up)
+            {
+                v.position.x -= m_wallThickHalf;
+                nextDir = EdgeDir::Up;
+            }
+            else if(existMask & EdgeDir::Right)
+            {
+                nextDir = EdgeDir::Right;
+            }
+            else if(existMask & EdgeDir::Down)
+            {
+                v.position.x += m_wallThickHalf;
+                nextDir = EdgeDir::Down;
+            }
+            else
+            {
+                nextDir = EdgeDir::Left;
+            }
+        }
+        else if(dir == EdgeDir::Left)//向左
+        {
+            v.position.z += m_wallThickHalf;
+            
+            if(existMask & EdgeDir::Down)
+            {
+                v.position.x += m_wallThickHalf;
+                nextDir = EdgeDir::Down;
+            }
+            else if(existMask & EdgeDir::Left)
+            {
+                nextDir = EdgeDir::Left;
+            }
+            else if(existMask & EdgeDir::Up)
+            {
+                v.position.x -= m_wallThickHalf;
+                nextDir = EdgeDir::Up;
+            }
+            else
+            {
+                nextDir = EdgeDir::Right;
+            }
+        }
+        
+        eVertex.second = vertices.size();
+        vertices.push_back(v);
+        iLastVertex = eVertex.second;
+        
+        CCLOG("%d->%d pos(%f, %f, %f) index(%d) edge(%d, %d)",
+              iStart, iEnd, v.position.x, v.position.y, v.position.z, iLastVertex, eVertex.first, eVertex.second);
+        
+        if(eVertex.first >= 0 && eVertex.second >= 0)
+        {
+            wallEdge.erase(itEdge);
+        }
+        
+        int iNextEnd = iEnd;
+        switch (nextDir)
+        {
+            case EdgeDir::Up:
+                iNextEnd -= nColVertices;
+                break;
+                
+            case EdgeDir::Down:
+                iNextEnd += nColVertices;
+                break;
+                
+            case EdgeDir::Left:
+                iNextEnd -= 1;
+                break;
+                
+            case EdgeDir::Right:
+                iNextEnd += 1;
+                break;
+                
+            default:
+                iNextEnd = -1;
+                break;
+        }
+        
+        //反向的边
+        if(iNextEnd == iStart)
+        {
+            switch (nextDir)
+            {
+                case EdgeDir::Up:
+                    v.position.x -= m_wallThick;
+                    break;
+                    
+                case EdgeDir::Down:
+                    v.position.x += m_wallThick;
+                    break;
+                    
+                case EdgeDir::Left:
+                    v.position.z += m_wallThick;
+                    break;
+                    
+                case EdgeDir::Right:
+                    v.position.z -= m_wallThick;
+                    break;
+                    
+                default:
+                    CCAssert(0, "invalid dir!");
+                    break;
+            }
+            
+            iLastVertex = vertices.size();
+            vertices.push_back(v);
+        }
+        
+        iStart = iEnd;
+        iEnd = iNextEnd;
+    }
+    
+    IndexPool & pool = faces[m_defaultMaterial];
+    
+#define SAFE_ADD_VERTEX(INDEX) \
+assert(INDEX >= 0); pool.push_back(INDEX)
+
+    for (auto it: m_walls)
+    {
+        const WallMap::Wall & w = m_wallMap.getWall(it.first);
+        
+        EdgeVertex e1 = edgeVertices[getEdgeMerge(w.start, w.end)];
+        EdgeVertex e2 = edgeVertices[getEdgeMerge(w.end, w.start)];
+        std::swap(e2.first, e2.second);
+        
+        SAFE_ADD_VERTEX(e1.second);
+        SAFE_ADD_VERTEX(e1.first);
+        SAFE_ADD_VERTEX(e2.first);
+        
+        CCLOG("wall(%d) vert(%d, %d) face(%d %d %d)", it.first, w.start, w.end,  e1.second, e1.first, e2.first);
+        
+        SAFE_ADD_VERTEX(e2.first);
+        SAFE_ADD_VERTEX(e2.second);
+        SAFE_ADD_VERTEX(e1.second);
+        CCLOG("wall(%d) vert(%d, %d) face(%d %d %d)", it.first, w.start, w.end,  e2.first, e2.second, e1.second);
+    }
+#undef SAFE_ADD_VERTEX
 }
 
 void Wall::generateVertexD(VertexPool & vertices, FaceMap & faces)
@@ -353,15 +704,16 @@ bool TestMeshFileNode::initTest3D()
     
     std::vector<int> wall = {
         0, 0, 0,
-        1, 0, 0,
-        2, 0, 0,
-        4, 0, 0,
-        11, 0, 2,
-        12, 0, 2,
         5, 0, 0,
-        16, 0, 0,
-        6, 1, 1,
-        17, 1, 1,
+        6, 0, 0,
+        11, 0, 0,
+        3, 2, 2,
+        9, 2, 2,
+        8, 2, 2,
+        14, 2, 2,
+        15, 2, 2,
+        20, 2, 2,
+        19, 2, 2,
     };
     generateWall(nRows, nCols, &wall[0], wall.size() / 3);
     

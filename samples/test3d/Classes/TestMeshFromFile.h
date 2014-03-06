@@ -24,18 +24,23 @@ public:
         WallInside = 1,
     };
     
-    enum GridSize
+    enum GridSide
     {
         GridUp = 0,
         GridLeft = 1,
         GridRight = 2,
         GridDown = 3,
     };
+    
+    static int getInvGridSide(int side);
 
     struct Wall
     {
         int index;
-        int grid[2];
+        int grid[2];//占据两个格子
+        int dir;//水平/竖直
+        int start;//起点
+        int end;//终点
     };
     
     struct Grid
@@ -86,6 +91,7 @@ public:
     void generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
     //墙顶部
     void generateVertexC(VertexPool & vertices, FaceMap & faces);
+    //墙侧面
     void generateVertexD(VertexPool & vertices, FaceMap & faces);
     
     bool hasWall(int iWall) const;
