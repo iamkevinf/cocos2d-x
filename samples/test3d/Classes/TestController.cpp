@@ -93,7 +93,7 @@ void TestController::goPrevTest()
 void TestController::restartTest()
 {
     cocos2d::C3DScene *pScene = cocos2d::C3DLayer::getMainLayer()->get3DScene();
-    pScene->getActiveCamera()->setPosition(0, 2.0, 8.0f);
+    pScene->getActiveCamera()->setPosition(0, 8.0, 8.0f);
     my3d::renderDev()->updateCamera();
     
     if(m_curTestNode)

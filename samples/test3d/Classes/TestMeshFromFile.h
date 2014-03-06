@@ -85,16 +85,11 @@ public:
     
     void generateVertex(VertexPool & vertices, FaceMap & faces);
     
-    //水平的墙
-    void generateVertexA(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
-    //竖直的墙
-    void generateVertexB(VertexPool & vertices, FaceMap & faces, WallMap::WallSide side);
     //墙顶部
     void generateVertexC(VertexPool & vertices, FaceMap & faces);
-    //墙侧面
-    void generateVertexD(VertexPool & vertices, FaceMap & faces);
     
     bool hasWall(int iWall) const;
+    int getNextVertex(int iVertex, int dir) const;
     
 private:
     void built(int nRows, int nCols);

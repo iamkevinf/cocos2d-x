@@ -101,8 +101,8 @@ bool HelloWorld::init3D()
     this->addChild(pLayer);
     
     C3DCamera *pCamera = C3DCamera::createPerspective(45.0f, 1.0f, 1.0f, 1000.0f);
+    pCamera->rotateX(-3.14f / 4);
     pCamera->setPosition(0, 2.0, 6.0f);
-    pCamera->rotateX(-3.14f / 8);
     
     C3DScene *pScene = pLayer->get3DScene();
     pScene->addNodeToRenderList(pCamera);
@@ -116,7 +116,7 @@ bool HelloWorld::init3D()
     
     my3d::DirLightPtr dlight = new my3d::DirLight();
     dlight->setColor(my3d::Color(1.7f, 1.7f, 1.7f, 1.0f));
-    cocos2d::Vector3 dir(1, 1, 0);
+    cocos2d::Vector3 dir(-1, 1, 0);
     dir.normalize();
     dlight->setDirection(dir);
     light->addDirLight(dlight);
