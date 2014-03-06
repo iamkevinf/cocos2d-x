@@ -70,6 +70,21 @@ struct WallCell
     int material[2];
 };
 
+struct WallEdgeInfo
+{
+    int wall;
+    int material;
+    int vStart;
+    int vEnd;
+    
+    WallEdgeInfo()
+    {}
+    
+    WallEdgeInfo(int wall_, int mtl, int start, int end)
+    : wall(wall_), material(mtl), vStart(start), vEnd(end)
+    {}
+};
+
 class Wall : public cocos2d::ISmartObject
 {
 public:
@@ -113,6 +128,9 @@ private:
     //一面墙的两个边
     typedef std::multimap<int, int> WallEdgeMap;
     WallEdgeMap m_edges;
+    
+    //记录每个边的两个顶点。key是一个合成的数值：start << 16 + end
+    std::map<my3d::uint32, WallEdgeInfo> m_edgeInfo;
 };
 typedef SmartPtr<Wall> WallPtr;
 
