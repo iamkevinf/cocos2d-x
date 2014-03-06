@@ -97,15 +97,22 @@ private:
     
     int m_nRows;
     int m_nCols;
-    WallMap m_wallMap;
-    std::map<int, WallCell> m_walls;//墙索引->墙
-    std::vector<bool> m_wallMarks;//标记此位置是否有墙
+    
+    
     float m_gridSize;
     float m_y;
     float m_wallHeight;
     float m_wallThick;
     float m_wallThickHalf;
     int m_defaultMaterial;
+    
+    WallMap m_wallMap;
+    std::map<int, WallCell> m_walls;//墙索引->墙
+    std::vector<bool> m_wallMarks;//标记此位置是否有墙
+    
+    //一面墙的两个边
+    typedef std::multimap<int, int> WallEdgeMap;
+    WallEdgeMap m_edges;
 };
 typedef SmartPtr<Wall> WallPtr;
 
