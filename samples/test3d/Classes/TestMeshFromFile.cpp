@@ -8,6 +8,36 @@
 
 #include "TestMeshFromFile.h"
 
+/*正方形顶点排列
+0 2
+1 3
+*/
+const int SqureIndices[] = {
+    0, 1, 2,
+    2, 1, 3
+};
+const int NSqureIndices = 6;
+
+/*窗户顶点排列
+0     6
+  2 4
+  3 5
+1     7
+*/
+const int WindowIndices[] = {
+    0, 1, 3,
+    0, 3, 2,
+    0, 2, 4,
+    0, 4, 6,
+    1, 5, 3,
+    1, 7, 5,
+    6, 4, 5,
+    6, 5, 7,
+};
+const int NWindowIndices = 8 * 3;
+
+
+
 const WallMap::GridSide g_invGridSide[] = {WallMap::GridDown, WallMap::GridRight, WallMap::GridLeft, WallMap::GridUp};
 
 /*static*/ int WallMap::getInvGridSide(int side)
@@ -145,19 +175,7 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
     generateVertexC(vertices, faces);
 }
 
-
-struct WallVertex
-{
-    WallVertex()
-    {
-        vertex[0][0] = -1;
-        vertex[0][1] = -1;
-        vertex[1][0] = -1;
-        vertex[1][0] = -1;
-    }
-    
-    int vertex[2][2];//两个面，每个面有两个顶点
-};
+//////////////////////////////////////////////////////////////////////////////////////////
 
 namespace EdgeDir
 {
@@ -479,8 +497,45 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             m_edges.erase(itEdge);
         
             //生成围墙的面
-            IndexPool & pool = tempFaces[edgeInfo.material];
             
+            bool hasWindow = true;
+            int idx = tempVertices.size() - 2; //公用两个顶点
+            
+            const int *pIndices;
+            int nIndices;
+            
+            if(!hasWindow)
+            {
+                pIndices = SqureIndices;
+                nIndices = NSqureIndices;
+            }
+            else
+            {
+                pIndices = WindowIndices;
+                nIndices = NWindowIndices;
+                
+                //加入窗口的4个顶点
+                const float clip[4][2] = {
+                    {0.1, 0.2},
+                    {0.1, 0.7},
+                    {0.6, 0.2},
+                    {0.6, 0.7},
+                };
+                
+                int axis = dir & (EdgeDir::Left | EdgeDir::Right) ? 0 : 2;
+                float sign = dir & (EdgeDir::Left | EdgeDir::Up) ? -1 : 1;
+                for(int k = 0; k < 4; ++k)
+                {
+                    my3d::VertexXYZNUV tempV = tempVertices[idx];
+                    tempV.position.m[axis] += sign * clip[k][0];
+                    tempV.position.y -= clip[k][1];
+                    tempV.uv.x += clip[k][0];
+                    tempV.uv.y += clip[k][1];
+                    tempVertices.push_back(tempV);
+                }
+            }
+            
+            //后两个顶点
             my3d::VertexXYZNUV vertex = vertices[edgeInfo.vEnd];
             dir2normalV(vertex.normal, dir);
             vertex.uv.set(nRepeat + 1, 0);
@@ -490,15 +545,11 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             vertex.uv.set(nRepeat + 1, 1);
             tempVertices.push_back(vertex);
             
-            int i = tempVertices.size() - 4;
-            
-            //两个三角形的6个索引
-            pool.push_back(i);
-            pool.push_back(i+1);
-            pool.push_back(i+2);
-            pool.push_back(i+2);
-            pool.push_back(i+1);
-            pool.push_back(i+3);
+            IndexPool & pool = tempFaces[edgeInfo.material];
+            for(int k = 0; k<nIndices; ++k)
+            {
+                pool.push_back(idx + pIndices[k]);
+            }
         }
     }
     
