@@ -16,7 +16,7 @@ const int SqureIndices[] = {
     0, 1, 2,
     2, 1, 3
 };
-const int NSqureIndices = 6;
+const int NSqureIndices = 2 * 3;
 
 /*窗户顶点排列
 0     6
@@ -152,7 +152,7 @@ Wall::Wall()
 , m_gridSize(1.0f)
 , m_y(0.0f)
 , m_wallHeight(2.0f)
-, m_wallThick(0.1f)
+, m_wallThick(0.2f)
 , m_defaultMaterial(0)
 {
     m_wallThickHalf = m_wallThick * 0.5f;
@@ -194,10 +194,10 @@ const my3d::uint32 EdgeMark = 0xffff;
 int getEdgeDir(int start, int end)
 {
     int delta = end - start;
-    if(delta > 1) return EdgeDir::Down;//下
-    if(delta == 1) return EdgeDir::Right;//右
-    if(delta == -1) return EdgeDir::Left;//左
-    return EdgeDir::Up;//上
+    if(delta > 1) return EdgeDir::Down;
+    if(delta == 1) return EdgeDir::Right;
+    if(delta == -1) return EdgeDir::Left;
+    return EdgeDir::Up;
 }
 
 int getEdgeMerge(int start, int end)
@@ -271,19 +271,19 @@ void dir2normalV(my3d::Vector3 & normal, int dir)
     switch(dir)
     {
         case EdgeDir::Up:
-            normal.set(-1, 0, 0);
-            break;
-            
-        case EdgeDir::Down:
             normal.set(1, 0, 0);
             break;
             
+        case EdgeDir::Down:
+            normal.set(-1, 0, 0);
+            break;
+            
         case EdgeDir::Left:
-            normal.set(0, 0, 1);
+            normal.set(0, 0, -1);
             break;
             
         case EdgeDir::Right:
-            normal.set(0, 0, -1);
+            normal.set(0, 0, 1);
             break;
     }
 }
@@ -381,7 +381,7 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             //围墙的面
             if(nRepeat == 0)
             {
-                my3d::VertexXYZNUV vertex = vertices[iLastVertex];
+                my3d::VertexXYZNUV vertex = vertices[edgeInfo.vStart];
                 dir2normalV(vertex.normal, dir);
                 vertex.uv.set(0, 0);
                 tempVertices.push_back(vertex);
@@ -389,48 +389,51 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
                 vertex.position.y = m_y;
                 vertex.uv.set(0, 1);
                 tempVertices.push_back(vertex);
+                
+                CCLOG("wall vertex %d->%d start: copy(%d) index(%d, %d)",
+                      iStart, iEnd, iLastVertex, tempVertices.size() - 2, tempVertices.size() - 1);
             }
         }
         
         if(edgeInfo.vEnd < 0)
         {
-            my3d::VertexXYZNUV v;
-            v.position.set((iEnd % nColVertices) * m_gridSize, m_y + m_wallHeight, (iEnd / nColVertices) * m_gridSize);
-            v.normal.set(0, 1, 0);
-            v.uv.set(0, 0);
+            my3d::VertexXYZNUV vEnd;
+            vEnd.position.set((iEnd % nColVertices) * m_gridSize, m_y + m_wallHeight, (iEnd / nColVertices) * m_gridSize);
+            vEnd.normal.set(0, 1, 0);
+            vEnd.uv.set(0, 0);
             
             
-            //顺时针判断下一步要走的方向
-            int nextDir = dir == EdgeDir::Min ? EdgeDir::Max : dir >> 1;
+            //逆时针判断下一步要走的方向
+            int nextDir = dir == EdgeDir::Max ? EdgeDir::Min : dir << 1;
             int i = 0;
             for(; i<4; ++i)
             {
                 if(nextDir & existMask) break;
                 
-                nextDir <<= 1;
-                if(nextDir > EdgeDir::Max) nextDir = EdgeDir::Min;
+                nextDir >>= 1;
+                if(nextDir < EdgeDir::Min) nextDir = EdgeDir::Max;
             }
             
-            const float dirs[] = {-1, 0, 1, 0};
-            float sign = dir & (EdgeDir::Up | EdgeDir::Right) ? -1 : 1;
+            const float dirs[] = {1, 0, -1, 0};
+            float sign = dir & (EdgeDir::Up | EdgeDir::Right) ? 1 : -1;
             if(dir & (EdgeDir::Up | EdgeDir::Down))
             {
-                v.position.x += sign * m_wallThickHalf;
-                v.position.z += sign * dirs[i] * m_wallThickHalf;
+                vEnd.position.x += sign * m_wallThickHalf;
+                vEnd.position.z += sign * dirs[i] * m_wallThickHalf;
             }
             else
             {
-                v.position.z += sign * m_wallThickHalf;
-                v.position.x -= sign * dirs[i] * m_wallThickHalf;
+                vEnd.position.z += sign * m_wallThickHalf;
+                vEnd.position.x -= sign * dirs[i] * m_wallThickHalf;
             }
             
             edgeInfo.vEnd = vertices.size();
-            vertices.push_back(v);
+            vertices.push_back(vEnd);
             iLastVertex = edgeInfo.vEnd;
             crossVertices[iEnd].push_back(iLastVertex);
             
             CCLOG("%d->%d pos(%f, %f, %f) index(%d) edge(%d, %d)",
-                  iStart, iEnd, v.position.x, v.position.y, v.position.z, iLastVertex, edgeInfo.vStart, edgeInfo.vEnd);
+                  iStart, iEnd, vEnd.position.x, vEnd.position.y, vEnd.position.z, iLastVertex, edgeInfo.vStart, edgeInfo.vEnd);
             
             
             //决定下一次需要选取的边
@@ -440,50 +443,46 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             if(iNextEnd == iStart)
             {
                 //镜像出对边的起点
-                my3d::VertexXYZNUV nextV = v;
+                my3d::VertexXYZNUV nextV = vEnd;
                 nextV.normal.set(0, 1, 0);
-                float sign = nextDir & (EdgeDir::Up | EdgeDir::Right) ? -1 : 1;
-                if(nextDir & (EdgeDir::Up | EdgeDir::Down))
-                {
-                    nextV.position.x += sign * m_wallThick;
-                }
-                else
-                {
-                    nextV.position.z += sign * m_wallThick;
-                }
+                
+                int axis = dir & (EdgeDir::Up | EdgeDir::Down) ? 0 : 2;
+                float sign = dir & (EdgeDir::Up | EdgeDir::Right) ? -1 : 1;
+                nextV.position.m[axis] += sign * m_wallThick;
                 
                 iLastVertex = vertices.size();
                 vertices.push_back(nextV);
+                CCLOG("%d->%d pos(%f, %f, %f) index(%d)",
+                      iEnd, iNextEnd, nextV.position.x, nextV.position.y, nextV.position.z, iLastVertex);
                 
-                
+#if 1
                 //意味着这是一面孤立的墙，需要绘制侧面的边
-                my3d::VertexXYZNUV prevV = v;
-                dir2normalH(prevV.normal, dir);
-                nextV.normal = prevV.normal;
-                
                 int index = vertices.size();
+                
+                my3d::VertexXYZNUV prevV = vEnd;
+                dir2normalH(prevV.normal, dir);
                 vertices.push_back(prevV);
-                vertices.push_back(nextV);
                 
                 prevV.position.y = m_y;
-                nextV.position.y = m_y;
                 vertices.push_back(prevV);
+                
+                nextV.normal = prevV.normal;
+                vertices.push_back(nextV);
+                
+                nextV.position.y = m_y;
                 vertices.push_back(nextV);
                 
                 IndexPool & pool = faces[m_defaultMaterial];
-                pool.push_back(index);
-                pool.push_back(index+2);
-                pool.push_back(index+1);
-                pool.push_back(index+1);
-                pool.push_back(index+2);
-                pool.push_back(index+3);
+                for(int k = 0; k<NSqureIndices; ++k)
+                    pool.push_back(index + SqureIndices[k]);
+#endif
             }
             
             iStart = iEnd;
             iEnd = iNextEnd;
             
             //顶点是否公用
-            nRepeat = (dir == nextDir ? nRepeat + 1 : 0);
+            nRepeat = (dir == nextDir && edgeInfo.vStart >=0 ? nRepeat + 1 : 0);
         }
         else
         {
@@ -501,6 +500,11 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             bool hasWindow = true;
             int idx = tempVertices.size() - 2; //公用两个顶点
             
+            const my3d::VertexXYZNUV prevV = tempVertices[idx];
+            my3d::VertexXYZNUV nextV = vertices[edgeInfo.vEnd];
+            dir2normalV(nextV.normal, dir);
+            nextV.uv.set(nRepeat + 1, 0);
+            
             const int *pIndices;
             int nIndices;
             
@@ -516,34 +520,41 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
                 
                 //加入窗口的4个顶点
                 const float clip[4][2] = {
-                    {0.1, 0.2},
-                    {0.1, 0.7},
+                    {0.2, 0.2},
+                    {0.2, 1.2},
                     {0.6, 0.2},
-                    {0.6, 0.7},
+                    {0.6, 1.2},
                 };
                 
                 int axis = dir & (EdgeDir::Left | EdgeDir::Right) ? 0 : 2;
-                float sign = dir & (EdgeDir::Left | EdgeDir::Up) ? -1 : 1;
+                float realWidth = fabs(nextV.position.m[axis] - prevV.position.m[axis]);
+                float offset = (realWidth - m_gridSize) * 0.5f;
+                float sign = dir & (EdgeDir::Right | EdgeDir::Down) ? 1 : -1;
+                int bias = sign > 0 ? 0 : 2;
                 for(int k = 0; k < 4; ++k)
                 {
-                    my3d::VertexXYZNUV tempV = tempVertices[idx];
-                    tempV.position.m[axis] += sign * clip[k][0];
-                    tempV.position.y -= clip[k][1];
-                    tempV.uv.x += clip[k][0];
-                    tempV.uv.y += clip[k][1];
+                    int x = (k + bias) % 4;
+                    my3d::VertexXYZNUV tempV = sign > 0 ? prevV : nextV;
+                    
+                    tempV.position.m[axis] += (offset + clip[x][0]);
+                    tempV.position.y = m_y + m_wallHeight - clip[x][1];
+                    
+                    tempV.uv.x += sign * clip[x][0] / m_gridSize;
+                    tempV.uv.y += clip[x][1] / m_wallHeight;
+                    
                     tempVertices.push_back(tempV);
-                }
+                 }
             }
             
             //后两个顶点
-            my3d::VertexXYZNUV vertex = vertices[edgeInfo.vEnd];
-            dir2normalV(vertex.normal, dir);
-            vertex.uv.set(nRepeat + 1, 0);
-            tempVertices.push_back(vertex);
+            tempVertices.push_back(nextV);
             
-            vertex.position.y = m_y;
-            vertex.uv.set(nRepeat + 1, 1);
-            tempVertices.push_back(vertex);
+            nextV.position.y = m_y;
+            nextV.uv.set(nRepeat + 1, 1);
+            tempVertices.push_back(nextV);
+            
+            CCLOG("wall vertex %d->%d end: copy(%d) index(%d, %d)",
+                  iStart, iEnd, edgeInfo.vEnd, tempVertices.size() - 2, tempVertices.size() - 1);
             
             IndexPool & pool = tempFaces[edgeInfo.material];
             for(int k = 0; k<nIndices; ++k)
@@ -687,9 +698,9 @@ bool TestMeshFileNode::initTest3D()
     generateGround(nRows, nCols, &rawData[0]);
     
     std::vector<int> wall = {
-        0, 0, 2,
+        0, 2, 0,
         5, 0, 2,
-        6, 0, 2,
+        6, 2, 0,
         11, 0, 2,
         3, 2, 0,
         9, 2, 0,
