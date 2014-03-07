@@ -84,6 +84,8 @@
 		585927FA18B34EBC004E4BA3 /* libcocos3d_libs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585927F718B34E8D004E4BA3 /* libcocos3d_libs.a */; };
 		58626FCA18C42445003FC8CD /* TestMeshFromFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58626FC818C42445003FC8CD /* TestMeshFromFile.cpp */; };
 		58626FCB18C42445003FC8CD /* TestMeshFromFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58626FC818C42445003FC8CD /* TestMeshFromFile.cpp */; };
+		5866D10018C9C704005CD74B /* Homeland.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5866D0FE18C9C704005CD74B /* Homeland.cpp */; };
+		5866D10118C9C704005CD74B /* Homeland.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5866D0FE18C9C704005CD74B /* Homeland.cpp */; };
 		5869FE3618BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */; };
 		5869FE3718BEDAF000D8F51B /* TestSimpleDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */; };
 		5869FE4018BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */; };
@@ -353,6 +355,8 @@
 		585927EC18B34E8C004E4BA3 /* cocos3d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos3d_libs.xcodeproj; path = ../../../build/cocos3d_libs.xcodeproj; sourceTree = "<group>"; };
 		58626FC818C42445003FC8CD /* TestMeshFromFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMeshFromFile.cpp; path = ../Classes/TestMeshFromFile.cpp; sourceTree = "<group>"; };
 		58626FC918C42445003FC8CD /* TestMeshFromFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestMeshFromFile.h; path = ../Classes/TestMeshFromFile.h; sourceTree = "<group>"; };
+		5866D0FE18C9C704005CD74B /* Homeland.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Homeland.cpp; path = ../Classes/Homeland.cpp; sourceTree = "<group>"; };
+		5866D0FF18C9C704005CD74B /* Homeland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Homeland.h; path = ../Classes/Homeland.h; sourceTree = "<group>"; };
 		5869FE3418BEDAF000D8F51B /* TestSimpleDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSimpleDraw.cpp; path = ../Classes/TestSimpleDraw.cpp; sourceTree = "<group>"; };
 		5869FE3518BEDAF000D8F51B /* TestSimpleDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSimpleDraw.h; path = ../Classes/TestSimpleDraw.h; sourceTree = "<group>"; };
 		5869FE3E18BEDF8500D8F51B /* TestTextureDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestTextureDraw.cpp; path = ../Classes/TestTextureDraw.cpp; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 				5869FE3F18BEDF8500D8F51B /* TestTextureDraw.h */,
 				58626FC818C42445003FC8CD /* TestMeshFromFile.cpp */,
 				58626FC918C42445003FC8CD /* TestMeshFromFile.h */,
+				5866D0FE18C9C704005CD74B /* Homeland.cpp */,
+				5866D0FF18C9C704005CD74B /* Homeland.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -848,6 +854,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58110C0718BEE57200864C8E /* TestGroundDraw.cpp in Sources */,
+				5866D10018C9C704005CD74B /* Homeland.cpp in Sources */,
 				58110BFD18BEE30300864C8E /* TestMeshDraw.cpp in Sources */,
 				582C41E418B759C600B890A3 /* TestEGLDraw.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -878,6 +885,7 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				58110C0C18BEE88C00864C8E /* TestBase.cpp in Sources */,
 				5869FE4118BEDF8500D8F51B /* TestTextureDraw.cpp in Sources */,
+				5866D10118C9C704005CD74B /* Homeland.cpp in Sources */,
 				58626FCB18C42445003FC8CD /* TestMeshFromFile.cpp in Sources */,
 				58110C1D18BF1C0D00864C8E /* TestLightDraw.cpp in Sources */,
 			);
