@@ -36,7 +36,42 @@ const int WindowIndices[] = {
 };
 const int NWindowIndices = 8 * 3;
 
+/*门的顶点排列
+0     6
+  2 4
+1 3 5 7
+*/
+const int DoorIndices[] = {
+    0, 1, 2,
+    0, 2, 6,
+    1, 3, 2,
+    6, 4, 7,
+    6, 2, 4,
+    7, 4, 5,
+};
+const int NDoorIndices = 6 * 3;
 
+
+const float WindowRect[] = {
+    0.2, 0.2,
+    0.2, 1.2,
+    0.6, 0.2,
+    0.6, 1.2,
+};
+
+const float DoorRect[] = {
+    0.2, 0.2,
+    0.2, 2.0,
+    0.6, 0.2,
+    0.6, 2.0,
+};
+
+bool isDoor(int iWindow)
+{
+    return iWindow >= 1000;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
 
 const WallMap::GridSide g_invGridSide[] = {WallMap::GridDown, WallMap::GridRight, WallMap::GridLeft, WallMap::GridUp};
 
@@ -164,10 +199,10 @@ Wall::~Wall()
 }
 
 //pWalls：3个整数为一组（墙索引，材质1，材质2）
-void Wall::init(int nRows, int nCols, const int * pWalls, int n)
+void Wall::init(int nRows, int nCols, const int * pWalls, int n, int step)
 {
     built(nRows, nCols);
-    setData(pWalls, n);
+    setData(pWalls, n, step);
 }
 
 void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
@@ -328,8 +363,8 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
         
         int dir = getEdgeDir(w.start, w.end);
         int iMtl = dir & (EdgeDir::Right | EdgeDir::Down) ? 0 : 1;
-        m_edgeInfo[getEdgeMerge(w.start, w.end)] = WallEdgeInfo(it.first, it.second.material[iMtl], -1, -1);
-        m_edgeInfo[getEdgeMerge(w.end, w.start)] = WallEdgeInfo(it.first, it.second.material[(iMtl+1)%2], -1, -1);
+        m_edgeInfo[getEdgeMerge(w.start, w.end)] = WallEdgeInfo(it.first, it.second.material[iMtl], it.second.window, -1, -1);
+        m_edgeInfo[getEdgeMerge(w.end, w.start)] = WallEdgeInfo(it.first, it.second.material[(iMtl+1)%2], it.second.window, -1, -1);
     }
     
     //每个交叉点生成的顶点
@@ -497,7 +532,6 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
         
             //生成围墙的面
             
-            bool hasWindow = true;
             int idx = tempVertices.size() - 2; //公用两个顶点
             
             const my3d::VertexXYZNUV prevV = tempVertices[idx];
@@ -508,24 +542,28 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             const int *pIndices;
             int nIndices;
             
-            if(!hasWindow)
+            if(edgeInfo.iWindow < 0)
             {
                 pIndices = SqureIndices;
                 nIndices = NSqureIndices;
             }
             else
             {
-                pIndices = WindowIndices;
-                nIndices = NWindowIndices;
+                float *pClipRect;
+                if(!isDoor(edgeInfo.iWindow))
+                {
+                    pIndices = WindowIndices;
+                    nIndices = NWindowIndices;
+                    pClipRect = (float*)WindowRect;
+                }
+                else
+                {
+                    pIndices = DoorIndices;
+                    nIndices = NDoorIndices;
+                    pClipRect = (float*)DoorRect;
+                }
                 
                 //加入窗口的4个顶点
-                const float clip[4][2] = {
-                    {0.2, 0.2},
-                    {0.2, 1.2},
-                    {0.6, 0.2},
-                    {0.6, 1.2},
-                };
-                
                 int axis = dir & (EdgeDir::Left | EdgeDir::Right) ? 0 : 2;
                 float realWidth = fabs(nextV.position.m[axis] - prevV.position.m[axis]);
                 float offset = (realWidth - m_gridSize) * 0.5f;
@@ -533,14 +571,14 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
                 int bias = sign > 0 ? 0 : 2;
                 for(int k = 0; k < 4; ++k)
                 {
-                    int x = (k + bias) % 4;
+                    int x = (k + bias) % 4 * 2;
                     my3d::VertexXYZNUV tempV = sign > 0 ? prevV : nextV;
                     
-                    tempV.position.m[axis] += (offset + clip[x][0]);
-                    tempV.position.y = m_y + m_wallHeight - clip[x][1];
+                    tempV.position.m[axis] += (offset + pClipRect[x]);
+                    tempV.position.y = m_y + m_wallHeight - pClipRect[x + 1];
                     
-                    tempV.uv.x += sign * clip[x][0] / m_gridSize;
-                    tempV.uv.y += clip[x][1] / m_wallHeight;
+                    tempV.uv.x += sign * pClipRect[x] / m_gridSize;
+                    tempV.uv.y += pClipRect[x + 1] / m_wallHeight;
                     
                     tempVertices.push_back(tempV);
                  }
@@ -556,7 +594,7 @@ void Wall::generateVertexC(VertexPool & vertices, FaceMap & faces)
             CCLOG("wall vertex %d->%d end: copy(%d) index(%d, %d)",
                   iStart, iEnd, edgeInfo.vEnd, tempVertices.size() - 2, tempVertices.size() - 1);
             
-            IndexPool & pool = tempFaces[edgeInfo.material];
+            IndexPool & pool = tempFaces[edgeInfo.iMaterial];
             for(int k = 0; k<nIndices; ++k)
             {
                 pool.push_back(idx + pIndices[k]);
@@ -651,14 +689,16 @@ void Wall::built(int nRows, int nCols)
     
 }
 
-void Wall::setData(const int *pWalls, int n)
+void Wall::setData(const int *pWalls, int n, int step)
 {
     for (int i = 0; i < n; ++i)
     {
+        int idx = i * step;
         WallCell cell;
-        cell.index = pWalls[i * 3];
-        cell.material[0] = pWalls[i * 3 + 1];
-        cell.material[1] = pWalls[i * 3 + 2];
+        cell.index = pWalls[idx];
+        cell.material[0] = pWalls[idx + 1];
+        cell.material[1] = pWalls[idx + 2];
+        cell.window = pWalls[idx + 3];
         
         m_walls.insert(std::make_pair(cell.index, cell));
         m_wallMarks[cell.index] = true;
@@ -697,21 +737,22 @@ bool TestMeshFileNode::initTest3D()
     
     generateGround(nRows, nCols, &rawData[0]);
     
+    const int step = 4;
     std::vector<int> wall = {
-        0, 2, 0,
-        5, 0, 2,
-        6, 2, 0,
-        11, 0, 2,
-        3, 2, 0,
-        9, 2, 0,
-        8, 2, 0,
-        14, 2, 0,
-        15, 2, 0,
-        20, 2, 0,
-        19, 2, 0,
-        28, 2, 0,
+        0, 2, 0, -1,
+        5, 0, 2, 1,
+        6, 2, 0, 1,
+        11, 0, 2, 1000,
+        3, 2, 0, -1,
+        9, 2, 0, -1,
+        8, 2, 0, -1,
+        14, 2, 0, -1,
+        15, 2, 0, -1,
+        20, 2, 0, -1,
+        19, 2, 0, -1,
+        28, 2, 0, 1000,
     };
-    generateWall(nRows, nCols, &wall[0], wall.size() / 3);
+    generateWall(nRows, nCols, &wall[0], wall.size() / step, step);
     
     
     cocos2d::C3DScene *pScene = cocos2d::C3DLayer::getMainLayer()->get3DScene();
@@ -909,10 +950,10 @@ bool TestMeshFileNode::loadMaterial()
     return true;
 }
 
-void TestMeshFileNode::generateWall(int nRows, int nCols, const int * pWalls, int n)
+void TestMeshFileNode::generateWall(int nRows, int nCols, const int * pWalls, int n, int step)
 {
     m_wallData = new Wall();
-    m_wallData->init(nRows, nCols, pWalls, n);
+    m_wallData->init(nRows, nCols, pWalls, n, step);
     
     Wall::VertexPool vertices;
     Wall::FaceMap faces;

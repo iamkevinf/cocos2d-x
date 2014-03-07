@@ -68,20 +68,22 @@ struct WallCell
 {
     int index;//墙的索引
     int material[2];
+    int window;
 };
 
 struct WallEdgeInfo
 {
-    int wall;
-    int material;
+    int iWall;
+    int iMaterial;
+    int iWindow;
     int vStart;
     int vEnd;
     
     WallEdgeInfo()
     {}
     
-    WallEdgeInfo(int wall_, int mtl, int start, int end)
-    : wall(wall_), material(mtl), vStart(start), vEnd(end)
+    WallEdgeInfo(int wall, int mtl, int window, int start, int end)
+    : iWall(wall), iMaterial(mtl), iWindow(window),  vStart(start), vEnd(end)
     {}
 };
 
@@ -96,7 +98,7 @@ public:
     ~Wall();
     
     //pWalls：3个整数为一组（墙索引，材质1，材质2）
-    void init(int nRows, int nCols, const int * pWalls, int n);
+    void init(int nRows, int nCols, const int * pWalls, int n, int step);
     
     void generateVertex(VertexPool & vertices, FaceMap & faces);
     
@@ -108,7 +110,7 @@ public:
     
 private:
     void built(int nRows, int nCols);
-    void setData(const int *pWalls, int n);
+    void setData(const int *pWalls, int n, int step);
     
     int m_nRows;
     int m_nCols;
@@ -158,7 +160,7 @@ public:
     void generateVertices(int nRows, int nCols, my3d::VertexXYZNUV * pVertices);
     void generateIndices(int nRows, int nCols, my3d::uint16 * pIndices);
     
-    void generateWall(int nRows, int nCols, const int * pWalls, int n);
+    void generateWall(int nRows, int nCols, const int * pWalls, int n, int step);
     
     CREATE_TEST_3D_NODE(TestMeshFileNode)
     
