@@ -96,6 +96,7 @@ void PhysicsContact::generateContactData()
     }
     
     cpArbiter* arb = static_cast<cpArbiter*>(_contactInfo);
+    CC_SAFE_DELETE(_contactData);
     _contactData = new PhysicsContactData();
     _contactData->count = cpArbiterGetCount(arb);
     for (int i=0; i<_contactData->count && i<PhysicsContactData::POINT_MAX; ++i)
@@ -118,7 +119,7 @@ PhysicsContactPreSolve::~PhysicsContactPreSolve()
     CC_SAFE_DELETE(_preContactData);
 }
 
-float PhysicsContactPreSolve::getElasticity() const
+float PhysicsContactPreSolve::getRestitution() const
 {
     return static_cast<cpArbiter*>(_contactInfo)->e;
 }
@@ -133,9 +134,9 @@ Point PhysicsContactPreSolve::getSurfaceVelocity() const
     return PhysicsHelper::cpv2point(static_cast<cpArbiter*>(_contactInfo)->surface_vr);
 }
 
-void PhysicsContactPreSolve::setElasticity(float elasticity)
+void PhysicsContactPreSolve::setRestitution(float restitution)
 {
-    static_cast<cpArbiter*>(_contactInfo)->e = elasticity;
+    static_cast<cpArbiter*>(_contactInfo)->e = restitution;
 }
 
 void PhysicsContactPreSolve::setFriction(float friction)
@@ -165,7 +166,7 @@ PhysicsContactPostSolve::~PhysicsContactPostSolve()
     
 }
 
-float PhysicsContactPostSolve::getElasticity() const
+float PhysicsContactPostSolve::getRestitution() const
 {
     return static_cast<cpArbiter*>(_contactInfo)->e;
 }
@@ -218,16 +219,7 @@ void EventListenerPhysicsContact::onEvent(EventCustom* event)
             {
                 contact->_begin = true;
                 contact->generateContactData();
-                
-                // the mask has high priority than _listener->onContactBegin.
-                // so if the mask test is false, the two bodies won't have collision.
-                if (ret)
-                {
-                    ret = onContactBegin(*contact);
-                }else
-                {
-                    onContactBegin(*contact);
-                }
+                ret = onContactBegin(*contact);
             }
             
             contact->setResult(ret);

@@ -41,7 +41,7 @@ public:
     UICCTextField();
     ~UICCTextField();
     
-    virtual void onEnter();
+    virtual void onEnter() override;
     
     // static
     static UICCTextField* create(const char *placeholder, const char *fontName, float fontSize);
@@ -103,15 +103,24 @@ typedef void (Ref::*SEL_TextFieldEvent)(Ref*, TextFiledEventType);
 */
 class TextField : public Widget
 {
+    
+    DECLARE_CLASS_GUI_INFO
+    
 public:
     TextField();
     virtual ~TextField();
     static TextField* create();
     void setTouchSize(const Size &size);
+    Size getTouchSize();
+    void setTouchAreaEnabled(bool enable);
+    virtual bool hitTest(const Point &pt);
     void setText(const std::string& text);
     void setPlaceHolder(const std::string& value);
+    const std::string& getPlaceHolder();
     void setFontSize(int size);
+    int getFontSize();
     void setFontName(const std::string& name);
+    const std::string& getFontName();
     virtual void didNotSelectSelf();
     const std::string& getStringValue();
     virtual bool onTouchBegan(Touch *touch, Event *unusedEvent) override;
@@ -122,6 +131,7 @@ public:
     void setPasswordEnabled(bool enable);
     bool isPasswordEnabled();
     void setPasswordStyleText(const char* styleText);
+    const char* getPasswordStyleText();
     virtual void update(float dt) override;
     bool getAttachWithIME();
     void setAttachWithIME(bool attach);
@@ -144,14 +154,21 @@ public:
     virtual Node* getVirtualRenderer() override;
     void attachWithIME();
     virtual void onEnter() override;
+    
+    void setTextAreaSize(const Size &size);
+    void setTextHorizontalAlignment(TextHAlignment alignment);
+    void setTextVerticalAlignment(TextVAlignment alignment);
 protected:
-    // event
+    virtual bool init() override;
     virtual void initRenderer() override;
     void attachWithIMEEvent();
     void detachWithIMEEvent();
     void insertTextEvent();
     void deleteBackwardEvent();
     virtual void onSizeChanged() override;
+    virtual void updateTextureColor() override;
+    virtual void updateTextureOpacity() override;
+    virtual void updateTextureRGBA() override;
     void textfieldRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance() override;
     virtual void copySpecialProperties(Widget* model) override;

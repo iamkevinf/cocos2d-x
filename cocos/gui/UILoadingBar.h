@@ -42,6 +42,9 @@ typedef enum
 */
 class LoadingBar : public Widget
 {
+    
+    DECLARE_CLASS_GUI_INFO
+    
 public:
     /**
      * Default constructor
@@ -106,12 +109,16 @@ public:
      */
     void setScale9Enabled(bool enabled);
     
+    bool isScale9Enabled();
+    
     /**
      * Sets capinsets for loadingbar, if loadingbar is using scale9 renderer.
      *
      * @param capInsets    capinsets for loadingbar
      */
     void setCapInsets(const Rect &capInsets);
+    
+    const Rect& getCapInsets();
     
     //override "ignoreContentAdaptWithSize" method of widget.
     virtual void ignoreContentAdaptWithSize(bool ignore) override;
@@ -129,6 +136,9 @@ public:
 protected:
     virtual void initRenderer() override;
     virtual void onSizeChanged() override;
+    virtual void updateTextureColor() override;
+    virtual void updateTextureOpacity() override;
+    virtual void updateTextureRGBA() override;
     void setScale9Scale();
     void barRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance() override;

@@ -45,6 +45,9 @@ typedef void (Ref::*SEL_SlidPercentChangedEvent)(Ref*,SliderEventType);
 */
 class Slider : public Widget
 {
+    
+    DECLARE_CLASS_GUI_INFO
+    
 public:
     /**
      * Default constructor
@@ -77,6 +80,8 @@ public:
      */
     void setScale9Enabled(bool able);
     
+    bool isScale9Enabled();
+    
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
@@ -91,12 +96,16 @@ public:
      */
     void setCapInsetsBarRenderer(const Rect &capInsets);
     
+    const Rect& getCapInsetsBarRenderer();
+    
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
      * @param capInsets    capinsets for slider
      */
     void setCapInsetProgressBarRebderer(const Rect &capInsets);
+    
+    const Rect& getCapInsetsProgressBarRebderer();
     
     /**
      * Load textures for slider ball.
@@ -186,6 +195,7 @@ public:
     virtual std::string getDescription() const override;
 
 protected:
+    virtual bool init() override;
     virtual void initRenderer() override;
     float getPercentWithBallPos(float location);
     void percentChangedEvent();
@@ -193,6 +203,9 @@ protected:
     virtual void onPressStateChangedToPressed() override;
     virtual void onPressStateChangedToDisabled() override;
     virtual void onSizeChanged() override;
+    virtual void updateTextureColor() override;
+    virtual void updateTextureOpacity() override;
+    virtual void updateTextureRGBA() override;
     void barRendererScaleChangedWithSize();
     void progressBarRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance() override;
