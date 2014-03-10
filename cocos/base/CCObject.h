@@ -192,22 +192,6 @@ public:
 #endif
 };
 
-
-//smart object, witch can be managed by smart pointer automatically.
-class CC_DLL ISmartObject : public Object
-{
-public:
-    ISmartObject();
-    virtual ~ISmartObject();
-    
-    virtual Object* autorelease();
-    
-#if COCOS2D_DEBUG > 0
-    virtual bool isISmartObject() const { return true; }
-#endif
-};
-
-
 typedef void (Object::*SEL_SCHEDULE)(float);
 typedef void (Object::*SEL_CallFunc)();
 typedef void (Object::*SEL_CallFuncN)(Node*);

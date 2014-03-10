@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "CCAutoreleasePool.h"
 #include "ccMacros.h"
 #include "CCScriptSupport.h"
-#include "mytool/memorycheck.h"
+
 
 NS_CC_BEGIN
 
@@ -40,13 +40,10 @@ Object::Object()
     static unsigned int uObjectCount = 0;
 
     _ID = ++uObjectCount;
-    
-    CHECK_OBJECT_CONS(this);
 }
 
 Object::~Object()
 {
-    CHECK_OBJECT_DEST(this);
     
     // if the object is managed, we should remove it
     // from pool manager
@@ -96,22 +93,5 @@ void Object::acceptVisitor(DataVisitor &visitor)
     visitor.visitObject(this);
 }
 
-
-ISmartObject::ISmartObject()
-{
-    _reference = 0;
-}
-
-ISmartObject::~ISmartObject()
-{
-    
-}
-
-Object* ISmartObject::autorelease()
-{
-    this->retain();
-    
-    return Object::autorelease();
-}
 
 NS_CC_END
