@@ -112,6 +112,10 @@ public:
      */
     unsigned int getReferenceCount() const;
     
+#if COCOS2D_DEBUG > 0
+    virtual bool isISmartObject() const { return true; }
+#endif
+
 protected:
     /**
      * Constructor

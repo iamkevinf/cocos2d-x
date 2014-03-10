@@ -61,7 +61,7 @@ Ref::~Ref()
 
 void Ref::retain()
 {
-    CCASSERT(_referenceCount > 0, "reference count should greater than 0");
+    //CCASSERT(_referenceCount > 0, "reference count should greater than 0");
     ++_referenceCount;
 }
 
