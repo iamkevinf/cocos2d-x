@@ -435,19 +435,14 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
         
         int dir = getEdgeDir(iStart, iEnd);
         
-        auto equal = m_edges.equal_range(iEnd);
-        int existMask = 0;
-        for(auto it = equal.first; it != equal.second; ++it)
-        {
-            existMask |= getEdgeDir(it->first, it->second);
-        }
-        
         WallEdgeInfo & edgeInfo = m_edgeInfo[getEdgeMerge(iStart, iEnd)];
+        
+        //确定起点
         if(iLastVertex >= 0)
         {
             edgeInfo.vStart = iLastVertex;
             
-            //围墙的面
+            //生成围墙的起点
             if(nRepeat == 0)
             {
                 my3d::VertexXYZNUV vertex = vertices[edgeInfo.vStart];
@@ -464,8 +459,16 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
             }
         }
         
+        //生成终点
         if(edgeInfo.vEnd < 0)
         {
+            auto equal = m_edges.equal_range(iEnd);
+            int existMask = 0;
+            for(auto it = equal.first; it != equal.second; ++it)
+            {
+                existMask |= getEdgeDir(it->first, it->second);
+            }
+            
             my3d::VertexXYZNUV vEnd;
             vEnd.position.set((iEnd % nColVertices) * m_gridSize, m_y + m_wallHeight, (iEnd / nColVertices) * m_gridSize);
             vEnd.normal.set(0, 1, 0);
@@ -524,7 +527,6 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
                 CCLOG("%d->%d pos(%f, %f, %f) index(%d)",
                       iEnd, iNextEnd, nextV.position.x, nextV.position.y, nextV.position.z, iLastVertex);
                 
-#if 1
                 //意味着这是一面孤立的墙，需要绘制侧面的边
                 int index = vertices.size();
                 
@@ -544,7 +546,6 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
                 IndexPool & pool = faces[m_defaultMaterial];
                 for(int k = 0; k<NSqureIndices; ++k)
                     pool.push_back(index + SqureIndices[k]);
-#endif
             }
             
             iStart = iEnd;
@@ -558,13 +559,13 @@ void Wall::generateVertex(VertexPool & vertices, FaceMap & faces)
             CCLOG("%d->%d edge(%d, %d)", iStart, iEnd, edgeInfo.vStart, edgeInfo.vEnd);
             
             iEnd = -1;
+            nRepeat = 0;
         }
         
         if(edgeInfo.vStart >= 0)
         {
             m_edges.erase(itEdge);
             
-            //生成围墙的面
             
             int idx = tempVertices.size() - 2; //公用两个顶点
             
